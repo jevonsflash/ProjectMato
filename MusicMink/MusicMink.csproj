@@ -108,6 +108,12 @@
     <Compile Include="Common\ObservableDictionary.cs" />
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
+    <Compile Include="Controls\ErrorboxControl.xaml.cs">
+      <DependentUpon>ErrorboxControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LrcControl.xaml.cs">
+      <DependentUpon>LrcControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ScalingTextBox.xaml.cs">
       <DependentUpon>ScalingTextBox.xaml</DependentUpon>
     </Compile>
@@ -286,6 +292,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\ErrorboxControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\LrcControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\ScalingTextBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
