@@ -13,11 +13,6 @@ namespace MusicMinkAppLayer.Helpers
         public const string SETTING_IS_LOGGING_ENABLED = "SETTING_IS_LOGGING_ENABLED_KEY";
         public const string SETTING_IS_CLASSIC_MODE_ON = "SETTING_IS_CLASSIC_MODE_KEY";
 
-        public const string SETTING_IS_LASTFM_SCROBBLING_ENABLED = "SETTING_IS_LASTFM_SCROBBLING_KEY";
-        public const string SETTING_LASTFM_USERNAME = "SETTING_LASTFM_USERNAME_KEY";
-        public const string SETTING_LASTFM_PASSWORD = "SETTING_LASTFM_PASSWORD_KEY";
-        public const string SETTING_LASTFM_SESSION_TOKEN = "SETTING_LASTFM_SESSION_TOKEN";
-
         public const string SETTING_IS_AUTO_PULL_ART_FROM_LASTFM_ON = "SETTING_IS_AUTO_PULL_ART_FROM_LASTFM_ON_KEY";
 
         public const string LIBRARY_LAST_SUCCESFUL_SYNC_DATE = "LIBRARY_LAST_SUCCESFUL_SYNC_DATE_KEY";
@@ -27,6 +22,12 @@ namespace MusicMinkAppLayer.Helpers
 
         public const string CURRENT_PLAYQUEUE_POSITION = "CURRENT_PLAYQUEUE_POSITION_KEY";
         public const string CURRENT_TRACK_PERCENTAGE = "CURRENT_TRACK_PERCENTAGE_KEY";
+
+        public const string IS_SLEEPMODE_ON = "IS_SLEEPMODE_ON";
+        public const string IS_STOP_WHEN_TERMINATE = "IS_STOP_WHEN_TERMINATE";
+        public const string IS_AUTO_LRC = "IS_AUTO_LRC";
+        public const string IS_AUTO_OFFSET = "IS_AUTO_OFFSET";
+        public const string BACKGROUND_KEY = "BACKGROUND_KEY";
 
         #endregion
 

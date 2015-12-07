@@ -18,7 +18,6 @@ namespace MusicMink.Pages
 
         private void TextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            SettingsViewModel.Current.LastFMUsername = LastFMUsernameTextBox.Text;
         }
 
         private void PasswordBox_GotFocus(object sender, RoutedEventArgs e)
@@ -28,8 +27,6 @@ namespace MusicMink.Pages
 
         private void PasswordBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            SettingsViewModel.Current.LastFMPassword = LastFMPasswordBox.Password;
-            SettingsViewModel.Current.ReauthLastFM();
         }
     }
 }

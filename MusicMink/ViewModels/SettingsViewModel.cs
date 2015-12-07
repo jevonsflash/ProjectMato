@@ -17,17 +17,11 @@ namespace MusicMink.ViewModels
         public static class Properties
         {
             public const string AutoPullArtFromLastFM = "AutoPullArtFromLastFM";
-
-            public const string IsLoggingEnabled = "IsLoggingEnabled";
-            public const string IsLastFMScrobblingEnabled = "IsLastFMScrobblingEnabled";
-
-            public const string LastFMUsername = "LastFMUsername";
-            public const string LastFMPassword = "LastFMPassword";
-            public const string LastFMPasswordMask = "LastFMPasswordMask";
-
-            public const string IsLastFMAuthed = "IsLastFMAuthed";
-            public const string IsLastFMAuthInProgress = "IsLastFMAuthInProgress";
-
+            public const string IsSleepModeOn = "IsSleepModeOn";
+            public const string IsStopWhenTerminate = "IsStopWhenTerminate";
+            public const string IsAutoLrc = "IsAutoLrc";
+            public const string IsAutoOffset = "IsAutoOffset";
+            public const string BackgroundKey = "BackgroundKey";
             public const string IsClassicModeEnabled = "IsClassicModeEnabled";
         }
 
@@ -47,26 +41,7 @@ namespace MusicMink.ViewModels
 
         private SettingsViewModel()
         {
-            this.PropertyChanged += HandleSettingsViewModelPropertyChanged;
         }
-
-        #region Event Handlers
-
-        private void HandleSettingsViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            switch (e.PropertyName)
-            {
-                case Properties.IsLoggingEnabled:
-                    UploadLogs.RaiseExecuteChanged();
-                    Logger.Current.UpdateEnabled();                    
-                    break;
-                case Properties.LastFMPassword:
-                    NotifyPropertyChanged(Properties.LastFMPasswordMask);
-                    break;
-            }
-        }
-
-        #endregion
 
         #region Commands
 
@@ -113,7 +88,7 @@ namespace MusicMink.ViewModels
 
         private bool CanExecuteUploadLogs(object parameter)
         {
-            return IsLoggingEnabled;
+            return true;
         }
 
         #endregion
@@ -132,92 +107,65 @@ namespace MusicMink.ViewModels
             }
         }
 
-        public bool IsLoggingEnabled
+        public bool IsSleepModeOn
         {
             get
             {
-                return GetSettingField<bool>(ApplicationSettings.SETTING_IS_LOGGING_ENABLED, true);
+                return GetSettingField<bool>(ApplicationSettings.IS_SLEEPMODE_ON, false);
             }
             set
             {
-                SetSettingField<bool>(ApplicationSettings.SETTING_IS_LOGGING_ENABLED, value, Properties.IsLoggingEnabled);
+                SetSettingField<bool>(ApplicationSettings.IS_SLEEPMODE_ON, value, Properties.IsSleepModeOn);
             }
         }
 
-        public bool IsLastFMScrobblingEnabled
+        public bool IsStopWhenTerminate
         {
             get
             {
-                return GetSettingField<bool>(ApplicationSettings.SETTING_IS_LASTFM_SCROBBLING_ENABLED, false);
+                return GetSettingField<bool>(ApplicationSettings.IS_STOP_WHEN_TERMINATE, false);
             }
             set
             {
-                SetSettingField<bool>(ApplicationSettings.SETTING_IS_LASTFM_SCROBBLING_ENABLED, value, Properties.IsLastFMScrobblingEnabled);
+                SetSettingField<bool>(ApplicationSettings.IS_STOP_WHEN_TERMINATE, value, Properties.IsStopWhenTerminate);
             }
         }
 
-        public string LastFMUsername
+        public bool IsAutoLrc
         {
             get
             {
-                return GetSettingField<string>(ApplicationSettings.SETTING_LASTFM_USERNAME, string.Empty);
+                return GetSettingField<bool>(ApplicationSettings.IS_AUTO_LRC, true);
             }
             set
             {
-                SetSettingField<string>(ApplicationSettings.SETTING_LASTFM_USERNAME, value, Properties.LastFMUsername);
+                SetSettingField<bool>(ApplicationSettings.IS_AUTO_LRC, value, Properties.IsAutoLrc);
             }
         }
-
-        public string LastFMPassword
+        public bool IsAutoOffset
         {
             get
             {
-                return GetSettingField<string>(ApplicationSettings.SETTING_LASTFM_PASSWORD, string.Empty);
+                return GetSettingField<bool>(ApplicationSettings.IS_AUTO_OFFSET, true);
             }
             set
             {
-                SetSettingField<string>(ApplicationSettings.SETTING_LASTFM_PASSWORD, value, Properties.LastFMPassword);
+                SetSettingField<bool>(ApplicationSettings.IS_AUTO_OFFSET, value, Properties.IsAutoOffset);
             }
         }
 
-        public string LastFMPasswordMask
+        public string BackgroundKey
         {
             get
             {
-                if (string.IsNullOrEmpty(LastFMPassword)) return string.Empty;
-
-                else return "          ";
+                return GetSettingField<string>(ApplicationSettings.BACKGROUND_KEY, "mato");
             }
             set
             {
-                SetSettingField<string>(ApplicationSettings.SETTING_LASTFM_PASSWORD, value, Properties.LastFMPassword);
-            }
-        }
-        
-        public bool IsLastFMAuthed
-        {
-            get
-            {
-                return !(string.IsNullOrEmpty(GetSettingField<string>(ApplicationSettings.SETTING_LASTFM_SESSION_TOKEN, string.Empty)));
+                SetSettingField<string>(ApplicationSettings.BACKGROUND_KEY, value, Properties.BackgroundKey);
             }
         }
 
-        private bool _isLastFMAuthInProgress = false;
-        public bool IsLastFMAuthInProgress
-        {
-            get
-            {
-                return _isLastFMAuthInProgress;
-            }
-            set
-            {
-                if (_isLastFMAuthInProgress != value)
-                {
-                    _isLastFMAuthInProgress = value;
-                    NotifyPropertyChanged(Properties.IsLastFMAuthInProgress);
-                }
-            }
-        }
 
         public bool IsClassicModeEnabled
         {
@@ -233,18 +181,7 @@ namespace MusicMink.ViewModels
 
         #endregion
 
-        #region Properties
 
-        public async void ReauthLastFM()
-        {
-            IsLastFMAuthInProgress = true;
-            await LastFMManager.Current.UpdateScrobbleSession();
-            IsLastFMAuthInProgress = false;
-
-            NotifyPropertyChanged(Properties.IsLastFMAuthed);
-        }
-
-        #endregion
 
         #region ReflectionHelpers
 

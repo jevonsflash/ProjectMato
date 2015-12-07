@@ -421,16 +421,7 @@ namespace MusicMinkAppLayer.Models
             {
                 if (!historyItem.Scrobbled)
                 {
-                    LastfmStatusCode scrobbleResult = await LastFMManager.Current.ScrobbleTrack(historyItem.SongName, historyItem.ArtistName, new DateTime(historyItem.DatePlayed));
-
-                    Logger.Current.Log(new CallerInfo(), LogLevel.Info, "Scrobbling row {0} result {1}", historyItem.RowId, scrobbleResult);
-
                     // "Failure" is non-recoverable, so actually mark it as scrobbled so we don't retry later
-                    if (scrobbleResult == LastfmStatusCode.Success ||
-                        scrobbleResult == LastfmStatusCode.Failure)
-                    {
-                        historyItem.Scrobbled = true;
-                    }
                 }
 
                 if (historyItem.Processed && historyItem.Scrobbled)

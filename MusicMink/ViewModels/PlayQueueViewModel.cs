@@ -82,12 +82,7 @@ namespace MusicMink.ViewModels
 
         void HandleSettingsViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            switch (e.PropertyName)
-            {
-                case SettingsViewModel.Properties.IsLoggingEnabled:
-                    rootModel.InformBackgroundLoggingChanged();
-                    break;
-            }
+          
         }
 
         void HandleRootModelPropertyChanged(object sender, PropertyChangedEventArgs e)

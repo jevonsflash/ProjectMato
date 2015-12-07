@@ -1,217 +1,166 @@
-﻿using MusicMink.ListItems;
-using MusicMink.ViewModels;
-using MusicMinkAppLayer.Diagnostics;
+﻿using MusicMink.ViewModels;
 using System;
-using Windows.Graphics.Display;
-using Windows.Phone.UI.Input;
-using Windows.System;
-using Windows.UI.Core;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Foundation;
+using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media.Animation;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Windows.UI.Xaml.Shapes;
+
+// “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkID=390556 上有介绍
 
 namespace MusicMink
 {
     /// <summary>
-    /// Root page. Contains the playqueue control, and then a frame that hosts all the other pages
+    /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private bool isPlayqueueExpanded = false;
-
         public MainPage()
         {
             this.InitializeComponent();
+            this.DataContext = LibraryViewModel.Current.PlayQueue;
 
-            DisplayInformation.AutoRotationPreferences = DisplayOrientations.Portrait;
-
-            this.NavigationCacheMode = NavigationCacheMode.Required;
-
-            MainContentFrame.ContentTransitions.Clear();
-            MainContentFrame.ContentTransitions.Add(new ContentThemeTransition());
-
-            HardwareButtons.BackPressed += HandleHardwareButtonsBackPressed;
-        }
-
-        void HandleHardwareButtonsBackPressed(object sender, BackPressedEventArgs e)
-        {
-            if (isPlayqueueExpanded)
-            {
-                PlayQueueListItem.CloseExpandedEntry();
-
-                PlayqueueList.ReorderMode = ListViewReorderMode.Disabled;
-
-                VisualStateManager.GoToState(this, "PlayQueueHidden", true);
-                isPlayqueueExpanded = false;
-
-                e.Handled = true;
-            }
         }
 
         /// <summary>
-        /// Invoked when this page is about to be displayed in a Frame.
+        /// 在此页将要在 Frame 中显示时进行调用。
         /// </summary>
-        /// <param name="e">Event data that describes how this page was reached.
-        /// This parameter is typically used to configure the page.</param>
+        /// <param name="e">描述如何访问此页的事件数据。
+        /// 此参数通常用于配置页。</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            base.OnNavigatedTo(e);
 
-            this.DataContext = LibraryViewModel.Current;
-
-            NavigationManager.Current.SetRootFrame(MainContentFrame);
-
-            NavigationManager.Current.Navigate(NavigationLocation.Home);
-
-            Logger.Current.Log(new CallerInfo(), LogLevel.Info, "Main page fully loaded");
         }
 
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
-        {
-            base.OnNavigatedFrom(e);
-        }
 
-        #region Playback Control Event Handlers
-
-        private void HandlePullDownArrowContainerClick(object sender, RoutedEventArgs e)
+        private void Rectangle_ManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
         {
-            if (!isPlayqueueExpanded)
+            if (Math.Abs(e.Cumulative.Translation.Y) < 10)
             {
-                if (LibraryViewModel.Current.PlayQueue.CurrentTrackPosition > 3)
+                if (e.Cumulative.Translation.X > 30 && LibraryViewModel.Current.PlayQueue.PrevPlayer.CanExecute(null))
                 {
-                    PlayQueueEntryViewModel pqeVM = LibraryViewModel.Current.PlayQueue.PlaybackQueue[LibraryViewModel.Current.PlayQueue.CurrentTrackPosition - 3];
-
-                    PlayqueueList.ScrollIntoView(pqeVM, ScrollIntoViewAlignment.Leading);
+                    LibraryViewModel.Current.PlayQueue.PrevPlayer.Execute(null);
                 }
-
-                VisualStateManager.GoToState(this, "PlayQueueOut", true);
-                isPlayqueueExpanded = true;
-                MainContentFrame.IsEnabled = false;
+                else if (e.Cumulative.Translation.X < -30 && LibraryViewModel.Current.PlayQueue.SkipPlayer.CanExecute(null))
+                {
+                    LibraryViewModel.Current.PlayQueue.SkipPlayer.Execute(null);
+                }
             }
-            else
+        }
+
+
+        private void BTSetting_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationManager.Current.Navigate(NavigationLocation.SettingsPage);
+
+        }
+
+        private void BTList_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationManager.Current.Navigate(NavigationLocation.Library);
+
+        }
+
+        private void BTMode_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BTPre_Click(object sender, RoutedEventArgs e)
+        {
+            if (LibraryViewModel.Current.PlayQueue.PrevPlayer.CanExecute(null))
             {
-                PlayQueueListItem.CloseExpandedEntry();
-
-                PlayqueueList.ReorderMode = ListViewReorderMode.Disabled;
-
-                VisualStateManager.GoToState(this, "PlayQueueHidden", true);
-                isPlayqueueExpanded = false;
+                LibraryViewModel.Current.PlayQueue.PrevPlayer.Execute(null);
             }
         }
 
-        private void HandleHomeContainerClick(object sender, RoutedEventArgs e)
+        private void BTPlay_Click(object sender, RoutedEventArgs e)
         {
-            if (isPlayqueueExpanded)
+
+        }
+
+        private void BTNext_Click(object sender, RoutedEventArgs e)
+        {
+            if (LibraryViewModel.Current.PlayQueue.SkipPlayer.CanExecute(null))
             {
-                PlayQueueListItem.CloseExpandedEntry();
-
-                PlayqueueList.ReorderMode = ListViewReorderMode.Disabled;
-
-                VisualStateManager.GoToState(this, "PlayQueueHidden", true);
-                isPlayqueueExpanded = false;
+                LibraryViewModel.Current.PlayQueue.SkipPlayer.Execute(null);
             }
 
-            NavigationManager.Current.GoHome();
         }
 
-        private void PlayQueueHiddenCompleted(object sender, object e)
+        private void BTCurrent_Click(object sender, RoutedEventArgs e)
         {
-            MainContentFrame.IsEnabled = true;
+            NavigationManager.Current.Navigate(NavigationLocation.Queue);
         }
 
-        private void PlayQueueOutCompleted(object sender, object e)
-        {
-            MainContentFrame.IsEnabled = false;
-        }
-
-        private void HandlePlayqueueListHolding(object sender, HoldingRoutedEventArgs e)
-        {
-            PlayQueueListItem.CloseExpandedEntry();
-
-            PlayqueueList.ReorderMode = ListViewReorderMode.Enabled;
-        }
-
-        private void HandlePlayqueueListDoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
-        {
-            PlayqueueList.ReorderMode = ListViewReorderMode.Disabled;
-        }
-
-        private void HandlePlayQueueReorderAppBarToggleButtonTapped(object sender, TappedRoutedEventArgs e)
-        {
-            PlayQueueListItem.CloseExpandedEntry();
-        }
-
-    #endregion
-
-        #region Bezzel Manipluation
-
-        Binding savedWidthBinding;
-        Binding savedTextBinding;
         private void HandlePlayerControlProgressBarBezzelManipulationStarted(object sender, ManipulationStartedRoutedEventArgs e)
         {
+            ProgressBarScrubView.Visibility = Visibility.Visible;
+
             BindingExpression bindingExpression = PlayerControlProgressBarCompleted.GetBindingExpression(Rectangle.WidthProperty);
             savedWidthBinding = bindingExpression.ParentBinding;
-
-            BindingExpression textBindingExpression = ProgressTextBlock.GetBindingExpression(TextBlock.TextProperty);
-            savedTextBinding = textBindingExpression.ParentBinding;
-
-            PlayerControlProgressBarCompleted.Width = PlayerControlProgressBarCompleted.ActualWidth;
         }
 
         private void HandlePlayerControlProgressBarBezzelManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
-            double newWidth = PlayerControlProgressBarCompleted.Width + e.Delta.Translation.X;
+            double newWidth = e.Position.X;
 
-            if (newWidth < 0)
-            {
-                newWidth = 0;
-            }
-            else if (newWidth > PlayerControlProgressBarFull.Width)
-            {
-                newWidth = PlayerControlProgressBarFull.Width;
-            }
-
-            if (PlayerControlProgressBarFull.Width > 0)
-            {
-                double percentage = newWidth / PlayerControlProgressBarFull.Width;
-
-                TimeSpan newTime = TimeSpan.FromTicks((long)(percentage * LibraryViewModel.Current.PlayQueue.TotalTicks));
-
-                ProgressTextBlock.Text = newTime.ToString(@"%m\:ss");
-            }
-            else
-            {
-                ProgressTextBlock.Text = TimeSpan.Zero.ToString(@"%m\:ss");
-            }
+            if (newWidth < 0) newWidth = 0;
+            if (newWidth > PlayerControlProgressBarFull.ActualWidth) newWidth = PlayerControlProgressBarFull.ActualWidth;
 
             PlayerControlProgressBarCompleted.Width = newWidth;
+
+            double percentage = newWidth / PlayerControlProgressBarFull.ActualWidth;
+
+            TimeSpan newTime = TimeSpan.FromTicks((long)(percentage * LibraryViewModel.Current.PlayQueue.TotalTicks));
+
+            PlayerControlText.Text = newTime.ToString(@"%m\:ss") + @"/" + LibraryViewModel.Current.PlayQueue.TotalTime;
+
         }
 
         private void HandlePlayerControlProgressBarBezzelManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
         {
-            if (PlayerControlProgressBarFull.Width > 0)
-            {
-                double percentage = PlayerControlProgressBarCompleted.Width / PlayerControlProgressBarFull.Width;
+            double newWidth = e.Position.X;
 
-                LibraryViewModel.Current.PlayQueue.ScrubToPercentage(percentage);
-            }
-            else
-            {
-                LibraryViewModel.Current.PlayQueue.ScrubToPercentage(0);
-            }
+            if (newWidth < 0) newWidth = 0;
+            if (newWidth > PlayerControlProgressBarFull.ActualWidth) newWidth = PlayerControlProgressBarFull.ActualWidth;
+
+            PlayerControlProgressBarCompleted.Width = newWidth;
+
+            double percentage = newWidth / PlayerControlProgressBarFull.ActualWidth;
+
+            LibraryViewModel.Current.PlayQueue.ScrubToPercentage(percentage);
+
+            ProgressBarScrubView.Visibility = Visibility.Collapsed;
 
             PlayerControlProgressBarCompleted.SetBinding(Rectangle.WidthProperty, savedWidthBinding);
             savedWidthBinding = null;
 
-            ProgressTextBlock.SetBinding(TextBlock.TextProperty, savedTextBinding);
-            savedTextBinding = null;
+            PlayerControlText.Text = string.Empty;
         }
 
-        #endregion
+        private void CurrentTrackPanel_ManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
+        {
+            if (Math.Abs(e.Cumulative.Translation.Y) < 10)
+            {
+                if (e.Cumulative.Translation.X > 30 && LibraryViewModel.Current.PlayQueue.PrevPlayer.CanExecute(null))
+                {
+                    LibraryViewModel.Current.PlayQueue.PrevPlayer.Execute(null);
+                }
+                else if (e.Cumulative.Translation.X < -30 && LibraryViewModel.Current.PlayQueue.SkipPlayer.CanExecute(null))
+                {
+                    LibraryViewModel.Current.PlayQueue.SkipPlayer.Execute(null);
+                }
+            }
+        }
 
     }
 }
