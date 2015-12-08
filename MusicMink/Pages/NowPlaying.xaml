@@ -11,149 +11,418 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     >
-    
+
     <d:Page.DataContext>
         <dv:PlayQueueDesignData />
     </d:Page.DataContext>
-    
-    <Grid>
 
-        <Grid Visibility="{Binding IsActive, Converter={StaticResource NotBoolToVisibilityConverter}}">
-            <StackPanel>
-                <TextBlock x:Uid="NowPlayingPageHeader"
-                Style="{StaticResource HeaderTextBlockStyle}"
-                Margin="10,0,10,0"
-                />
+    <Grid x:Name="GDLayout" RenderTransformOrigin="0.5,0.5">
+        <Grid.RenderTransform>
+            <CompositeTransform/>
+        </Grid.RenderTransform>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+                <VisualStateGroup.Transitions>
+                    <VisualTransition From="MenuOpen" GeneratedDuration="0" To="MenuClose">
+                        <Storyboard>
+                            <DoubleAnimation Duration="0:0:0.3" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="GDLayout"/>
+                        </Storyboard>
+                    </VisualTransition>
+                    <VisualTransition From="MenuClose" GeneratedDuration="0" To="MenuOpen">
+                        <Storyboard>
+                            <DoubleAnimation Duration="0:0:0.3" To="-200" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="GDLayout"/>
+                        </Storyboard>
+                    </VisualTransition>
+                </VisualStateGroup.Transitions>
+                <VisualState x:Name="MenuOpen">
+                    <Storyboard>
+                        <DoubleAnimation Duration="0" To="-200" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="GDLayout" d:IsOptimized="True"/>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="MenuClose"/>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
 
-                <TextBlock x:Uid="NowPlayingNotActiveMessage"
+        <Grid x:Name="GDPage" Visibility="{Binding IsActive, Converter={StaticResource BoolToVisibilityConverter}}"
+            >
+            <Grid.Background>
+                <ImageBrush ImageSource="{Binding CurrentTrack.Artist.Picture}" Stretch="UniformToFill" AlignmentX="Center" AlignmentY="Center" Opacity="0.20" />
+            </Grid.Background>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="4*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="1" Grid.ColumnSpan="2" Visibility="{Binding IsActive, Converter={StaticResource NotBoolToVisibilityConverter}}">
+                <StackPanel>
+
+                    <TextBlock x:Uid="NowPlayingNotActiveMessage"
                 FontSize="{StaticResource TextStyleSmallFontSize}"
                 TextWrapping="WrapWholeWords"
                 TextAlignment="Justify"
                 FontStyle="Italic"
                 Foreground="{StaticResource PhoneForegroundBrush}"
                 />
-            </StackPanel>
-        </Grid>
-        
-        <Grid
-            Visibility="{Binding IsActive, Converter={StaticResource BoolToVisibilityConverter}}"
-            >
-        <Grid.Background>
-            <ImageBrush ImageSource="{Binding CurrentTrack.Artist.Picture}" Stretch="UniformToFill" AlignmentX="Center" AlignmentY="Center" Opacity="0.20" />
-        </Grid.Background>        
-        
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-                
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="12*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="3*" />
-        </Grid.ColumnDefinitions>
+                </StackPanel>
+            </Grid>
 
-        <TextBlock x:Uid="NowPlayingPageHeader"
-            Style="{StaticResource HeaderTextBlockStyle}"
-            Grid.ColumnSpan="5"
-            Margin="10,0,10,0"
-            />
-
-        <controls:ScalingTextBox            
-            Grid.Row="2"
-            Grid.Column="0"
-            Grid.ColumnSpan="5"
-            MaxFontSize="{StaticResource TextStyleExtraExtraLargeFontSize}"                    
-            MinFontSize="{StaticResource TextStyleSmallFontSize}"
-            TextForeground="{ThemeResource PhoneForegroundBrush}"
-            HorizontalAlignment="Center"
-            Text="{Binding CurrentTrack.Name}"
-            Margin="0,0,0,5"
-            />
-              
-        <Image
+            <AppBarButton x:Name="BTNMainMenu"
+                Grid.Row="1" 
+                Grid.RowSpan="2"
+                Grid.Column="2"
+                Icon="List"
+                IsCompact="True"
+                VerticalAlignment="Center"
+                Margin="0,0,0,5"
+                Click="BTNMainMenu_Click"
+                />
+            <Image
             Grid.Row="3"
-            Grid.Column="2"
+            Grid.Column="1"
             HorizontalAlignment="Center"
             Source="{Binding CurrentTrack.Album.AlbumArt}"            
-            Height="{Binding Path=ActualWidth, ElementName=TestElement}"
+            Height="220"
+            Width="220"
             ManipulationMode="TranslateX,TranslateRailsX,System"
             ManipulationCompleted="Rectangle_ManipulationCompleted"
             />
-        
-        <Image x:Name="PrevTrackImage"
+            <Image x:Name="PrevTrackImage"
             Grid.Row="3"
             Grid.Column="0"
             HorizontalAlignment="Right"
             Source="{Binding PrevTrack.Album.AlbumArt}"
             Stretch="UniformToFill"
-            Margin="0,10,0,10"
+            Margin="0,10"
+            Width="180"
+            Height="180"
             DoubleTapped="PrevTrackImageDoubleTapped"
             ManipulationMode="TranslateX,TranslateRailsX,System"
             ManipulationCompleted="Rectangle_ManipulationCompleted"
             />
-
-        <Image x:Name="NextTrackImage"
+            <Image x:Name="NextTrackImage"
             Grid.Row="3"
-            Grid.Column="4"
+            Grid.Column="2"
             HorizontalAlignment="Left"
             Source="{Binding NextTrack.Album.AlbumArt}"
             Stretch="UniformToFill"
             Margin="0,10,0,10"
+               Width="180"
+               Height="180"
             DoubleTapped="NextTrackImageDoubleTapped"
             ManipulationMode="TranslateX,TranslateRailsX,System"
             ManipulationCompleted="Rectangle_ManipulationCompleted"
             />
-
-        <controls:StarRater
+            <controls:StarRater
             ScaleToWidth="True"
             Rating="{Binding CurrentTrack.Rating, Mode=TwoWay}"
             Grid.Row="4"
-            Grid.Column="2"
+            Grid.Column="1"
+                Margin="0,10" Width="200"
             />
+            <Grid x:Name="GRDSongInfo" Grid.Row="5" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Orientation="Horizontal" >
+                    <Image Source="/Icon/Song.png" Height="49" Width="49"></Image>
+                    <Canvas Margin="0,8">
+                        <TextBlock x:Name="TBSong"  
+                                   Text="{Binding CurrentTrack.Name,TargetNullValue=歌曲}" 
+                                   FontSize="26"  Foreground="White"
+                                   Canvas.ZIndex="1">
 
-        <controls:ScalingTextBox            
-            Grid.Row="5"
-            Grid.Column="2"
-            MaxFontSize="{StaticResource TextStyleExtraLargeFontSize}"                    
-            MinFontSize="{StaticResource TextStyleSmallFontSize}"
-            TextForeground="{ThemeResource PhoneForegroundBrush}"
-            HorizontalAlignment="Left"
-            Text="{Binding CurrentTrack.Artist.Name}"
-            />
+                        </TextBlock>
+                        <TextBlock  Text="{Binding ElementName=TBSong ,Path=Text}" 
+                                    FontSize="{Binding ElementName=TBSong ,Path=FontSize}" 
+                                    Foreground="#FF535353" Canvas.ZIndex="0">
+                            <TextBlock.RenderTransform>
+                                <TranslateTransform X="2" Y="1"></TranslateTransform>
+                            </TextBlock.RenderTransform>
+                        </TextBlock>
+                    </Canvas>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Orientation="Horizontal" >
+                    <Image Source="/Icon/Album.png" Height="49" Width="49"></Image>
+                    <Canvas Margin="0,8">
+                        <TextBlock x:Name="TBAlbum" 
+                                   Text="{Binding CurrentTrack.Album.Name,TargetNullValue=专辑}"  
+                                   FontSize="26"
+                                   Foreground="White" Canvas.ZIndex="1">
+                        </TextBlock>
+                        <TextBlock  
+                            Text="{Binding ElementName=TBAlbum ,Path=Text}"
+                            FontSize="{Binding ElementName=TBSong ,Path=FontSize}" 
+                            Foreground="#FF535353" Canvas.ZIndex="0">
+                            <TextBlock.RenderTransform>
+                                <TranslateTransform X="2" Y="1"></TranslateTransform>
+                            </TextBlock.RenderTransform>
+                        </TextBlock>
+                    </Canvas>
+                </StackPanel>
+                <StackPanel Grid.Row="2" Orientation="Horizontal">
+                    <Image Source="/Icon/Artist.png" Height="49" Width="49"></Image>
+                    <Canvas Margin="0,8">
+                        <TextBlock x:Name="TBArtist" FontSize="26"
+                                   Text="{Binding CurrentTrack.Artist.Name,TargetNullValue=演唱者}" 
+                                   Foreground="White" Canvas.ZIndex="1">
 
-        <controls:ScalingTextBox            
-            Grid.Row="6"
-            Grid.Column="2"
-            MaxFontSize="{StaticResource TextStyleExtraLargeFontSize}"                    
-            MinFontSize="{StaticResource TextStyleSmallFontSize}"
-            TextForeground="{ThemeResource PhoneForegroundBrush}"
-            HorizontalAlignment="Left"
-            Text="{Binding CurrentTrack.Album.Name}"
-            FontStyle="Italic"
-            />
-
-        <TextBlock
+                        </TextBlock>
+                        <TextBlock  
+                            Text="{Binding ElementName=TBArtist ,Path=Text}" 
+                            FontSize="{Binding ElementName=TBArtist, Path=FontSize}"
+                            Foreground="#FF535353" Canvas.ZIndex="0">
+                            <TextBlock.RenderTransform>
+                                <TranslateTransform X="2" Y="1"></TranslateTransform>
+                            </TextBlock.RenderTransform>
+                        </TextBlock>
+                    </Canvas>
+                </StackPanel>
+            </Grid>
+            <HyperlinkButton
             Grid.Row="7"
             Grid.Column="0"
             Grid.ColumnSpan="5"
-            FontSize="{StaticResource TextStyleExtraLargeFontSize}"                    
+            FontSize="22"                    
             HorizontalAlignment="Right"
             Margin="5"
             Tapped="TextBlock_Tapped"
             >
+                <ContentControl>
+                    <TextBlock>
             <Run Text="{Binding TracksLeft}" />
-            <Run x:Uid="NowPlayingPageQueueLeft" />
-        </TextBlock>
-        </Grid>    
+            <Run x:Uid="NowPlayingPageQueueLeft" /></TextBlock>
+                </ContentControl>
+            </HyperlinkButton>
+
+            <Grid x:Name="GRDButton" HorizontalAlignment="Center" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <controls:ImageButton x:Name="BTPre" Grid.Row="0" Grid.Column="0" ImageSource="/Icon/rew.png" Click="BTPre_Click" Style="{StaticResource ImageButtonStyle}"></controls:ImageButton>
+                <controls:ImageButton x:Name="BTPlay" Grid.Row="0" 
+                                Grid.Column="1" 
+                                ImageSource="/Icon/play.png" 
+                                Command="{Binding PlayPausePlayer}"  
+                                Style="{StaticResource ImageButtonStyle}"
+                                Visibility="{Binding IsPlaying, Converter={StaticResource NotBoolToVisibilityConverter}}"
+                                          >
+
+                </controls:ImageButton>
+                <controls:ImageButton x:Name="BTPause" Grid.Row="0" 
+                                Grid.Column="1" 
+                                ImageSource="/Icon/pause.png" 
+                                Command="{Binding PlayPausePlayer}" 
+                                Style="{StaticResource ImageButtonStyle}"
+                                Visibility="{Binding IsPlaying, Converter={StaticResource BoolToVisibilityConverter}}"
+>
+
+                </controls:ImageButton>
+                <controls:ImageButton x:Name="BTNext" Grid.Row="0" Grid.Column="2" ImageSource="/Icon/ff.png"  Click="BTNext_Click"  Style="{StaticResource ImageButtonStyle}"></controls:ImageButton>
+            </Grid>
+        </Grid>
+        <Grid x:Name="GDMenu" HorizontalAlignment="Right" VerticalAlignment="Top" Height="{Binding ElementName=GDLayout, Path=ActualHeight}" Width="200" Background="Gray" Margin="0,0,-200,0">
+            <ScrollViewer Grid.Row="1" x:Name="ContentRoot" Margin="0">
+                <StackPanel>
+                    <Button
+                    Style="{StaticResource EmptyButton}"
+                    Command="{Binding Navigate}"
+                    CommandParameter="NowPlaying"
+                    Visibility="{Binding PlayQueue.IsActive, Converter={StaticResource BoolToVisibilityConverter}}"                    
+                    >
+                        <StackPanel Orientation="Horizontal">
+                            <SymbolIcon Symbol="Audio" Width="60" Height="60" />
+                            <TextBlock x:Uid="NewHomePageNowPlayingEntry" Style="{StaticResource ListViewItemTextBlockStyle}" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                    <Button
+                    Style="{StaticResource EmptyButton}"
+                    Command="{Binding Navigate}"
+                    CommandParameter="Queue"
+                    Visibility="{Binding PlayQueue.IsEmpty, Converter={StaticResource NotBoolToVisibilityConverter}}"                    
+                    >
+                        <StackPanel Orientation="Horizontal">
+                            <SymbolIcon Symbol="Clock" Width="60" Height="60" />
+                            <TextBlock x:Uid="NewHomePageQueueEntry" Style="{StaticResource ListViewItemTextBlockStyle}" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                    <Button
+                    Style="{StaticResource EmptyButton}"
+                    Command="{Binding Navigate}"
+                    CommandParameter="Library"
+                    >
+                        <StackPanel Orientation="Horizontal">
+                            <SymbolIcon Symbol="Library" Width="60" Height="60" />
+                            <TextBlock x:Uid="NewHomePageLibraryEntry" Style="{StaticResource ListViewItemTextBlockStyle}" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                    <Button
+                    Style="{StaticResource EmptyButton}"
+                    Command="{Binding Navigate}"
+                    CommandParameter="PlaylistList"
+                    >
+                        <StackPanel Orientation="Horizontal">
+                            <SymbolIcon Symbol="List" Width="60" Height="60" />
+                            <TextBlock x:Uid="NewHomePagePlaylistsEntry" Style="{StaticResource ListViewItemTextBlockStyle}" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                    <Button
+                    Style="{StaticResource EmptyButton}"
+                    Command="{Binding Navigate}"
+                    CommandParameter="MixList"
+                    >
+                        <StackPanel Orientation="Horizontal">
+                            <SymbolIcon Symbol="List" Width="60" Height="60" />
+                            <TextBlock x:Uid="NewHomePageMixesEntry" Style="{StaticResource ListViewItemTextBlockStyle}" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                    <Button
+                    Style="{StaticResource EmptyButton}"
+                    Command="{Binding Navigate}"
+                    CommandParameter="SearchPage"
+                    >
+                        <StackPanel Orientation="Horizontal">
+                            <SymbolIcon Symbol="Find" Width="60" Height="60" />
+                            <TextBlock x:Uid="NewHomePageSearchEntry" Style="{StaticResource ListViewItemTextBlockStyle}" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                    <Button
+                    Style="{StaticResource EmptyButton}"
+                    Command="{Binding Navigate}"
+                    CommandParameter="ManageLibrary"
+                    >
+
+                        <StackPanel Orientation="Horizontal">
+                            <SymbolIcon Symbol="MusicInfo" Width="60" Height="60" />
+                            <TextBlock x:Uid="NewHomePageManageLibraryEntry" Style="{StaticResource ListViewItemTextBlockStyle}" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                    <Button
+                    Style="{StaticResource EmptyButton}"
+                    Command="{Binding Navigate}"
+                    CommandParameter="SettingsPage"
+                    >
+                        <StackPanel Orientation="Horizontal">
+                            <SymbolIcon Symbol="Setting" Width="60" Height="60" />
+                            <TextBlock x:Uid="NewHomePageSettingsEntry" Style="{StaticResource ListViewItemTextBlockStyle}" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+
+
+
+                </StackPanel>
+
+                <!--
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid
+                    x:Name="LibraryTile"
+                    MinHeight="{Binding ActualWidth, ElementName=LibraryTile}"
+                    >
+                    <controls:SymbolTile x:Uid="NewHomePageLibraryTile"
+                        Margin="5"
+                        Symbol="Library"
+                        InnerMargin="25"                    
+                        />
+                </Grid>
+
+                <Grid
+                    x:Name="PlaylistsTile"
+                    Grid.Column="1"
+                    MinHeight="{Binding ActualWidth, ElementName=PlaylistsTile}"
+                    >
+                    <controls:SymbolTile x:Uid="NewHomePagePlaylistsTile"
+                        Margin="5"
+                        Symbol="List"
+                        InnerMargin="25"
+                        />
+                </Grid>
+
+                <Grid
+                    x:Name="NowPlayingTile"
+                    Grid.Row="1"
+                    MinHeight="{Binding ActualWidth, ElementName=NowPlayingTile}"
+                    >
+                    <controls:SymbolTile x:Uid="HomePageNowPlayingLibraryTile"
+                        Margin="5"
+                        Symbol="Audio"
+                        InnerMargin="25"
+                        />
+                </Grid>
+
+                <Grid
+                    x:Name="QueueTile"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    MinHeight="{Binding ActualWidth, ElementName=QueueTile}"
+                    >
+                    <controls:SymbolTile x:Uid="NewHomePageQueueTile"
+                        Margin="5"
+                        Symbol="Clock"
+                        InnerMargin="25"
+                        />
+                </Grid>
+
+                <Grid
+                    x:Name="ManageLibraryTile"
+                    Grid.Row="2"
+                    MinHeight="{Binding ActualWidth, ElementName=ManageLibraryTile}"
+                    >
+                    <controls:SymbolTile x:Uid="NewHomePageManageLibraryTile"
+                        Margin="5"
+                        Symbol="MusicInfo"
+                        InnerMargin="25"
+                        />
+                </Grid>
+                
+                <Grid
+                    x:Name="SettingsTile"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    MinHeight="{Binding ActualWidth, ElementName=SettingsTile}"
+                    >
+                    <controls:SymbolTile x:Uid="NewHomePageSettingsTile"
+                        Margin="5"
+                        Symbol="Setting"
+                        InnerMargin="25"
+                        />
+                </Grid>
+            </Grid>
+            -->
+            </ScrollViewer>
+
+        </Grid>
     </Grid>
 </local:BasePage>

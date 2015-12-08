@@ -111,10 +111,10 @@ namespace MusicMink
                 // configuring the new page by passing required information as a navigation
                 // parameter
 
-                Type target = typeof(MainPage);
+                Type target = typeof(LandingPage);
                 if (SettingsViewModel.Current.IsClassicModeEnabled)
                 {
-                    target = typeof(MainPage);
+                    target = typeof(LandingPage);
                 }
 
                 if (!rootFrame.Navigate(target, e.Arguments))

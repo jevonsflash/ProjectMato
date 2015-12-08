@@ -2,6 +2,7 @@
 using System;
 using Windows.Graphics.Display;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media.Animation;
@@ -32,19 +33,13 @@ namespace MusicMink.Pages
             base.OnNavigatedTo(e);
 
             this.DataContext = LibraryViewModel.Current.PlayQueue;
+            this.GDMusicTray.DataContext = LibraryViewModel.Current;
             this.HomeButton.DataContext = LibraryViewModel.Current;
             this.CurrentTrackPanel.DataContext = LibraryViewModel.Current;
 
             NavigationManager.Current.SetRootFrame(MainContentFrame);
-            if (e.Parameter != null)
-            {
-                NavigationManager.Current.Navigate((NavigationLocation)e.Parameter);
+            NavigationManager.Current.Navigate(NavigationLocation.NowPlaying);
 
-            }
-            else
-            {
-                NavigationManager.Current.Navigate(NavigationLocation.MainPage);
-            }
         }
 
         Binding savedWidthBinding;

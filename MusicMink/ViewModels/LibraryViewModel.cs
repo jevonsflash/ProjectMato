@@ -64,6 +64,7 @@ namespace MusicMink.ViewModels
                     GoHome.RaiseExecuteChanged();
                     break;
             }
+            IsTrayVisible = this.CanExecuteGoHome(null);
         }
 
         public void PreInitalize()
@@ -104,7 +105,7 @@ namespace MusicMink.ViewModels
                 }
 
                 MixesLoaded = true;
-            });            
+            });
         }
 
         #region Properties
@@ -466,6 +467,19 @@ namespace MusicMink.ViewModels
             get
             {
                 return _playQueue;
+            }
+        }
+
+
+        private bool isTrayVisible;
+
+        public bool IsTrayVisible
+        {
+            get { return isTrayVisible; }
+            set
+            {
+                isTrayVisible = value;
+                NotifyPropertyChanged("IsTrayVisible");
             }
         }
 

@@ -94,8 +94,6 @@ namespace MusicMink
         {
             switch (location)
             {
-                case NavigationLocation.MainPage:
-                    return typeof(MainPage);
                 case NavigationLocation.AlbumList:
                     return typeof(AlbumList);
                 case NavigationLocation.AlbumPage:

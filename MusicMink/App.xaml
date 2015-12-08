@@ -446,8 +446,8 @@
                                 </VisualStateManager.VisualStateGroups>
                                 <Border x:Name="ButtonBackground" CornerRadius="20" Background="{TemplateBinding Background}" Margin="{StaticResource PhoneTouchTargetOverhang}" >
                                     <Border.Child>
-                                        <ContentControl x:Name="ContentContainer" Height="64" Width="64">
-                                            <Image Height="64" Width="64" Source="{TemplateBinding ImageSource}"></Image>
+                                        <ContentControl x:Name="ContentContainer" Height="50" Width="50">
+                                            <Image Height="50" Width="50" Source="{TemplateBinding ImageSource}"></Image>
                                         </ContentControl>
                                     </Border.Child>
                                 </Border>

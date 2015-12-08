@@ -1,5 +1,6 @@
 ﻿using MusicMink.ViewModels;
 using System;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
@@ -11,11 +12,14 @@ namespace MusicMink.Pages
     /// </summary>
     public sealed partial class NowPlaying : BasePage
     {
+        
         public NowPlaying()
         {
-            this.InitializeComponent();
 
+            this.InitializeComponent();
             this.DataContext = LibraryViewModel.Current.PlayQueue;
+            VisualStateManager.GoToState(this, "MenuClose", true);
+            this.GDMenu.DataContext= LibraryViewModel.Current;
         }
 
         private void PrevTrackImageDoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
@@ -23,7 +27,7 @@ namespace MusicMink.Pages
             if (LibraryViewModel.Current.PlayQueue.PrevPlayer.CanExecute(null))
             {
                 LibraryViewModel.Current.PlayQueue.PrevPlayer.Execute(null);
-            }           
+            }
         }
 
         private void NextTrackImageDoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
@@ -52,6 +56,52 @@ namespace MusicMink.Pages
         private void TextBlock_Tapped(object sender, TappedRoutedEventArgs e)
         {
             NavigationManager.Current.Navigate(NavigationLocation.Queue);
+        }
+        private void BTPre_Click(object sender, RoutedEventArgs e)
+        {
+            if (LibraryViewModel.Current.PlayQueue.PrevPlayer.CanExecute(null))
+            {
+                LibraryViewModel.Current.PlayQueue.PrevPlayer.Execute(null);
+            }
+        }
+
+        private void BTPlay_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BTNext_Click(object sender, RoutedEventArgs e)
+        {
+            if (LibraryViewModel.Current.PlayQueue.SkipPlayer.CanExecute(null))
+            {
+                LibraryViewModel.Current.PlayQueue.SkipPlayer.Execute(null);
+            }
+
+        }
+
+        private void BTNMainMenu_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.VisualStateGroup.CurrentState != null)
+            {
+
+
+                if (this.VisualStateGroup.CurrentState.Name == "MenuOpen")
+                {
+                    VisualStateManager.GoToState(this, "MenuClose", true);
+
+                }
+                else
+                {
+                    VisualStateManager.GoToState(this, "MenuOpen", true);
+
+                }
+            }
+            else
+            {
+                VisualStateManager.GoToState(this, "MenuOpen", true);
+
+            }
+
         }
     }
 }
