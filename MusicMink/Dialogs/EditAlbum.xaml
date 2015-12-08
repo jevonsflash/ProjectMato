@@ -62,7 +62,7 @@
             <Button x:Uid="DialogEditAlbumGetLastFMButton"            
                 Grid.Row="2"                    
                 x:Name="lastFMArtButton"
-                Click="HandleGetLastFMArtButtonClick"
+                
                 />
 
             <Border

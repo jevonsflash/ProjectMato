@@ -110,34 +110,6 @@ namespace MusicMink.Dialogs
             openPicker.PickSingleFileAndContinue();
         }
 
-        private async void HandleGetLastFMArtButtonClick(object sender, RoutedEventArgs e)
-        {
-            noArtMessage.Visibility = Visibility.Collapsed;
-
-            lastFMArtButton.IsEnabled = false;
-
-            string LastFMArt = await LastFMManager.Current.GetAlbumArt(editAlbumArtistName.Text, editAlbumName.Text);
-
-            if (!string.IsNullOrEmpty(LastFMArt))
-            {
-                updateArt.IsChecked = true;
-
-                BitmapImage bitmapImage = new BitmapImage();
-                bitmapImage.UriSource = new Uri(LastFMArt);
-
-                ImagePreview.Source = bitmapImage;
-
-                albumArtLastFMPath = LastFMArt;
-
-                previewSource = ImagePreviewSource.LastFM;
-            }
-            else
-            {
-                noArtMessage.Visibility = Visibility.Visible;
-            }
-
-            lastFMArtButton.IsEnabled = true;
-        }
 
         private void HandleContentDialogPrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
@@ -171,7 +143,7 @@ namespace MusicMink.Dialogs
             {
                 if (previewSource == ImagePreviewSource.LastFM)
                 {
-                    Album.UpdateArt(albumArtLastFMPath);
+                    
                 }
                 else if (previewSource == ImagePreviewSource.FilePicker)
                 {

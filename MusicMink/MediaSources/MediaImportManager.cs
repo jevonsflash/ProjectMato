@@ -832,7 +832,7 @@ namespace MusicMink.MediaSources
                         break;
                     }
 
-                    await album.SetArtToLastFM(false);
+                    //await album.SetArtToLastFM(false);
                     ArtSyncAlbumsLeft--;
                 }
 

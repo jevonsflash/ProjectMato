@@ -36,7 +36,7 @@ namespace MusicMink.Pages
             this.CurrentTrackPanel.DataContext = LibraryViewModel.Current;
 
             NavigationManager.Current.SetRootFrame(MainContentFrame);
-            NavigationManager.Current.Navigate(NavigationLocation.NewHome);
+            NavigationManager.Current.Navigate((NavigationLocation)e.Parameter);
         }
 
         Binding savedWidthBinding;

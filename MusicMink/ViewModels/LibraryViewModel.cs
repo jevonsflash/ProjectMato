@@ -170,7 +170,7 @@ namespace MusicMink.ViewModels
             {
                 AlbumViewModel newViewModel = LookupAlbum(e.NewAlbum);
 
-                await newViewModel.SetArtToLastFM(false);
+                //await newViewModel.SetArtToLastFM(false);
             }
         }
 

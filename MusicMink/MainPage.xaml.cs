@@ -14,7 +14,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Shapes;
-
+using MusicMink.Pages;
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkID=390556 上有介绍
 
 namespace MusicMink
@@ -62,13 +62,15 @@ namespace MusicMink
 
         private void BTSetting_Click(object sender, RoutedEventArgs e)
         {
-            NavigationManager.Current.Navigate(NavigationLocation.SettingsPage);
+            Frame.Navigate(typeof(LandingPage), NavigationLocation.SettingsPage);
+
 
         }
 
         private void BTList_Click(object sender, RoutedEventArgs e)
         {
-            NavigationManager.Current.Navigate(NavigationLocation.Library);
+            Frame.Navigate(typeof(LandingPage), NavigationLocation.Library);
+
 
         }
 
@@ -101,7 +103,7 @@ namespace MusicMink
 
         private void BTCurrent_Click(object sender, RoutedEventArgs e)
         {
-            NavigationManager.Current.Navigate(NavigationLocation.Queue);
+            Frame.Navigate(typeof(LandingPage), NavigationLocation.Queue);
         }
 
         private void HandlePlayerControlProgressBarBezzelManipulationStarted(object sender, ManipulationStartedRoutedEventArgs e)
@@ -125,7 +127,7 @@ namespace MusicMink
 
             TimeSpan newTime = TimeSpan.FromTicks((long)(percentage * LibraryViewModel.Current.PlayQueue.TotalTicks));
 
-            PlayerControlText.Text = newTime.ToString(@"%m\:ss") + @"/" + LibraryViewModel.Current.PlayQueue.TotalTime;
+            //PlayerControlText.Text = newTime.ToString(@"%m\:ss") + @"/" + LibraryViewModel.Current.PlayQueue.TotalTime;
 
         }
 
@@ -147,7 +149,7 @@ namespace MusicMink
             PlayerControlProgressBarCompleted.SetBinding(Rectangle.WidthProperty, savedWidthBinding);
             savedWidthBinding = null;
 
-            PlayerControlText.Text = string.Empty;
+            //PlayerControlText.Text = string.Empty;
         }
 
         private void CurrentTrackPanel_ManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
@@ -165,5 +167,9 @@ namespace MusicMink
             }
         }
 
+        private void BTNLrc_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
