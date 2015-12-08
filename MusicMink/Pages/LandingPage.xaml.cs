@@ -36,7 +36,15 @@ namespace MusicMink.Pages
             this.CurrentTrackPanel.DataContext = LibraryViewModel.Current;
 
             NavigationManager.Current.SetRootFrame(MainContentFrame);
-            NavigationManager.Current.Navigate((NavigationLocation)e.Parameter);
+            if (e.Parameter != null)
+            {
+                NavigationManager.Current.Navigate((NavigationLocation)e.Parameter);
+
+            }
+            else
+            {
+                NavigationManager.Current.Navigate(NavigationLocation.MainPage);
+            }
         }
 
         Binding savedWidthBinding;
@@ -79,7 +87,7 @@ namespace MusicMink.Pages
             LibraryViewModel.Current.PlayQueue.ScrubToPercentage(percentage);
 
             ProgressBarScrubView.Visibility = Visibility.Collapsed;
-            
+
             PlayerControlProgressBarCompleted.SetBinding(Rectangle.WidthProperty, savedWidthBinding);
             savedWidthBinding = null;
 

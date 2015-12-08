@@ -14,15 +14,14 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Shapes;
-using MusicMink.Pages;
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkID=390556 上有介绍
 
-namespace MusicMink
+namespace MusicMink.Pages
 {
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class MainPage : BasePage
     {
         private Binding savedWidthBinding;
 
@@ -30,17 +29,6 @@ namespace MusicMink
         {
             this.InitializeComponent();
             this.DataContext = LibraryViewModel.Current.PlayQueue;
-
-        }
-
-        /// <summary>
-        /// 在此页将要在 Frame 中显示时进行调用。
-        /// </summary>
-        /// <param name="e">描述如何访问此页的事件数据。
-        /// 此参数通常用于配置页。</param>
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-
         }
 
 
@@ -62,16 +50,12 @@ namespace MusicMink
 
         private void BTSetting_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(LandingPage), NavigationLocation.SettingsPage);
-
-
+            NavigationManager.Current.Navigate(NavigationLocation.SettingsPage);
         }
 
         private void BTList_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(LandingPage), NavigationLocation.Library);
-
-
+            NavigationManager.Current.Navigate(NavigationLocation.Library);
         }
 
         private void BTMode_Click(object sender, RoutedEventArgs e)
@@ -103,7 +87,8 @@ namespace MusicMink
 
         private void BTCurrent_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(LandingPage), NavigationLocation.Queue);
+            NavigationManager.Current.Navigate(NavigationLocation.Queue);
+
         }
 
         private void HandlePlayerControlProgressBarBezzelManipulationStarted(object sender, ManipulationStartedRoutedEventArgs e)

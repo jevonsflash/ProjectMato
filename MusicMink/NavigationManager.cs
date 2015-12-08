@@ -14,6 +14,7 @@ namespace MusicMink
     {
         Home,
         NewHome,
+        MainPage,
 
         Library,
 
@@ -83,7 +84,7 @@ namespace MusicMink
                 return mainNavigationFrame.CanGoBack;
             }
         }
-        
+
         public void Navigate(NavigationLocation type, object parameter = null)
         {
             mainNavigationFrame.Navigate(NavigationLocationToPageType(type), parameter);
@@ -93,6 +94,8 @@ namespace MusicMink
         {
             switch (location)
             {
+                case NavigationLocation.MainPage:
+                    return typeof(MainPage);
                 case NavigationLocation.AlbumList:
                     return typeof(AlbumList);
                 case NavigationLocation.AlbumPage:
@@ -188,6 +191,6 @@ namespace MusicMink
                     }
                 }
             }
-        }  
+        }
     }
 }
