@@ -1,4 +1,5 @@
-musicmink
+ProjectMato
 =========
+Version Dev 0.0.1
+Code by Linxiao
 
-Music Player for Windows Phone
