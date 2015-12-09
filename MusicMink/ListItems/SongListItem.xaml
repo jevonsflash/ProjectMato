@@ -29,7 +29,7 @@
                             Storyboard.TargetProperty="Margin"
                             >
                             <DiscreteObjectKeyFrame KeyTime="0" Value="35,0,0,0" />
-                        </ObjectAnimationUsingKeyFrames>                        
+                        </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames
                             Storyboard.TargetName="RootGrid"
                             Storyboard.TargetProperty="Margin"
@@ -52,7 +52,7 @@
                     </Storyboard>
                 </VisualState>
             </VisualStateGroup>
-            
+
             <VisualStateGroup x:Name="ExpandedStates">
                 <VisualState x:Name="ExpandedStateClosed">
                     <Storyboard>
@@ -60,7 +60,7 @@
                             Storyboard.TargetName="ExtraContent"
                             Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0:0:0.2" Value="Collapsed" />
-                        </ObjectAnimationUsingKeyFrames>                        
+                        </ObjectAnimationUsingKeyFrames>
                         <DoubleAnimation
                             Storyboard.TargetName="ExtraContent"
                             Storyboard.TargetProperty="Height"
@@ -69,7 +69,7 @@
                             EnableDependentAnimation="True"
                             BeginTime="0"
                             Duration="0:0:0.2"
-                            />                        
+                            />
                     </Storyboard>
                 </VisualState>
                 <VisualState x:Name="ExpandedStateOpen">
@@ -91,11 +91,11 @@
                     </Storyboard>
                 </VisualState>
             </VisualStateGroup>
-            
-            
+
+
         </VisualStateManager.VisualStateGroups>
 
-        <Grid
+        <Grid 
             x:Name="RootGrid"
             Margin="0,3,0,3"
             >
@@ -103,7 +103,7 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            
+
             <Grid
                 Tapped="HandleStackPanelTapped"
                 >
@@ -111,7 +111,7 @@
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
-                
+
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto" />
                     <ColumnDefinition Width="*" />
@@ -161,65 +161,88 @@
                     <Run Text="{Binding TrackNumber}" />
                 </TextBlock>
             </Grid>
-            
+
             <Grid x:Name="ExtraContent"
                 Grid.Row="1"
                 Height="0"
-                Visibility="Collapsed"
+                Visibility="Visible"
                 >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                
+
                 <controls:StarRater
+                    Width="200"
                     Grid.Row="1"
                     VerticalAlignment="Center"
-                    HorizontalAlignment="Center"
+                    ScaleToWidth="True"
                     Rating="{Binding Rating, Mode=TwoWay}"
                     />
 
-                    <TextBlock
+                <TextBlock
 					    Grid.Row="0"
                         x:Name="ExtraInfoStringTextBlock"
-					    FontSize="{StaticResource TextStyleSmallFontSize}"
+					    FontSize="22"
                         Foreground="{ThemeResource PhoneMidBrush}"                    
 					    Text="{Binding ExtraInfoString}"
 					/>
 
                 <Grid x:Name="IconList"
                     Grid.Row="2"
-                    Margin="0,0,0,0"
                     >
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
 
-                    <AppBarButton x:Uid="SongItemPlayRoundButton"
+                    <Button x:Uid="SongItemPlayRoundButton"
+                            Margin="2,0"
+                            MinWidth="0"
                         Grid.Column="0"                             
-                        Icon="Play"
+                        Template="{StaticResource RoundButton}"
+                        Width="70"
+                        Height="45"
+                        BorderThickness="1"
                         Command="{Binding PlaySong}"
                         />
 
-                    <AppBarButton x:Uid="SongItemQueueRoundButton"
+                    <Button x:Uid="SongItemQueueRoundButton"
+                                                        MinWidth="0"
+                            Margin="2,0"
+
                         Grid.Column="1"                             
-                        Icon="Clock"
+                        Template="{StaticResource RoundButton}"
+                        Width="100"
+                        Height="45"
+                        BorderThickness="1"                        
                         Command="{Binding QueueSong}"
                         />
 
-                    <AppBarButton x:Uid="SongItemAddRoundButton"
+                    <Button x:Uid="SongItemAddRoundButton"
+                                                        MinWidth="0"
+                            Margin="2,0"
+
                         Grid.Column="2"                             
-                        Icon="List"
+                        Template="{StaticResource RoundButton}"
+                        Width="90"
+                        Height="45"
+                        BorderThickness="1" 
                         Command="{Binding AddSongToPlaylist}"
                         />
 
-                    <AppBarButton x:Uid="SongItemEditRoundButton"
+                    <Button x:Uid="SongItemEditRoundButton"
+                                                        MinWidth="0"
+                            Margin="2,0"
+
                         Grid.Column="3"                             
-                        Icon="Edit"
+                        Template="{StaticResource RoundButton}"
+                        Width="70"
+                        Height="45"
+                        BorderThickness="1"                        
                         Command="{Binding EditSong}"
                         />
 

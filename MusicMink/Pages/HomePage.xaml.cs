@@ -49,7 +49,6 @@ namespace MusicMink.Pages
 
         private void HandleMixesNavigationItemTapped(object sender, TappedRoutedEventArgs e)
         {
-            NavigationManager.Current.Navigate(NavigationLocation.MixList);
         }
     }
 }

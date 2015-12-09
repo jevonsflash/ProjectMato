@@ -806,25 +806,6 @@ namespace MusicMink.ViewModels
             return CurrentSongs.Count > limit;
         }
 
-
-        private RelayCommand _editMix;
-        public RelayCommand EditMix
-        {
-            get
-            {
-                if (_editMix == null) _editMix = new RelayCommand(CanExecuteEditMix, ExecuteEditMix);
-
-                return _editMix;
-            }
-        }
-
-        private async void ExecuteEditMix(object parameter)
-        {
-            EditMix editPlaylistDialog = new EditMix(this);
-
-            await editPlaylistDialog.ShowAsync();
-        }
-
         private bool CanExecuteEditMix(object parameter)
         {
             return true;

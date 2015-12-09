@@ -12,7 +12,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     >
-    
+
     <Page.Resources>
         <CollectionViewSource x:Name="SongGroupInfo" IsSourceGrouped="true" Source="{Binding SongCollection.Root}"/>
         <CollectionViewSource x:Name="AlbumGroupInfo" IsSourceGrouped="true" Source="{Binding AlbumCollection.Root}"/>
@@ -38,8 +38,8 @@
                     </Grid>
                 </DataTemplate>
             </Pivot.HeaderTemplate>
-            
-            <PivotItem Header="Songs" Margin="19,0,0,0">
+
+            <PivotItem Header="歌曲">
                 <Grid x:Name="SongListRoot">
                     <Grid
                         Visibility="{Binding LibraryLoaded, Converter={StaticResource BoolToVisibilityConverter}}"
@@ -58,7 +58,7 @@
                             Visibility="{Binding IsEmpty, Converter={StaticResource NotBoolToVisibilityConverter}}"
                             >
                             <SemanticZoom.ZoomedInView>
-                                <ListView x:Name="SongsZoomedInListView"                     
+                                <ListView x:Name="SongsZoomedInListView"                  
                                     Style="{StaticResource StandardAlphaListZoomedInListStyle}"                              
                                     ItemsSource="{Binding Source={StaticResource SongGroupInfo}}"
                                     >
@@ -94,7 +94,7 @@
                         />
                 </Grid>
             </PivotItem>
-            <PivotItem Header="Albums" Margin="19,0,0,0">
+            <PivotItem Header="专辑">
                 <Grid x:Name="AlbumListRoot">
                     <Grid Visibility="{Binding LibraryLoaded, Converter={StaticResource BoolToVisibilityConverter}}">
                         <TextBlock x:Uid="LibraryPagesEmptyLibraryMessage"
@@ -148,7 +148,7 @@
                         />
                 </Grid>
             </PivotItem>
-            <PivotItem Header="Artists" Margin="19,0,0,0">
+            <PivotItem Header="艺术家">
                 <Grid x:Name="ArtistListRoot">
                     <Grid Visibility="{Binding LibraryLoaded, Converter={StaticResource BoolToVisibilityConverter}}">
                         <TextBlock x:Uid="LibraryPagesEmptyLibraryMessage"
@@ -163,7 +163,7 @@
                         <SemanticZoom
                             Visibility="{Binding IsEmpty, Converter={StaticResource NotBoolToVisibilityConverter}}"
                             >
-                            
+
                             <SemanticZoom.ZoomedInView>
                                 <ListView
                                     x:Name="ArtistsZoomedInListView"
@@ -202,45 +202,49 @@
                 </Grid>
             </PivotItem>
         </Pivot>
-        
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            
-            <AppBarButton x:Uid="LibraryPageShuffleButton"   
-                Grid.Column="1"                          
-                Icon="Shuffle"
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1">
+            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                <Button 
+                
+                x:Uid="LibraryPageShuffleButton"   
                 Command="{Binding ShuffleAllSongs}"
                 CommandParameter="0"
                 Holding="OpenContextMenu"
+                Template="{StaticResource RoundButton}"
+                Width="150"
+                Height="45"
+                BorderThickness="1"
                 >
-                <FlyoutBase.AttachedFlyout>
-                    <MenuFlyout>
-                        <MenuFlyoutItem x:Uid="ShuffleSongsCount10" Command="{Binding ShuffleAllSongs}" CommandParameter="10"/>
-                        <MenuFlyoutItem x:Uid="ShuffleSongsCount25" Command="{Binding ShuffleAllSongs}" CommandParameter="25"/>
-                        <MenuFlyoutItem x:Uid="ShuffleSongsCount50" Command="{Binding ShuffleAllSongs}" CommandParameter="50"/>
-                        <MenuFlyoutItem x:Uid="ShuffleSongsCountAll" Command="{Binding ShuffleAllSongs}" CommandParameter="0"/>
-                    </MenuFlyout>
-                </FlyoutBase.AttachedFlyout>
-            </AppBarButton>
-            
-            <AppBarButton x:Uid="LibraryPageSearchButton"
+                    <FlyoutBase.AttachedFlyout>
+                        <MenuFlyout>
+                            <MenuFlyoutItem x:Uid="ShuffleSongsCount10" Command="{Binding ShuffleAllSongs}" CommandParameter="10"/>
+                            <MenuFlyoutItem x:Uid="ShuffleSongsCount25" Command="{Binding ShuffleAllSongs}" CommandParameter="25"/>
+                            <MenuFlyoutItem x:Uid="ShuffleSongsCount50" Command="{Binding ShuffleAllSongs}" CommandParameter="50"/>
+                            <MenuFlyoutItem x:Uid="ShuffleSongsCountAll" Command="{Binding ShuffleAllSongs}" CommandParameter="0"/>
+                        </MenuFlyout>
+                    </FlyoutBase.AttachedFlyout>
+                </Button>
+            </StackPanel>
+            <Button x:Uid="LibraryPageSearchButton"
                 Grid.Column="2"
-                Icon="Find"
+                Template="{StaticResource RoundButton}"
+                Width="100"
+                Height="45"
+                BorderThickness="1"
                 Command="{Binding Navigate}"
                 CommandParameter="SearchPage"
                 />
-            <AppBarButton x:Uid="LibraryPageManageButton"
+            <Button x:Uid="LibraryPageManageButton"
                 Grid.Column="3"
-                Icon="MusicInfo"
+                Template="{StaticResource RoundButton}"
+                Width="100"
+                Height="45"
+                    BorderThickness="1"
+
                 Command="{Binding Navigate}"
                 CommandParameter="ManageLibrary"
                 />
-        </Grid>
+        </StackPanel>
     </Grid>
 </local:BasePage>

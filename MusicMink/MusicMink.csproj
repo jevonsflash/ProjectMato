@@ -153,9 +153,6 @@
     <Compile Include="Dialogs\EditPlaylist.xaml.cs">
       <DependentUpon>EditPlaylist.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\EditMix.xaml.cs">
-      <DependentUpon>EditMix.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Dialogs\EditSong.xaml.cs">
       <DependentUpon>EditSong.xaml</DependentUpon>
     </Compile>
@@ -164,12 +161,6 @@
     </Compile>
     <Compile Include="ListItems\ArtistListItem.xaml.cs">
       <DependentUpon>ArtistListItem.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ListItems\MixEntry.xaml.cs">
-      <DependentUpon>MixEntry.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ListItems\MixListItem.xaml.cs">
-      <DependentUpon>MixListItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="ListItems\PlaylistListItem.xaml.cs">
       <DependentUpon>PlaylistListItem.xaml</DependentUpon>
@@ -185,9 +176,6 @@
     <Compile Include="MediaSources\MediaImportManager.cs" />
     <Compile Include="MediaSources\StorageProviderSong.cs" />
     <Compile Include="NavigationManager.cs" />
-    <Compile Include="Pages\NewHomePage.xaml.cs">
-      <DependentUpon>NewHomePage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\Library.xaml.cs">
       <DependentUpon>Library.xaml</DependentUpon>
     </Compile>
@@ -207,12 +195,6 @@
       <DependentUpon>ArtistPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\BasePage.cs" />
-    <Compile Include="Pages\MixList.xaml.cs">
-      <DependentUpon>MixList.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\MixPage.xaml.cs">
-      <DependentUpon>MixPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\PlaylistPage.xaml.cs">
       <DependentUpon>PlaylistPage.xaml</DependentUpon>
     </Compile>
@@ -241,6 +223,7 @@
     <Compile Include="ViewModels\DesignData\PlayQueueDesignData.cs" />
     <Compile Include="ViewModels\DesignData\SongDesignData.cs" />
     <Compile Include="ViewModels\LibraryViewModel.cs" />
+    <Compile Include="ViewModels\MixEntryViewModel.cs" />
     <Compile Include="ViewModels\MixEvaluators\IMixEvaluator.cs" />
     <Compile Include="ViewModels\MixEvaluators\RangeMixEvaluator.cs" />
     <Compile Include="ViewModels\MixEvaluators\NoneMixEvaluator.cs" />
@@ -249,7 +232,6 @@
     <Compile Include="ViewModels\MixEvaluators\StringMixEvaulator.cs" />
     <Compile Include="ViewModels\MixEvaluators\NumericMixEvaluator.cs" />
     <Compile Include="ViewModels\MixViewModel.cs" />
-    <Compile Include="ViewModels\MixEntryViewModel.cs" />
     <Compile Include="ViewModels\PlaylistEntryViewModel.cs" />
     <Compile Include="ViewModels\PlaylistViewModel.cs" />
     <Compile Include="ViewModels\PlayQueueEntryViewModel.cs" />
@@ -348,10 +330,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Dialogs\EditMix.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Dialogs\EditSong.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -364,14 +342,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ListItems\MixEntry.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ListItems\MixListItem.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="ListItems\PlaylistListItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -381,10 +351,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ListItems\SongListItem.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\NewHomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -409,14 +375,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\ArtistPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\MixList.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\MixPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

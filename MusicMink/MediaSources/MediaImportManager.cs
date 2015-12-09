@@ -373,22 +373,22 @@ namespace MusicMink.MediaSources
                 {
                     if (LastSuccesfulLibrarySync == DateTime.MinValue)
                     {
-                        return "Records show you haven't synced your music content yet. Tap the icon to start a sync now!";
+                        return "记录显示您还没有更新您的音乐内容呢。点击图标立即开始更新！";
                     }
                     else
                     {
-                        return string.Format("Records show you last performed a sync on {0} and your music library was updated on {1}. Tap the icon start a sync and add the new content!", LastSuccesfulLibrarySync.ToLocalTime().ToString("d"), LastLibraryFolderUpdate.ToLocalTime().ToString("d"));
+                        return string.Format("记录显示你在{0}成功更新音乐库，音乐库最近更新时间为{1}。点击图标进行更新，添加新的内容！", LastSuccesfulLibrarySync.ToLocalTime().ToString("d"), LastLibraryFolderUpdate.ToLocalTime().ToString("d"));
                     }
                 }
                 else
                 {
                     if (LastLibraryFolderUpdate == DateTime.MinValue)
                     {
-                        return "Updating records... one moment...";
+                        return "正在更新记录..";
                     }
                     else
                     {
-                        return "Records show your local library is up to date. If needed, you can force a full sync below.";
+                        return "记录显示你的本地库是最新的。无需同步";
                     }
                         
                 }

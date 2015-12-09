@@ -118,121 +118,121 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddPlaylist.PrimaryButtonText" xml:space="preserve">
-    <value>Add</value>
+    <value>添加</value>
   </data>
   <data name="AddPlaylist.SecondaryButtonText" xml:space="preserve">
-    <value>Cancel</value>
+    <value>取消</value>
   </data>
   <data name="AddPlaylist.Title" xml:space="preserve">
-    <value>New Playlist</value>
+    <value>新建歌单</value>
   </data>
   <data name="AddPlaylistTextBox.Header" xml:space="preserve">
-    <value>Playlist Name</value>
+    <value>歌单名称</value>
   </data>
   <data name="AlbumArtPickerHeader.Text" xml:space="preserve">
-    <value>Select Album Art</value>
+    <value>选择专辑封面</value>
   </data>
   <data name="AlbumListHeader.Text" xml:space="preserve">
-    <value>Albums</value>
+    <value>专辑</value>
   </data>
   <data name="AlbumPageEditButton.Label" xml:space="preserve">
-    <value>Edit</value>
+    <value>编辑</value>
   </data>
   <data name="AlbumPagePlayButton.Label" xml:space="preserve">
-    <value>Play Now</value>
+    <value>正在播放</value>
   </data>
   <data name="AlbumPageQueueButton.Label" xml:space="preserve">
-    <value>Queue</value>
+    <value>列队</value>
   </data>
   <data name="AlbumPageShuffleButton.Label" xml:space="preserve">
-    <value>Shuffle</value>
+    <value>随机</value>
   </data>
   <data name="DialogAddToPlaylist.PrimaryButtonText" xml:space="preserve">
-    <value>Add</value>
+    <value>添加</value>
   </data>
   <data name="DialogAddToPlaylist.SecondaryButtonText" xml:space="preserve">
-    <value>Cancel</value>
+    <value>取消</value>
   </data>
   <data name="DialogAddToPlaylist.Title" xml:space="preserve">
-    <value>Add to Playlist</value>
+    <value>添加至歌单</value>
   </data>
   <data name="DialogAddToPlaylistComboBox.Header" xml:space="preserve">
-    <value>Playlist</value>
+    <value>歌单</value>
   </data>
   <data name="Example.Text" xml:space="preserve">
     <value>Happy</value>
   </data>
   <data name="FormatHoursPlural" xml:space="preserve">
-    <value>Hours</value>
+    <value>小时</value>
   </data>
   <data name="FormatHoursSingular" xml:space="preserve">
-    <value>Hour</value>
+    <value>小时</value>
   </data>
   <data name="FormatMinutesPlural" xml:space="preserve">
-    <value>Minutes</value>
+    <value>分钟</value>
   </data>
   <data name="FormatMinutesSingular" xml:space="preserve">
-    <value>Minute</value>
+    <value>分钟</value>
   </data>
   <data name="FormatSongsPlural" xml:space="preserve">
-    <value>Songs</value>
+    <value>歌曲</value>
   </data>
   <data name="FormatSongsSingular" xml:space="preserve">
-    <value>Song</value>
+    <value>歌曲</value>
   </data>
   <data name="PlaylistListAddButton.Label" xml:space="preserve">
-    <value>Add Playlist</value>
+    <value>添加歌单</value>
   </data>
   <data name="PlaylistListHeader.Text" xml:space="preserve">
-    <value>Playlists</value>
+    <value>歌单</value>
   </data>
   <data name="PlaylistListShowButton.Label" xml:space="preserve">
-    <value>Show Hidden</value>
+    <value>显示/隐藏</value>
   </data>
   <data name="PlaylistPageEditButton.Label" xml:space="preserve">
-    <value>Edit</value>
+    <value>编辑</value>
   </data>
   <data name="PlaylistPagePlayButton.Label" xml:space="preserve">
-    <value>Play Now</value>
+    <value>正在播放</value>
   </data>
   <data name="PlaylistPageQueueButton.Label" xml:space="preserve">
-    <value>Play Later</value>
+    <value>添加至末尾</value>
   </data>
   <data name="PlaylistPageReorderButton.Label" xml:space="preserve">
-    <value>Reorder Playlist</value>
+    <value>排序</value>
   </data>
   <data name="PlaylistPageShuffleButton.Label" xml:space="preserve">
-    <value>Shuffle</value>
+    <value>随机播放</value>
   </data>
   <data name="PlayQueueClearPlayed.Label" xml:space="preserve">
-    <value>Clear History</value>
+    <value>清除已播放</value>
   </data>
   <data name="PlayQueueReorder.Label" xml:space="preserve">
-    <value>Reorder Queue</value>
+    <value>排序</value>
   </data>
   <data name="PlayQueueShuffleRemaining.Label" xml:space="preserve">
-    <value>Shuffle Remaining</value>
+    <value>随机播放未播放曲目</value>
   </data>
   <data name="QueueItemAddRoundButton.Label" xml:space="preserve">
-    <value>Add to List</value>
+    <value>添加至</value>
   </data>
   <data name="QueueItemEditRoundButton.Label" xml:space="preserve">
-    <value>Edit</value>
+    <value>编辑</value>
   </data>
   <data name="QueueItemPlayRoundButton.Label" xml:space="preserve">
     <value>Play from Here</value>
   </data>
   <data name="QueueItemQueueRoundButton.Label" xml:space="preserve">
-    <value>Queue</value>
+    <value>列队</value>
   </data>
   <data name="QueueItemRemoveRoundButton.Label" xml:space="preserve">
-    <value>Remove</value>
+    <value>移除</value>
   </data>
   <data name="AddContentHeader.Text" xml:space="preserve">
-    <value>Manage Library</value>
+    <value>管理库</value>
   </data>
   <data name="SongExtraInfoDate" xml:space="preserve">
-    <value>{0}, last played {1}</value>
+    <value>{0}, 最近播放 {1}</value>
   </data>
   <data name="SongExtraInfoPlay" xml:space="preserve">
     <value>Play</value>
@@ -240,23 +240,23 @@
   <data name="SongExtraInfoPlays" xml:space="preserve">
     <value>Plays</value>
   </data>
-  <data name="SongItemAddRoundButton.Label" xml:space="preserve">
-    <value>Add to List</value>
+  <data name="SongItemAddRoundButton.Content" xml:space="preserve">
+    <value>添加至..</value>
   </data>
-  <data name="SongItemEditRoundButton.Label" xml:space="preserve">
-    <value>Edit</value>
+  <data name="SongItemEditRoundButton.Content" xml:space="preserve">
+    <value>编辑</value>
   </data>
-  <data name="SongItemPlayRoundButton.Label" xml:space="preserve">
-    <value>Play</value>
+  <data name="SongItemPlayRoundButton.Content" xml:space="preserve">
+    <value>播放</value>
   </data>
-  <data name="SongItemQueueRoundButton.Label" xml:space="preserve">
-    <value>Queue</value>
+  <data name="SongItemQueueRoundButton.Content" xml:space="preserve">
+    <value>加入列队</value>
   </data>
   <data name="SongsListHeader.Text" xml:space="preserve">
     <value>Songs</value>
   </data>
   <data name="HomePageSongsTile.Caption" xml:space="preserve">
-    <value>Songs</value>
+    <value>歌曲</value>
   </data>
   <data name="TitleStartStripMatch" xml:space="preserve">
     <value>the </value>
@@ -274,91 +274,91 @@
     <value>Untitled Song</value>
   </data>
   <data name="DialogEditAlbum.PrimaryButtonText" xml:space="preserve">
-    <value>Update</value>
+    <value>更新</value>
   </data>
   <data name="DialogEditAlbum.SecondaryButtonText" xml:space="preserve">
-    <value>Cancel</value>
+    <value>取消</value>
   </data>
   <data name="DialogEditAlbum.Title" xml:space="preserve">
-    <value>Edit Album</value>
+    <value>编辑专辑</value>
   </data>
   <data name="DialogEditAlbumArtistNameTextBox.Header" xml:space="preserve">
-    <value>Artist</value>
+    <value>艺术家</value>
   </data>
   <data name="DialogEditAlbumGetLastFMButton.Content" xml:space="preserve">
     <value>Get from Last.FM</value>
   </data>
   <data name="DialogEditAlbumLaunchFilePickerButton.Content" xml:space="preserve">
-    <value>Use File Picker</value>
+    <value>通过资源管理器</value>
   </data>
   <data name="DialogEditAlbumNameTextBox.Header" xml:space="preserve">
-    <value>Name</value>
+    <value>名称</value>
   </data>
   <data name="DialogEditAlbumUpdateArtCheckbox.Content" xml:space="preserve">
-    <value>Update Art</value>
+    <value>更新封面</value>
   </data>
   <data name="DialogEditPlaylist.PrimaryButtonText" xml:space="preserve">
-    <value>Update</value>
+    <value>更新</value>
   </data>
   <data name="DialogEditPlaylist.SecondaryButtonText" xml:space="preserve">
-    <value>Cancel</value>
+    <value>取消</value>
   </data>
   <data name="DialogEditPlaylist.Title" xml:space="preserve">
-    <value>Edit Playlist</value>
+    <value>编辑歌单</value>
   </data>
   <data name="DialogEditPlaylistDeleteCheckBox.Content" xml:space="preserve">
-    <value>Delete</value>
+    <value>删除</value>
   </data>
   <data name="DialogEditPlaylistDeleteConfirmCheckBox.Content" xml:space="preserve">
-    <value>Confirm</value>
+    <value>确认</value>
   </data>
   <data name="DialogEditPlaylistNameTextBox.Header" xml:space="preserve">
-    <value>Name</value>
+    <value>名称</value>
   </data>
   <data name="ArtistListHeader.Text" xml:space="preserve">
-    <value>Artists</value>
+    <value>艺术家</value>
   </data>
   <data name="ArtistPageEditButton.Label" xml:space="preserve">
-    <value>Edit</value>
+    <value>编辑</value>
   </data>
   <data name="ArtistPageQueueButton.Label" xml:space="preserve">
     <value>Shuffle Later</value>
   </data>
   <data name="ArtistPageShuffleButton.Label" xml:space="preserve">
-    <value>Shuffle All</value>
+    <value>全部随机播放</value>
   </data>
   <data name="DialogEditNoArtMessage.Text" xml:space="preserve">
     <value>Couldn't get song. Please try again.</value>
   </data>
   <data name="DialogEditSong.PrimaryButtonText" xml:space="preserve">
-    <value>Update</value>
+    <value>更新</value>
   </data>
   <data name="DialogEditSong.SecondaryButtonText" xml:space="preserve">
-    <value>Cancel</value>
+    <value>取消</value>
   </data>
   <data name="DialogEditSong.Title" xml:space="preserve">
-    <value>Edit Song</value>
+    <value>编辑歌曲</value>
   </data>
   <data name="DialogEditSongAlbumArtistNameTextBox.Header" xml:space="preserve">
-    <value>Album Artist</value>
+    <value>专辑艺术家</value>
   </data>
   <data name="DialogEditSongAlbumNameTextBox.Header" xml:space="preserve">
-    <value>Album</value>
+    <value>专辑</value>
   </data>
   <data name="DialogEditSongArtistNameTextBox.Header" xml:space="preserve">
-    <value>Artist</value>
+    <value>艺术家</value>
   </data>
   <data name="DialogEditSongNameTextBox.Header" xml:space="preserve">
-    <value>Name</value>
+    <value>名称</value>
   </data>
   <data name="DialogEditSongTrackNumberTextBox.Header" xml:space="preserve">
-    <value>Track Number</value>
+    <value>曲目编号</value>
   </data>
   <data name="FormatAlbumsPlural" xml:space="preserve">
-    <value>Albums</value>
+    <value>专辑</value>
   </data>
   <data name="FormatAlbumsSingular" xml:space="preserve">
-    <value>Album</value>
+    <value>专辑</value>
   </data>
   <data name="SendLogsBody" xml:space="preserve">
     <value>Logs have been attached as txt files. </value>
@@ -385,10 +385,10 @@
     <value>Upload Logs</value>
   </data>
   <data name="DialogEditSongDeleteCheckBox.Content" xml:space="preserve">
-    <value>Delete</value>
+    <value>删除</value>
   </data>
   <data name="DialogEditSongDeleteConfirmCheckBox.Content" xml:space="preserve">
-    <value>Confirm</value>
+    <value>确认</value>
   </data>
   <data name="SettingsEnableLastFMScrobbling.Header" xml:space="preserve">
     <value>LastFM Scrobbling</value>
@@ -400,16 +400,16 @@
     <value>LastFM Username</value>
   </data>
   <data name="ScanInProgressMessage.Text" xml:space="preserve">
-    <value>Scan in progress...</value>
+    <value>正在扫描</value>
   </data>
   <data name="ScanNewSongsFoundCount.Text" xml:space="preserve">
-    <value>New Songs Found:</value>
+    <value>扫描结果</value>
   </data>
   <data name="ScanNotInProgressMessage.Text" xml:space="preserve">
-    <value>Last Scan Results:</value>
+    <value>近期扫描结果</value>
   </data>
   <data name="ScanSongsSkippedCount.Text" xml:space="preserve">
-    <value>Songs Skipped:</value>
+    <value>跳过曲目</value>
   </data>
   <data name="DefaultSyncPhoneContentButton.Content" xml:space="preserve">
     <value>Sync Phone Content</value>
@@ -427,19 +427,19 @@
     <value>Entries Skipped</value>
   </data>
   <data name="HomePageAlbumsTile.Caption" xml:space="preserve">
-    <value>Albums</value>
+    <value>专辑</value>
   </data>
   <data name="HomePageArtistsTile.Caption" xml:space="preserve">
-    <value>Artists</value>
+    <value>艺术家</value>
   </data>
   <data name="HomePageManageLibraryTile.Caption" xml:space="preserve">
-    <value>Manage Library</value>
+    <value>管理库</value>
   </data>
   <data name="HomePagePlaylistsTile.Caption" xml:space="preserve">
-    <value>Playlists</value>
+    <value>歌单</value>
   </data>
   <data name="HomePageSettingsTile.Caption" xml:space="preserve">
-    <value>Settings</value>
+    <value>设置</value>
   </data>
   <data name="UpdateLastFMArtAlbumsLeft.Text" xml:space="preserve">
     <value>Albums Left To Process</value>
@@ -469,37 +469,37 @@
     <value>Mix Name</value>
   </data>
   <data name="DialogAddMix.PrimaryButtonText" xml:space="preserve">
-    <value>Add</value>
+    <value>添加</value>
   </data>
   <data name="DialogAddMix.SecondaryButtonText" xml:space="preserve">
-    <value>Cancel</value>
+    <value>取消</value>
   </data>
   <data name="DialogAddMix.Title" xml:space="preserve">
     <value>New Mix</value>
   </data>
   <data name="DialogAddToPlaylistComboBox.PlaceholderText" xml:space="preserve">
-    <value>Pick a Playlist</value>
+    <value>选择歌单</value>
   </data>
   <data name="DialogEditMix.PrimaryButtonText" xml:space="preserve">
-    <value>Update</value>
+    <value>更新</value>
   </data>
   <data name="DialogEditMix.SecondaryButtonText" xml:space="preserve">
-    <value>Cancel</value>
+    <value>取消</value>
   </data>
   <data name="DialogEditMix.Title" xml:space="preserve">
     <value>Edit Mix</value>
   </data>
   <data name="DialogEditMixDeleteCheckBox.Content" xml:space="preserve">
-    <value>Delete</value>
+    <value>删除</value>
   </data>
   <data name="DialogEditMixDeleteConfirmCheckBox.Content" xml:space="preserve">
-    <value>Confirm</value>
+    <value>确认</value>
   </data>
   <data name="DialogEditMixHiddenCheckBox.Content" xml:space="preserve">
-    <value>Keep Hidden</value>
+    <value>保持隐藏</value>
   </data>
   <data name="DialogEditMixLimitSongs.Text" xml:space="preserve">
-    <value>Songs</value>
+    <value>歌曲</value>
   </data>
   <data name="DialogEditMixLimitTextBox.Header" xml:space="preserve">
     <value>Limit To</value>
@@ -553,7 +553,7 @@
     <value>Mixes</value>
   </data>
   <data name="HomePageSearchTile.Caption" xml:space="preserve">
-    <value>Search</value>
+    <value>查找</value>
   </data>
   <data name="MixListAddButton.Label" xml:space="preserve">
     <value>Add Mix</value>
@@ -661,19 +661,19 @@
     <value>Within The Last</value>
   </data>
   <data name="FormatNone" xml:space="preserve">
-    <value>None</value>
+    <value>无</value>
   </data>
   <data name="FormatArtistsPlural" xml:space="preserve">
-    <value>Artists</value>
+    <value>艺术家</value>
   </data>
   <data name="FormatArtistsSingular" xml:space="preserve">
-    <value>Artist</value>
+    <value>艺术家</value>
   </data>
   <data name="LibraryPagesEmptyLibraryMessage.Text" xml:space="preserve">
     <value>Your music collection is either empty or you haven't imported it yet. To import your music collection, use "manage library"</value>
   </data>
   <data name="SearchPageHeader.Text" xml:space="preserve">
-    <value>Search</value>
+    <value>查找</value>
   </data>
   <data name="SearchPageSearchedForText.Text" xml:space="preserve">
     <value>Searched for</value>
@@ -685,22 +685,22 @@
     <value>Search Query</value>
   </data>
   <data name="PlayQueueClearAll.Label" xml:space="preserve">
-    <value>Clear Queue</value>
+    <value>清除全部</value>
   </data>
   <data name="CleanLibraryContentButton.Content" xml:space="preserve">
     <value>Delete Orphaned Tracks</value>
   </data>
   <data name="CleanLibraryContentCancelButton.Content" xml:space="preserve">
-    <value>Cancel</value>
+    <value>取消</value>
   </data>
   <data name="CleanLibraryInProgressMessage.Text" xml:space="preserve">
-    <value>Cleaning...</value>
+    <value>清理中..</value>
   </data>
   <data name="CleanLibraryNotInProgressMessage.Text" xml:space="preserve">
-    <value>Results:</value>
+    <value>查询结果:</value>
   </data>
   <data name="CleanSongsLeft.Text" xml:space="preserve">
-    <value>Songs Left To Scan:</value>
+    <value>剩余曲目</value>
   </data>
   <data name="CleanSongsToRemove.Text" xml:space="preserve">
     <value>Orphaned Songs Found:</value>
@@ -754,10 +754,10 @@
     <value>Importing Stats...</value>
   </data>
   <data name="RemoveOldSongsMessage.Text" xml:space="preserve">
-    <value>Removing Deleted Songs...</value>
+    <value>移除无效歌曲</value>
   </data>
   <data name="StartSyncIcon.Caption" xml:space="preserve">
-    <value>Start Scan</value>
+    <value>开始扫描</value>
   </data>
   <data name="TapToCancel.Caption" xml:space="preserve">
     <value>Tap to Cancel</value>
@@ -766,84 +766,84 @@
     <value>Updating Art...</value>
   </data>
   <data name="NowPlayingPageHeader.Text" xml:space="preserve">
-    <value>Now Playing</value>
+    <value>正在播放</value>
   </data>
   <data name="NowPlayingPageQueueLeft.Text" xml:space="preserve">
-    <value>Left In Queue</value>
+    <value>当前列队剩余</value>
   </data>
   <data name="QueuePageHeader.Text" xml:space="preserve">
-    <value>Queue</value>
+    <value>列队</value>
   </data>
   <data name="HomePageHeader.Text" xml:space="preserve">
-    <value>Music</value>
+    <value>歌曲</value>
   </data>
   <data name="LibraryPageHeader.Text" xml:space="preserve">
-    <value>Library</value>
+    <value>库</value>
   </data>
   <data name="NewHomePageAlbumsEntry.Text" xml:space="preserve">
-    <value>Albums</value>
+    <value>专辑</value>
   </data>
   <data name="NewHomePageArtistsEntry.Text" xml:space="preserve">
-    <value>Artists</value>
+    <value>艺术家</value>
   </data>
   <data name="NewHomePageLibraryEntry.Text" xml:space="preserve">
-    <value>Library</value>
+    <value>库</value>
   </data>
   <data name="NewHomePageManageLibraryEntry.Text" xml:space="preserve">
-    <value>Manage Library</value>
+    <value>管理库</value>
   </data>
   <data name="NewHomePageMixesEntry.Text" xml:space="preserve">
     <value>Mixes</value>
   </data>
   <data name="NewHomePageNowPlayingEntry.Text" xml:space="preserve">
-    <value>Now Playing</value>
+    <value>正在播放</value>
   </data>
   <data name="NewHomePagePlaylistsEntry.Text" xml:space="preserve">
-    <value>Playlists</value>
+    <value>歌单</value>
   </data>
   <data name="NewHomePageQueueEntry.Text" xml:space="preserve">
-    <value>Queue</value>
+    <value>列队</value>
   </data>
   <data name="NewHomePageSearchEntry.Text" xml:space="preserve">
-    <value>Search</value>
+    <value>查找</value>
   </data>
   <data name="NewHomePageSettingsEntry.Text" xml:space="preserve">
-    <value>Settings</value>
+    <value>设置</value>
   </data>
   <data name="NewHomePageSongsEntry.Text" xml:space="preserve">
-    <value>Songs</value>
+    <value>歌曲</value>
   </data>
   <data name="SettingsEnableClassicMode.Header" xml:space="preserve">
     <value>Classic View</value>
   </data>
   <data name="SettingsEnableClassicMode.OffContent" xml:space="preserve">
-    <value>Off</value>
+    <value>关闭</value>
   </data>
   <data name="SettingsEnableClassicMode.OnContent" xml:space="preserve">
-    <value>On</value>
+    <value>打开</value>
   </data>
   <data name="SettingsSettingsEnableClassicModeMessage.Text" xml:space="preserve">
     <value>Note: You must close and restart the app for this setting to take effect</value>
   </data>
-  <data name="LibraryPageManageButton.Label" xml:space="preserve">
-    <value>Manage Library</value>
+  <data name="LibraryPageManageButton.Content" xml:space="preserve">
+    <value>管理库</value>
   </data>
-  <data name="LibraryPageSearchButton.Label" xml:space="preserve">
-    <value>Search</value>
+  <data name="LibraryPageSearchButton.Content" xml:space="preserve">
+    <value>查找</value>
   </data>
-  <data name="LibraryPageShuffleButton.Label" xml:space="preserve">
-    <value>Shuffle All</value>
+  <data name="LibraryPageShuffleButton.Content" xml:space="preserve">
+    <value>全部随机播放</value>
   </data>
   <data name="LibraryPageStatsButton.Label" xml:space="preserve">
     <value>Collection Stats</value>
   </data>
   <data name="DialogEditAlbumCurrentArtTextBlock.Text" xml:space="preserve">
-    <value>Current Art</value>
+    <value>当前封面</value>
   </data>
   <data name="NowPlayingNotActiveMessage.Text" xml:space="preserve">
-    <value>No active song.</value>
+    <value>没有歌曲</value>
   </data>
   <data name="PlayqueueEmptyMessage.Text" xml:space="preserve">
-    <value>No songs in queue.</value>
+    <value>没有歌曲</value>
   </data>
 </root>

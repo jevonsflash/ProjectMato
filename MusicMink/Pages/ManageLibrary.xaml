@@ -45,9 +45,7 @@
         <Grid Grid.Row="1" Margin="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="10"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="10"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             
@@ -206,16 +204,6 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <controls:SymbolTile
-                    x:Uid="TapToCancel"                    
-                    IsProgress="True"
-                    Height="120"
-                    Width="120"
-                    InnerMargin="10"
-                    Margin="10,0,10,0"
-                    Command="{Binding CancelScanLastmForArt}"
-                    />
-
                 <TextBlock x:Uid="UpdateArtMessage"
                     Grid.Column="1"
                     FontSize="{StaticResource TextStyleLargeFontSize}"
@@ -298,7 +286,7 @@
                 <controls:SymbolTile
                     Symbol="Refresh"
                     InnerMargin="15"
-                    Caption="Full Sync"
+                    Caption="扫描所有音乐"
                     Command="{Binding ScanLocalLibrary}"
                     CommandParameter="True"
                     />
@@ -312,7 +300,7 @@
                 <controls:SymbolTile
                     Symbol="Folder"
                     InnerMargin="15"
-                    Caption="Sync Folder"
+                    Caption="扫描文件夹"
                     Command="{Binding ScanLocalLibraryPickFolder}"
                     />
             </Grid>
@@ -325,50 +313,13 @@
                 <controls:SymbolTile
                     Symbol="Delete"
                     InnerMargin="15"
-                    Caption="Delete Old Tracks"
+                    Caption="删除无效文件"
                     Command="{Binding CleanLibrary}"
                     />
             </Grid>
 
-            <Grid x:Name="UpdateAlbumArtTile"
-                Grid.Row="4"                
-                MinHeight="{Binding ActualWidth, ElementName=UpdateAlbumArtTile}"
-                >
-                <controls:SymbolTile
-                    Symbol="Pictures"
-                    InnerMargin="15"
-                    Caption="Update Album Art"
-                    Command="{Binding ScanLastFMForArt}"
-                    />
-            </Grid>
 
-            <Grid x:Name="ExportStatsTile"
-                Grid.Row="4"                
-                Grid.Column="2"
-                MinHeight="{Binding ActualWidth, ElementName=ExportStatsTile}"
-                >
 
-                <controls:SymbolTile
-                    Symbol="Upload"
-                    InnerMargin="15"
-                    Caption="Export Stats"
-                    Command="{Binding ExportStatFile}"
-                    />
-            </Grid>
-
-            <Grid x:Name="ImportStatsTile"
-                Grid.Row="4"                
-                Grid.Column="4"
-                MinHeight="{Binding ActualWidth, ElementName=ImportStatsTile}"
-                >
-
-                <controls:SymbolTile
-                    Symbol="Download"
-                    InnerMargin="15"
-                    Caption="Import Stats"
-                    Command="{Binding ImportStatFile}"                    
-                    />
-            </Grid>
 
         </Grid>
     </Grid>

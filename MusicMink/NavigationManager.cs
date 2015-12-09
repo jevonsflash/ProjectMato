@@ -13,18 +13,15 @@ namespace MusicMink
     enum NavigationLocation
     {
         Home,
-        NewHome,
         MainPage,
 
         Library,
 
         PlaylistList,
-        MixList,
 
         AlbumPage,
         ArtistPage,
         PlaylistPage,
-        MixPage,
 
         SearchPage,
         SettingsPage,
@@ -99,10 +96,6 @@ namespace MusicMink
                     return typeof(HomePage);
                 case NavigationLocation.ManageLibrary:
                     return typeof(ManageLibrary);
-                case NavigationLocation.MixList:
-                    return typeof(MixList);
-                case NavigationLocation.MixPage:
-                    return typeof(MixPage);
                 case NavigationLocation.PlaylistList:
                     return typeof(PlaylistList);
                 case NavigationLocation.PlaylistPage:
@@ -115,8 +108,6 @@ namespace MusicMink
                     return typeof(Queue);
                 case NavigationLocation.NowPlaying:
                     return typeof(NowPlaying);
-                case NavigationLocation.NewHome:
-                    return typeof(NewHomePage);
                 case NavigationLocation.Library:
                     return typeof(Library);
                 default:
