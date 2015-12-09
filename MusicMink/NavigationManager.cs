@@ -18,10 +18,7 @@ namespace MusicMink
 
         Library,
 
-        AlbumList,
-        ArtistList,
         PlaylistList,
-        SongList,
         MixList,
 
         AlbumPage,
@@ -94,12 +91,8 @@ namespace MusicMink
         {
             switch (location)
             {
-                case NavigationLocation.AlbumList:
-                    return typeof(AlbumList);
                 case NavigationLocation.AlbumPage:
                     return typeof(AlbumPage);
-                case NavigationLocation.ArtistList:
-                    return typeof(ArtistList);
                 case NavigationLocation.ArtistPage:
                     return typeof(ArtistPage);
                 case NavigationLocation.Home:
@@ -118,8 +111,6 @@ namespace MusicMink
                     return typeof(SearchPage);
                 case NavigationLocation.SettingsPage:
                     return typeof(Settings);
-                case NavigationLocation.SongList:
-                    return typeof(SongList);
                 case NavigationLocation.Queue:
                     return typeof(Queue);
                 case NavigationLocation.NowPlaying:

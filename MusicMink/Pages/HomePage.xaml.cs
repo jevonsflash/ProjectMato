@@ -17,7 +17,6 @@ namespace MusicMink.Pages
 
         private void HandleSongsNavigationItemTapped(object sender, TappedRoutedEventArgs e)
         {
-            NavigationManager.Current.Navigate(NavigationLocation.SongList);
         }
 
         private void HandleLibraryNavigationItemTapped(object sender, TappedRoutedEventArgs e)
@@ -27,7 +26,6 @@ namespace MusicMink.Pages
 
         private void HandleAlbumNavigationItemTapped(object sender, TappedRoutedEventArgs e)
         {
-            NavigationManager.Current.Navigate(NavigationLocation.AlbumList);
         }
 
         private void HandleSettingsNavigationItemTapped(object sender, TappedRoutedEventArgs e)
@@ -42,7 +40,6 @@ namespace MusicMink.Pages
 
         private void HandleArtistsNavigationItemTapped(object sender, TappedRoutedEventArgs e)
         {
-            NavigationManager.Current.Navigate(NavigationLocation.ArtistList);
         }
 
         private void HandleSearchNavigationItemTapped(object sender, TappedRoutedEventArgs e)
