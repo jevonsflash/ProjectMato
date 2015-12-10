@@ -104,8 +104,8 @@ namespace MusicMink.ViewModels
                 return GetSettingField<BackgroundModel>(ApplicationSettings.BACKGROUND_KEY, new BackgroundModel() {
                     Backgrounds=new List<BackgroundEntityModel>() {
                         new BackgroundEntityModel(0, "mato", "mato", "ss", true, ""),
-                        new BackgroundEntityModel(0, "mato", "mato", "ss", true, ""),
-                        new BackgroundEntityModel(0, "mato","mato","ss",true,""),
+                        new BackgroundEntityModel(0, "mato", "mato", "DayResource", false, ""),
+                        new BackgroundEntityModel(0, "mato","mato","ss",false,""),
                         new BackgroundEntityModel(0, "mato","mato","ss",true,"")
                     }
                 });
@@ -113,6 +113,7 @@ namespace MusicMink.ViewModels
             set
             {
                 SetSettingField<BackgroundModel>(ApplicationSettings.BACKGROUND_KEY, value, Properties.BackgroundKey);
+                ThemeManager.Load(string.Format("/{0}.xaml",value.Backgrounds.Find(c=>c.IsSel==true).Img));
             }
         }
 

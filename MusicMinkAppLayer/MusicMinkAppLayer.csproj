@@ -85,6 +85,7 @@
     <Compile Include="Diagnostics\Logger.cs" />
     <Compile Include="Diagnostics\PerfTracer.cs" />
     <Compile Include="Helpers\DownloadManager.cs" />
+    <Compile Include="Helpers\ThemeManager.cs" />
     <Compile Include="Helpers\Utilities.cs" />
     <Compile Include="Models\AlbumModel.cs" />
     <Compile Include="Models\ArtistModel.cs" />

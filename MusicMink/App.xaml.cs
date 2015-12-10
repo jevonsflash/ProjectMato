@@ -2,11 +2,10 @@
 using MusicMink.Pages;
 using MusicMink.ViewModels;
 using MusicMinkAppLayer.Diagnostics;
+using MusicMinkAppLayer.Helpers;
 using System;
-using System.Reflection;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.System.Threading;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -156,6 +155,7 @@ namespace MusicMink
             c.B = (byte)(byte.MaxValue - c.B * 0.2);
             
             ((SolidColorBrush)App.Current.Resources["PlayerControlBackgroundColor"]).Color = c;
+            ThemeManager.Load("/DayResource.xaml");
         }
 
         /// <summary>
