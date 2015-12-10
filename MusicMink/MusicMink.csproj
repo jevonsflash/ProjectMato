@@ -119,6 +119,7 @@
       <DependentUpon>ScalingTextBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ShiftedGrid.cs" />
+    <Compile Include="Controls\SimpleItemsControl.cs" />
     <Compile Include="Controls\StarRater.xaml.cs">
       <DependentUpon>StarRater.xaml</DependentUpon>
     </Compile>

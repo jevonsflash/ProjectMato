@@ -174,45 +174,68 @@
                     Grid.Row="2"
                     Margin="0"
                     >
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <AppBarButton x:Uid="QueueItemPlayRoundButton"
-                        Grid.Column="0"                             
-                        Icon="Play"
+                    <Button x:Uid="QueueItemPlayRoundButton"
+                        Grid.Column="0" 
+                        Grid.ColumnSpan="2"
+                        Grid.Row="0"
+                        Template="{StaticResource RoundButton}"
+                        Width="100"
+                        Height="45"
+                        BorderThickness="1"
                         Command="{Binding PlayFromHere}"
                         Style="{Binding Foreground, ElementName=ExtraInfoStringTextBlock, Converter={StaticResource AppBarButtonStyleSelector}}" 
                         />
 
-                    <AppBarButton x:Uid="QueueItemQueueRoundButton"
-                        Grid.Column="1"                             
-                        Icon="Clock"
+                    <Button x:Uid="QueueItemQueueRoundButton"
+                        Grid.Column="2"  
+                        Grid.Row="0"
+                        Template="{StaticResource RoundButton}"
+                        Width="100"
+                        Height="45"
+                        BorderThickness="1"
                         Command="{Binding Song.QueueSong}"
                         Style="{Binding Foreground, ElementName=ExtraInfoStringTextBlock, Converter={StaticResource AppBarButtonStyleSelector}}" 
                         />
 
-                    <AppBarButton x:Uid="QueueItemAddRoundButton"
-                        Grid.Column="2"                             
-                        Icon="List"
+                    <Button x:Uid="QueueItemAddRoundButton"
+                        Grid.Column="0"
+                        Grid.Row="1"
+                        Template="{StaticResource RoundButton}"
+                        Width="100"
+                        Height="45"
+                        BorderThickness="1"
                         Command="{Binding Song.AddSongToPlaylist}"
                         Style="{Binding Foreground, ElementName=ExtraInfoStringTextBlock, Converter={StaticResource AppBarButtonStyleSelector}}" 
                         />
 
-                    <AppBarButton x:Uid="QueueItemEditRoundButton"
-                        Grid.Column="3"
-                        Icon="Edit"
+                    <Button x:Uid="QueueItemEditRoundButton"
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        Template="{StaticResource RoundButton}"
+                        Width="100"
+                        Height="45"
+                        BorderThickness="1"
                         Command="{Binding Song.EditSong}"
                         Style="{Binding Foreground, ElementName=ExtraInfoStringTextBlock, Converter={StaticResource AppBarButtonStyleSelector}}" 
                         />
 
-                    <AppBarButton x:Uid="QueueItemRemoveRoundButton"
-                        Grid.Column="4"                             
-                        Icon="Delete"
+                    <Button x:Uid="QueueItemRemoveRoundButton"
+                        Grid.Column="2"
+                        Grid.Row="1"
+                        Template="{StaticResource RoundButton}"
+                        Width="100"
+                        Height="45"
+                        BorderThickness="1"
                         Command="{Binding RemoveFromQueue}"      
                         Style="{Binding Foreground, ElementName=ExtraInfoStringTextBlock, Converter={StaticResource AppBarButtonStyleSelector}}" 
                         />                    

@@ -88,6 +88,7 @@
     <Compile Include="Helpers\Utilities.cs" />
     <Compile Include="Models\AlbumModel.cs" />
     <Compile Include="Models\ArtistModel.cs" />
+    <Compile Include="Models\BackgroundModel.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Models\LibraryModel.cs" />

@@ -15,18 +15,5 @@ namespace MusicMink.Pages
 
             this.DataContext = SettingsViewModel.Current;
         }
-
-        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
-        {
-        }
-
-        private void PasswordBox_GotFocus(object sender, RoutedEventArgs e)
-        {
-            LastFMPasswordBox.Password = string.Empty;
-        }
-
-        private void PasswordBox_LostFocus(object sender, RoutedEventArgs e)
-        {
-        }
     }
 }

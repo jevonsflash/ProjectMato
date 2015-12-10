@@ -154,7 +154,7 @@ namespace MusicMink
             c.R = (byte)(byte.MaxValue - c.R * 0.2);
             c.G = (byte)(byte.MaxValue - c.G * 0.2);
             c.B = (byte)(byte.MaxValue - c.B * 0.2);
-
+            
             ((SolidColorBrush)App.Current.Resources["PlayerControlBackgroundColor"]).Color = c;
         }
 

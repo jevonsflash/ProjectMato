@@ -17,87 +17,84 @@
         <TextBlock x:Uid="SettingsHeader"
             Style="{ThemeResource DefaultTitleStyle}"
             />
-        
+
         <Grid
             Grid.Row="1"
             x:Name="ContentRoot"
             Margin="{StaticResource DefaultContentMargin}"
             >
             <ScrollViewer>
-                
-            <StackPanel Orientation="Vertical">
-                <ToggleSwitch x:Uid="SettingsEnableLoggingToggleSwitch"
-                    IsOn="{Binding IsLoggingEnabled, Mode=TwoWay}"
-                    />
-                <TextBlock x:Uid="SettingsEnableLoggingHelpMessage"
-                    FontSize="{StaticResource TextStyleSmallFontSize}"
-                    TextWrapping="WrapWholeWords"
-                    TextAlignment="Justify"
-                    FontStyle="Italic"
-                    Foreground="{StaticResource PhoneForegroundBrush}"
-                    />
-                <Button x:Uid="SettingsUploadLogs"
-                    Command="{Binding UploadLogs}"
-                    HorizontalAlignment="Center"
-                    IsEnabled="{Binding IsLoggingEnabled}"
-                    />
-                <ToggleSwitch x:Uid="SettingsAutoPullArtFromLastFMToggleSwitch"
-                    IsOn="{Binding AutoPullArtFromLastFM, Mode=TwoWay}"
-                    />
-                <TextBlock x:Uid="SettingsAutoPullArtFromLastFMHelpMessage"
-                    FontSize="{StaticResource TextStyleSmallFontSize}"
-                    TextWrapping="WrapWholeWords"
-                    TextAlignment="Justify"
-                    FontStyle="Italic"
-                    Foreground="{StaticResource PhoneForegroundBrush}"
-                    />
-                <ToggleSwitch x:Uid="SettingsEnableLastFMScrobbling"
-                    x:Name="EnableLastFM"
-                    IsOn="{Binding IsLastFMScrobblingEnabled, Mode=TwoWay}"
-                    />
-                <TextBox x:Uid="SettingsLastFMUsername"
-                    x:Name="LastFMUsernameTextBox"
-                    Visibility="{Binding IsOn, ElementName=EnableLastFM, Converter={StaticResource BoolToVisibilityConverter}}"     
-                    Text="{Binding LastFMUsername}"
-                    LostFocus="TextBox_LostFocus"
-                    />
-                <PasswordBox x:Uid="SettingsLastFMPassword"
-                    x:Name="LastFMPasswordBox"                             
-                    Visibility="{Binding IsOn, ElementName=EnableLastFM, Converter={StaticResource BoolToVisibilityConverter}}"     
-                    Password="{Binding LastFMPasswordMask}"
-                    GotFocus="PasswordBox_GotFocus"
-                    LostFocus="PasswordBox_LostFocus"                             
-                    />
-                <TextBlock x:Uid="SettingsLastFMStatusLoggingIn"
-                    FontSize="{StaticResource TextStyleSmallFontSize}"
-                    Foreground="{StaticResource PhoneForegroundBrush}"
-                    Visibility="{Binding IsLastFMAuthInProgress, Converter={StaticResource BoolToVisibilityConverter}}"
-                    />
-                <Grid
-                    Visibility="{Binding IsLastFMAuthInProgress, Converter={StaticResource NotBoolToVisibilityConverter}}"
-                    >
-                    <TextBlock x:Uid="SettingsLastFMStatusLoggedIn"
-                        FontSize="{StaticResource TextStyleSmallFontSize}"
-                        Foreground="{StaticResource PhoneForegroundBrush}"
-                        Visibility="{Binding IsLastFMAuthed, Converter={StaticResource BoolToVisibilityConverter}}"
-                        />
-                    <TextBlock x:Uid="SettingsLastFMStatusLoggedOut"
-                        FontSize="{StaticResource TextStyleSmallFontSize}"
-                        Foreground="{StaticResource PhoneForegroundBrush}"
-                        Visibility="{Binding IsLastFMAuthed, Converter={StaticResource NotBoolToVisibilityConverter}}"
-                        />
-                </Grid>
 
-                <ToggleSwitch x:Uid="SettingsEnableClassicMode"
+                <StackPanel Orientation="Vertical">
+
+                    <TextBlock FontSize="42" VerticalAlignment="Bottom" Padding="15,0,0,0" >未来天气</TextBlock>
+                    <ItemsControl x:Name="LVFeature" Grid.Row="1" ItemsSource="{Binding BackgroundKey ,Mode=TwoWay}">
+                        <!--使用ItemsStackPanel控件作为ItemsControl的布局面板-->
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <ItemsStackPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.Template>
+                            <ControlTemplate TargetType="ItemsControl">
+                                <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto"  ScrollViewer.VerticalScrollBarVisibility ="Disabled">
+                                    <ItemsPresenter/>
+                                </ScrollViewer>
+                            </ControlTemplate>
+                        </ItemsControl.Template>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="5,0" Width="160" Height="360">
+                                    <Rectangle Fill="White" Opacity="0.2"></Rectangle>
+                                    <StackPanel>
+                                        <TextBlock Grid.Column="1" Text="{Binding Title}" Margin="10,20,0,0" FontSize="36"/>
+                                        <Image Source="{Binding Img}" Width="144"  Height="144" Stretch="Uniform"></Image>
+                                        <TextBlock Text="当前"  Visibility="{Binding IsSel,Mode=TwoWay}" Margin="10,20,0,0" FontSize="24"/>
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+
+                    </ItemsControl>
+                    <StackPanel>
+
+                        <TextBlock x:Uid="SettingsSettingsEnableClassicModeMessage"
+                                    Style="{StaticResource PhoneTextLargeStyle}"/>
+
+                        <ToggleSwitch x:Uid="SettingsEnableClassicMode"
                     IsOn="{Binding IsClassicModeEnabled, Mode=TwoWay}"
                     />
-                <TextBlock x:Uid="SettingsSettingsEnableClassicModeMessage"
-                    FontSize="{StaticResource TextStyleSmallFontSize}"
-                    TextWrapping="WrapWholeWords"
-                    TextAlignment="Justify"
-                    FontStyle="Italic"
-                    Foreground="{StaticResource PhoneForegroundBrush}"
-                    />
+                    </StackPanel>
+
+
+                    <StackPanel>
+                        <TextBlock  x:Uid="SettingsIsGoMainPage" Text="选歌后立即返回主界面" 
+                                    Style="{StaticResource PhoneTextLargeStyle}"/>
+                        <ToggleSwitch x:Name="TSIsGoMainPage" 
+                                 IsOn="{Binding IsClassicModeEnabled, Mode=TwoWay}">
+                        </ToggleSwitch>
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock  x:Uid="SettingsIsGoMainPage" Text="退出时停止音乐" 
+                                    Style="{StaticResource PhoneTextLargeStyle}"/>
+                        <ToggleSwitch x:Name="TSIsStopWhenTerminate"                     
+                                      IsOn="{Binding IsStopWhenTerminate, Mode=TwoWay}">
+                        </ToggleSwitch>
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock  x:Uid="SettingsIsGoMainPage" Text="自动下载歌词" 
+                                    Style="{StaticResource PhoneTextLargeStyle}"/>
+                        <ToggleSwitch x:Name="TSIsAutoLrc"                     
+                                      IsOn="{Binding IsAutoLrc, Mode=TwoWay}">
+                        </ToggleSwitch>
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock  x:Uid="SettingsIsGoMainPage" Text="歌词自动滚动" 
+                                    Style="{StaticResource PhoneTextLargeStyle}"/>
+                        <ToggleSwitch x:Name="TSIsAutoOffset"
+                                      IsOn="{Binding IsAutoOffset, Mode=TwoWay}" >
+                        </ToggleSwitch>
+                    </StackPanel>
                 </StackPanel>
             </ScrollViewer>
         </Grid>

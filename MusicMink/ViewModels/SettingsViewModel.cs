@@ -1,6 +1,7 @@
 ﻿using MusicMink.Common;
 using MusicMinkAppLayer.Diagnostics;
 using MusicMinkAppLayer.Helpers;
+using MusicMinkAppLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,7 +17,6 @@ namespace MusicMink.ViewModels
 
         public static class Properties
         {
-            public const string AutoPullArtFromLastFM = "AutoPullArtFromLastFM";
             public const string IsSleepModeOn = "IsSleepModeOn";
             public const string IsStopWhenTerminate = "IsStopWhenTerminate";
             public const string IsAutoLrc = "IsAutoLrc";
@@ -45,67 +45,10 @@ namespace MusicMink.ViewModels
 
         #region Commands
 
-        private RelayCommand _uploadLogs;
-        public RelayCommand UploadLogs
-        {
-            get
-            {
-                if (_uploadLogs == null) _uploadLogs = new RelayCommand(CanExecuteUploadLogs, ExecuteUploadLogs);
-
-                return _uploadLogs;
-            }
-        }
-
-        private async void ExecuteUploadLogs(object parameter)
-        {
-            await Logger.Current.Flush();
-
-            StorageFolder localFolder = ApplicationData.Current.LocalFolder;
-
-            StorageFolder logFolder = await localFolder.GetFolderAsync(Logger.LOG_FOLDER);
-
-            if (logFolder == null) return;
-
-            IReadOnlyList<StorageFile> files = await logFolder.GetFilesAsync();
-
-            EmailRecipient sendTo = new EmailRecipient(EMAIL_TARGET, EMAIL_NAME);
-
-            EmailMessage mail = new EmailMessage();
-            mail.Subject = Strings.GetResource("SendLogsSubject");
-            mail.Body = Strings.GetResource("SendLogsBody");
-
-            mail.To.Add(sendTo);
-
-            foreach (IStorageFile file in files)
-            {
-                EmailAttachment logs = new EmailAttachment(file.Name, file);
-
-                mail.Attachments.Add(logs);
-            }
-
-            await EmailManager.ShowComposeNewEmailAsync(mail);
-        }
-
-        private bool CanExecuteUploadLogs(object parameter)
-        {
-            return true;
-        }
-
         #endregion
 
         #region Properties
 
-        public bool AutoPullArtFromLastFM
-        {
-            get
-            {
-                return GetSettingField<bool>(ApplicationSettings.SETTING_IS_AUTO_PULL_ART_FROM_LASTFM_ON, true);
-            }
-            set
-            {
-                SetSettingField<bool>(ApplicationSettings.SETTING_IS_AUTO_PULL_ART_FROM_LASTFM_ON, value, Properties.AutoPullArtFromLastFM);
-            }
-        }
 
         public bool IsSleepModeOn
         {
@@ -154,15 +97,22 @@ namespace MusicMink.ViewModels
             }
         }
 
-        public string BackgroundKey
+        public BackgroundModel BackgroundKey
         {
             get
             {
-                return GetSettingField<string>(ApplicationSettings.BACKGROUND_KEY, "mato");
+                return GetSettingField<BackgroundModel>(ApplicationSettings.BACKGROUND_KEY, new BackgroundModel() {
+                    Backgrounds=new List<BackgroundEntityModel>() {
+                        new BackgroundEntityModel(0, "mato", "mato", "ss", true, ""),
+                        new BackgroundEntityModel(0, "mato", "mato", "ss", true, ""),
+                        new BackgroundEntityModel(0, "mato","mato","ss",true,""),
+                        new BackgroundEntityModel(0, "mato","mato","ss",true,"")
+                    }
+                });
             }
             set
             {
-                SetSettingField<string>(ApplicationSettings.BACKGROUND_KEY, value, Properties.BackgroundKey);
+                SetSettingField<BackgroundModel>(ApplicationSettings.BACKGROUND_KEY, value, Properties.BackgroundKey);
             }
         }
 
