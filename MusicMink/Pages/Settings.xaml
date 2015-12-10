@@ -59,7 +59,7 @@
                     <StackPanel>
 
                         <TextBlock x:Uid="SettingsSettingsEnableClassicModeMessage"
-                                    Style="{StaticResource PhoneTextLargeStyle}"/>
+                                    Style="{StaticResource ComboBoxPlaceholderTextBlockStyle}"/>
 
                         <ToggleSwitch x:Uid="SettingsEnableClassicMode"
                     IsOn="{Binding IsClassicModeEnabled, Mode=TwoWay}"
@@ -69,28 +69,28 @@
 
                     <StackPanel>
                         <TextBlock  x:Uid="SettingsIsGoMainPage" Text="选歌后立即返回主界面" 
-                                    Style="{StaticResource PhoneTextLargeStyle}"/>
+                                    Style="{StaticResource ComboBoxPlaceholderTextBlockStyle}"/>
                         <ToggleSwitch x:Name="TSIsGoMainPage" 
                                  IsOn="{Binding IsClassicModeEnabled, Mode=TwoWay}">
                         </ToggleSwitch>
                     </StackPanel>
                     <StackPanel>
                         <TextBlock  x:Uid="SettingsIsGoMainPage" Text="退出时停止音乐" 
-                                    Style="{StaticResource PhoneTextLargeStyle}"/>
+                                    Style="{StaticResource ComboBoxPlaceholderTextBlockStyle}"/>
                         <ToggleSwitch x:Name="TSIsStopWhenTerminate"                     
                                       IsOn="{Binding IsStopWhenTerminate, Mode=TwoWay}">
                         </ToggleSwitch>
                     </StackPanel>
                     <StackPanel>
                         <TextBlock  x:Uid="SettingsIsGoMainPage" Text="自动下载歌词" 
-                                    Style="{StaticResource PhoneTextLargeStyle}"/>
+                                    Style="{StaticResource ComboBoxPlaceholderTextBlockStyle}"/>
                         <ToggleSwitch x:Name="TSIsAutoLrc"                     
                                       IsOn="{Binding IsAutoLrc, Mode=TwoWay}">
                         </ToggleSwitch>
                     </StackPanel>
                     <StackPanel>
                         <TextBlock  x:Uid="SettingsIsGoMainPage" Text="歌词自动滚动" 
-                                    Style="{StaticResource PhoneTextLargeStyle}"/>
+                                    Style="{StaticResource ComboBoxPlaceholderTextBlockStyle}"/>
                         <ToggleSwitch x:Name="TSIsAutoOffset"
                                       IsOn="{Binding IsAutoOffset, Mode=TwoWay}" >
                         </ToggleSwitch>

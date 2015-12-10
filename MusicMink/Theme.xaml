@@ -7,6 +7,7 @@
         <ResourceDictionary x:Key="Default">
             <SolidColorBrush x:Key="PlayerControlBackgroundColor" Color="White"/>
             <SolidColorBrush x:Key="PlayerControlForegroundColor" Color="Black" />
+            <ImageBrush x:Key="MainBackGroundBrush" ImageSource="Img/matograss.png"></ImageBrush>
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 

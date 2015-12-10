@@ -43,7 +43,7 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
-        <Grid x:Name="GDPage" Visibility="{Binding IsActive, Converter={StaticResource BoolToVisibilityConverter}}" Background="{StaticResource MainBackGroundBrush}">
+        <Grid x:Name="GDPage" Visibility="Visible">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
@@ -311,6 +311,16 @@
                         <StackPanel Orientation="Horizontal">
                             <SymbolIcon Symbol="MusicInfo" Width="60" Height="60" />
                             <TextBlock x:Uid="NewHomePageManageLibraryEntry" Style="{StaticResource ListViewItemTextBlockStyle}" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                    <Button
+                    Style="{StaticResource EmptyButton}"
+                    Command="{Binding Navigate}"
+                    CommandParameter="AboutPage"
+                    >
+                        <StackPanel Orientation="Horizontal">
+                            <SymbolIcon Symbol="Help" Width="60" Height="60" />
+                            <TextBlock x:Uid="NewHomePageAboutPageEntry" Style="{StaticResource ListViewItemTextBlockStyle}" VerticalAlignment="Center" />
                         </StackPanel>
                     </Button>
                     <Button

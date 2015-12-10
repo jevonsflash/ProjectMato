@@ -205,9 +205,6 @@
     <Compile Include="Pages\PlaylistPage.xaml.cs">
       <DependentUpon>PlaylistPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\HomePage.xaml.cs">
-      <DependentUpon>HomePage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\ManageLibrary.xaml.cs">
       <DependentUpon>ManageLibrary.xaml</DependentUpon>
     </Compile>
@@ -278,6 +275,18 @@
     <Content Include="Icon\Setting.png" />
     <Content Include="Icon\shuffle.png" />
     <Content Include="Icon\Song.png" />
+    <Content Include="Img\AlbumArtPlaceholder.png" />
+    <Content Include="Img\AlbumCover.png" />
+    <Content Include="Img\matoblack.png" />
+    <Content Include="Img\matograss.png" />
+    <Content Include="Img\matopeace.png" />
+    <Content Include="Img\metro.png" />
+    <Content Include="Img\thumb\thumb_classic.png" />
+    <Content Include="Img\thumb\thumb_matoblack.png" />
+    <Content Include="Img\thumb\thumb_matograss.png" />
+    <Content Include="Img\thumb\thumb_matopeace.jpg" />
+    <Content Include="Img\thumb\thumb_metro.png" />
+    <Content Include="Img\UserContro.png" />
     <Content Include="ViewModels\DesignData\Art\AV.jpg" />
     <Content Include="ViewModels\DesignData\Art\SS.jpg" />
     <None Include="packages.config" />
@@ -400,10 +409,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\PlaylistPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

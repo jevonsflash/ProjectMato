@@ -155,7 +155,6 @@ namespace MusicMink
             c.B = (byte)(byte.MaxValue - c.B * 0.2);
             
             ((SolidColorBrush)App.Current.Resources["PlayerControlBackgroundColor"]).Color = c;
-            ThemeManager.Load("/DayResource.xaml");
         }
 
         /// <summary>

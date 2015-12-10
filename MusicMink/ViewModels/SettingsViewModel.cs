@@ -113,7 +113,6 @@ namespace MusicMink.ViewModels
             set
             {
                 SetSettingField<BackgroundModel>(ApplicationSettings.BACKGROUND_KEY, value, Properties.BackgroundKey);
-                ThemeManager.Load(string.Format("/{0}.xaml",value.Backgrounds.Find(c=>c.IsSel==true).Img));
             }
         }
 

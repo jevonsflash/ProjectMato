@@ -51,9 +51,11 @@
             >
 
             <Button x:Uid="LibraryPageSearchButton"
+                    MinWidth="0"
                 Grid.Column="2"
                 Template="{StaticResource RoundButton}"
-                Width="100"
+                    Margin="2,0"
+                Width="65"
                 Height="45"
                 BorderThickness="1"
                 Command="{Binding Navigate}"
@@ -62,7 +64,9 @@
 
             <Button x:Uid="PlayQueueShuffleRemaining"
                 Template="{StaticResource RoundButton}"
-                Width="100"
+                    Margin="2,0"
+                    MinWidth="0"
+                Width="65"
                 Height="45"
                 BorderThickness="1"
                 IsEnabled="{Binding ReorderMode, ElementName=PlayqueueList, Converter={StaticResource NotBoolToReorderModeConverter}}"
@@ -70,14 +74,19 @@
                 />
             <ToggleButton x:Uid="PlayQueueReorder"
                 Template="{StaticResource RoundToggleButton}"
-                Width="100"
+                          MinWidth="0"
+                          Margin="2,0"
+                Width="65"
                 Height="45"
                 BorderThickness="1"
                 IsChecked="{Binding ReorderMode, ElementName=PlayqueueList, Converter={StaticResource BoolToReorderModeConverter}, Mode=TwoWay}"
                 Tapped="HandlePlayQueueReorderAppBarToggleButtonTapped"
                 />
             <Button x:Uid="PlayQueueClearPlayed"
+                    Margin="2,0"
                 Template="{StaticResource RoundButton}"
+                    
+                    MinWidth="0"
                 Width="100"
                 Height="45"
                 BorderThickness="1"
@@ -86,7 +95,9 @@
                 />
             <Button x:Uid="PlayQueueClearAll"
                 Template="{StaticResource RoundButton}"
-                Width="100"
+                    Margin="2,0"
+                    MinWidth="0"
+                Width="65"
                 Height="45"
                 BorderThickness="1"
                 IsEnabled="{Binding ReorderMode, ElementName=PlayqueueList, Converter={StaticResource NotBoolToReorderModeConverter}}"

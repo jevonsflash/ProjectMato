@@ -145,7 +145,7 @@
             
             <Grid x:Name="ExtraContent"
                 Grid.Row="1"
-                Visibility="Collapsed"
+                Visibility="Visible"
                 Height="0"
                 >
                 <Grid.RowDefinitions>
@@ -164,8 +164,9 @@
 
                 <controls:StarRater
                     Grid.Row="1"
+                    Width="200"
                     VerticalAlignment="Center"
-                    HorizontalAlignment="Center"
+                    ScaleToWidth="True"
                     Rating="{Binding Song.Rating, Mode=TwoWay}"
                     BorderColor="{Binding ElementName=ExtraInfoStringTextBlock, Path=Foreground}"
                     />
@@ -174,42 +175,26 @@
                     Grid.Row="2"
                     Margin="0"
                     >
-                    <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
 
                     <Button x:Uid="QueueItemPlayRoundButton"
+                            MinWidth="90"
                         Grid.Column="0" 
-                        Grid.ColumnSpan="2"
-                        Grid.Row="0"
                         Template="{StaticResource RoundButton}"
-                        Width="100"
+                        Width="75"
                         Height="45"
                         BorderThickness="1"
                         Command="{Binding PlayFromHere}"
                         Style="{Binding Foreground, ElementName=ExtraInfoStringTextBlock, Converter={StaticResource AppBarButtonStyleSelector}}" 
                         />
 
-                    <Button x:Uid="QueueItemQueueRoundButton"
-                        Grid.Column="2"  
-                        Grid.Row="0"
-                        Template="{StaticResource RoundButton}"
-                        Width="100"
-                        Height="45"
-                        BorderThickness="1"
-                        Command="{Binding Song.QueueSong}"
-                        Style="{Binding Foreground, ElementName=ExtraInfoStringTextBlock, Converter={StaticResource AppBarButtonStyleSelector}}" 
-                        />
-
                     <Button x:Uid="QueueItemAddRoundButton"
-                        Grid.Column="0"
-                        Grid.Row="1"
+                        Grid.Column="1"
                         Template="{StaticResource RoundButton}"
                         Width="100"
                         Height="45"
@@ -219,10 +204,10 @@
                         />
 
                     <Button x:Uid="QueueItemEditRoundButton"
-                        Grid.Column="1"
-                        Grid.Row="1"
+                            MinWidth="90"
+                        Grid.Column="2"
                         Template="{StaticResource RoundButton}"
-                        Width="100"
+                        Width="75"
                         Height="45"
                         BorderThickness="1"
                         Command="{Binding Song.EditSong}"
@@ -230,10 +215,10 @@
                         />
 
                     <Button x:Uid="QueueItemRemoveRoundButton"
-                        Grid.Column="2"
-                        Grid.Row="1"
+                            MinWidth="90"
+                        Grid.Column="3"                        
                         Template="{StaticResource RoundButton}"
-                        Width="100"
+                        Width="75"
                         Height="45"
                         BorderThickness="1"
                         Command="{Binding RemoveFromQueue}"      

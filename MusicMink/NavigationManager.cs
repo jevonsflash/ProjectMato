@@ -12,8 +12,7 @@ namespace MusicMink
 {
     enum NavigationLocation
     {
-        Home,
-        MainPage,
+        AboutPage,
 
         Library,
 
@@ -29,6 +28,8 @@ namespace MusicMink
 
         Queue,
         NowPlaying
+
+
     }
 
     abstract class ContinuationInfo { }
@@ -75,7 +76,11 @@ namespace MusicMink
         {
             get
             {
-                return mainNavigationFrame.CanGoBack;
+                if (mainNavigationFrame != null)
+                {
+                    return mainNavigationFrame.CanGoBack;
+                }
+                return true;
             }
         }
 
@@ -92,8 +97,6 @@ namespace MusicMink
                     return typeof(AlbumPage);
                 case NavigationLocation.ArtistPage:
                     return typeof(ArtistPage);
-                case NavigationLocation.Home:
-                    return typeof(HomePage);
                 case NavigationLocation.ManageLibrary:
                     return typeof(ManageLibrary);
                 case NavigationLocation.PlaylistList:
@@ -110,9 +113,11 @@ namespace MusicMink
                     return typeof(NowPlaying);
                 case NavigationLocation.Library:
                     return typeof(Library);
+                case NavigationLocation.AboutPage:
+                    return typeof(AboutPage);
                 default:
                     DebugHelper.Alert(new CallerInfo(), "Unexpected NavigationLocation {0}", location);
-                    return typeof(HomePage);
+                    return typeof(NowPlaying);
             }
         }
 

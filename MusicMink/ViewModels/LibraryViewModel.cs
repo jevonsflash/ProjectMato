@@ -167,7 +167,7 @@ namespace MusicMink.ViewModels
 
         private async void HandleLibraryModelAlbumCreated(object sender, AlbumCreatedEventArgs e)
         {
-            if (SettingsViewModel.Current.AutoPullArtFromLastFM && string.IsNullOrEmpty(e.NewAlbum.AlbumArt))
+            if (string.IsNullOrEmpty(e.NewAlbum.AlbumArt))
             {
                 AlbumViewModel newViewModel = LookupAlbum(e.NewAlbum);
 
@@ -339,7 +339,7 @@ namespace MusicMink.ViewModels
         private void ExecuteNavigate(object parameter)
         {
             string parameterAsString = DebugHelper.CastAndAssert<string>(parameter);
-            NavigationLocation target = NavigationLocation.Home;
+            NavigationLocation target = NavigationLocation.NowPlaying;
 
             DebugHelper.Assert(new CallerInfo(), Enum.TryParse<NavigationLocation>(parameterAsString, out target), "Couldn't find location named {0}", parameterAsString);
 
