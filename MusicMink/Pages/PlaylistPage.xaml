@@ -35,7 +35,7 @@
                 Text="{Binding LengthInfo}" 
                 FontSize="{StaticResource TextStyleLargeFontSize}"
                 Foreground="{ThemeResource PhoneMidBrush}"
-                />            
+                />
         </StackPanel>
 
         <Grid
@@ -47,10 +47,21 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            
+
             <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="-10,0,-10,0">
-                <AppBarButton x:Uid="PlaylistPagePlayButton"
-                    Icon="Play"
+                <Button x:Uid="PlaylistPagePlayButton"
+                Template="{StaticResource RoundButton}"
+                Width="100"
+                Height="45"
+                BorderThickness="1"
+                Command="{Binding AddNewPlaylist}"
+                />
+
+                <Button x:Uid="PlaylistPagePlayButton"
+                    Template="{StaticResource RoundButton}"
+                    Width="100"
+                    Height="45"
+                    BorderThickness="1"
                     IsEnabled="{Binding ReorderMode, ElementName=PlaylistListView, Converter={StaticResource NotBoolToReorderModeConverter}}"                                    
                     Command="{Binding PlayAllSongs}"
                     CommandParameter="0"                              
@@ -64,10 +75,13 @@
                             <MenuFlyoutItem x:Uid="PlaySongsCountAll" Command="{Binding PlayAllSongs}" CommandParameter="0"/>
                         </MenuFlyout>
                     </FlyoutBase.AttachedFlyout>
-                </AppBarButton>
-                
-                <AppBarButton x:Uid="PlaylistPageQueueButton"
-                    Icon="Clock"
+                </Button>
+
+                <Button x:Uid="PlaylistPageQueueButton"
+                    Template="{StaticResource RoundButton}"
+                    Width="100"
+                    Height="45"
+                    BorderThickness="1"
                     IsEnabled="{Binding ReorderMode, ElementName=PlaylistListView, Converter={StaticResource NotBoolToReorderModeConverter}}"                                    
                     Command="{Binding QueueAllSongs}"
                     CommandParameter="0"
@@ -81,10 +95,13 @@
                             <MenuFlyoutItem x:Uid="QueueSongsCountAll" Command="{Binding QueueAllSongs}" CommandParameter="0"/>
                         </MenuFlyout>
                     </FlyoutBase.AttachedFlyout>
-                </AppBarButton>
+                </Button>
 
-                <AppBarButton x:Uid="PlaylistPageShuffleButton"
-                    Icon="Shuffle"
+                <Button x:Uid="PlaylistPageShuffleButton"
+                    Template="{StaticResource RoundButton}"
+                    Width="100"
+                    Height="45"
+                    BorderThickness="1"
                     IsEnabled="{Binding ReorderMode, ElementName=PlaylistListView, Converter={StaticResource NotBoolToReorderModeConverter}}"                                    
                     Command="{Binding ShuffleAllSongs}"
                     CommandParameter="0"
@@ -98,21 +115,29 @@
                             <MenuFlyoutItem x:Uid="ShuffleSongsCountAll" Command="{Binding ShuffleAllSongs}" CommandParameter="0"/>
                         </MenuFlyout>
                     </FlyoutBase.AttachedFlyout>
-                </AppBarButton>
+                </Button>
 
-                <AppBarToggleButton x:Uid="PlaylistPageReorderButton"
-                    Icon="Repair"                                    
+                <ToggleButton x:Uid="PlaylistPageReorderButton"
+                    Template="{StaticResource RoundToggleButton}"
+                    Width="100"
+                    Height="45"
+                    BorderThickness="1"
                     Click="HandlePlaylistReorderToggleButtonClick"
                     IsChecked="{Binding ReorderMode, ElementName=PlaylistListView, Converter={StaticResource BoolToReorderModeConverter}, Mode=TwoWay}"                                    
-                    />
+                    >
 
-                <AppBarButton x:Uid="PlaylistPageEditButton"
-                    Icon="Edit"
+                </ToggleButton>
+
+                <Button x:Uid="PlaylistPageEditButton"
+                    Template="{StaticResource RoundButton}"
+                    Width="100"
+                    Height="45"
+                    BorderThickness="1"
                     Command="{Binding EditPlaylist}"
                     IsEnabled="{Binding ReorderMode, ElementName=PlaylistListView, Converter={StaticResource NotBoolToReorderModeConverter}}"                                    
                     />
             </StackPanel>
-            
+
             <ListView x:Name="PlaylistListView"
                 Grid.Row="0"
                 ItemsSource="{Binding Songs}"

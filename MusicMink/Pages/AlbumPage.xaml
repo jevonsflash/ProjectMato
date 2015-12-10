@@ -57,25 +57,34 @@
             
             <Rectangle Fill="{StaticResource PhoneBackgroundBrush}" Opacity="0.50" Grid.Row="1" Margin="-15,0,-15,0" />
             <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" Margin="0,0,0,0">
-                <AppBarButton x:Uid="AlbumPagePlayButton"
-                    Icon="Play"
-                    Command="{Binding PlayAlbum}"
-                    />
-
-                <AppBarButton x:Uid="AlbumPageQueueButton"
-                    Icon="Clock"
-                    Command="{Binding QueueAlbum}"
-                    />
-
-                <AppBarButton x:Uid="AlbumPageShuffleButton"
-                    Icon="Shuffle"
-                    Command="{Binding ShuffleAlbum}"
-                    />
-
-                <AppBarButton x:Uid="AlbumPageEditButton"
-                    Icon="Edit"
-                    Command="{Binding EditAlbum}"
-                    />
+                <Button x:Uid="AlbumPagePlayButton"
+                Template="{StaticResource RoundButton}"
+                Width="100"
+                Height="45"
+                BorderThickness="1"
+                Command="{Binding PlayAlbum}"
+                />
+                <Button x:Uid="AlbumPageQueueButton"
+                Template="{StaticResource RoundButton}"
+                Width="100"
+                Height="45"
+                BorderThickness="1"
+                Command="{Binding QueueAlbum}"
+                />
+                <Button x:Uid="AlbumPageShuffleButton"
+                Template="{StaticResource RoundButton}"
+                Width="100"
+                Height="45"
+                BorderThickness="1"
+                Command="{Binding ShuffleAlbum}"
+                />
+                <Button x:Uid="AlbumPageEditButton"
+                Template="{StaticResource RoundButton}"
+                Width="100"
+                Height="45"
+                BorderThickness="1"
+                Command="{Binding EditAlbum}"
+                />
             </StackPanel>
             
             <ListView x:Name="AlbumPageSongList"

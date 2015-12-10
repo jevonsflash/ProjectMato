@@ -41,15 +41,20 @@
             </Grid.RowDefinitions>
             
             <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
-                <AppBarButton x:Uid="ArtistPageShuffleButton"
-                    Icon="Shuffle"
-                    Command="{Binding PlayAllSongs}"
-                    />
-
-                <AppBarButton x:Uid="ArtistPageQueueButton"
-                    Icon="Clock"
-                    Command="{Binding QueueAllSongs}"
-                    />
+                <Button x:Uid="ArtistPageShuffleButton"
+                Template="{StaticResource RoundButton}"
+                Width="100"
+                Height="45"
+                BorderThickness="1"
+                Command="{Binding PlayAllSongs}"
+                />
+                <Button x:Uid="ArtistPageQueueButton"
+                Template="{StaticResource RoundButton}"
+                Width="100"
+                Height="45"
+                BorderThickness="1"
+                Command="{Binding QueueAllSongs}"
+                />
             </StackPanel>
 
             <Pivot

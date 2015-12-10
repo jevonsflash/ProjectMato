@@ -52,10 +52,13 @@
                 Orientation="Horizontal"
                 HorizontalAlignment="Center"
                 >
-                <AppBarButton x:Uid="PlaylistListAddButton"
-                    Icon="Add"
-                    Command="{Binding AddNewPlaylist}"                              
-                    />
+                <Button x:Uid="PlaylistListAddButton"
+                Template="{StaticResource RoundButton}"
+                Width="100"
+                Height="45"
+                BorderThickness="1"
+                Command="{Binding AddNewPlaylist}"
+                />
             </StackPanel>            
         </Grid>
     </Grid>
