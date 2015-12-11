@@ -64,8 +64,7 @@
             </Grid.ColumnDefinitions>
             <Grid Grid.Row="1" Grid.ColumnSpan="2" Visibility="{Binding IsActive, Converter={StaticResource NotBoolToVisibilityConverter}}">
                 <StackPanel>
-
-                    <TextBlock x:Uid="NowPlayingNotActiveMessage"
+                <TextBlock x:Uid="NowPlayingNotActiveMessage"
                 FontSize="{StaticResource TextStyleSmallFontSize}"
                 TextWrapping="WrapWholeWords"
                 TextAlignment="Justify"
@@ -126,7 +125,7 @@
             Rating="{Binding CurrentTrack.Rating, Mode=TwoWay}"
             Grid.Row="4"
             Grid.Column="1"
-                Margin="0,10" Width="200"
+            Margin="0,10" Width="200"
             />
             <Grid x:Name="GRDSongInfo" Grid.Row="5" Grid.Column="1">
                 <Grid.RowDefinitions>
@@ -205,6 +204,209 @@
             <Run x:Uid="NowPlayingPageQueueLeft" /></TextBlock>
                 </ContentControl>
             </HyperlinkButton>
+
+            <Grid x:Name="GDMusicTray"
+            Visibility="{Binding IsTrayVisible, Converter={StaticResource BoolToVisibilityConverter}}"
+            Grid.Row="1"
+            Background="{StaticResource PhoneBackgroundBrush}"
+            VerticalAlignment="Bottom"
+            >
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="80" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+
+                <Rectangle
+                Fill="Black"
+                Grid.ColumnSpan="5"
+                />
+                <Rectangle
+                x:Name="PlayerControlProgressBarFull"
+                Fill="{StaticResource PhoneAccentBrush}"
+                Opacity="0.5"
+                Grid.ColumnSpan="5"
+                />
+
+                <Rectangle
+                x:Name="PlayerControlProgressBarCompleted"
+                Fill="{StaticResource PhoneAccentBrush}"
+                Width="{Binding PlayQueue.PercentTime, Converter={StaticResource DoubleToProgressBarWidth}}"
+                HorizontalAlignment="Left"
+                Visibility="{Binding PlayQueue.IsActive, Converter={StaticResource BoolToVisibilityConverter}}"
+                Grid.ColumnSpan="5"
+                />
+
+                <Grid
+                Grid.Row="2"
+                Height="80"
+                Width="80"
+                Visibility="{Binding PlayQueue.CurrentTrack, Converter={StaticResource NotNullToVisibilityConverter}}"
+                >
+                    <ContentControl
+                    Content="{Binding PlayQueue.CurrentTrack}"
+                    >
+                        <ContentControl.ContentTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding PlayQueue.Album.AlbumArt}" />
+                            </DataTemplate>
+                        </ContentControl.ContentTemplate>
+                    </ContentControl>
+
+                    <Rectangle Fill="{StaticResource PhoneBackgroundBrush}" Opacity="0.5" />
+
+                    <Button
+                    Style="{StaticResource SquareButton}"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Visibility="{Binding PlayQueue.IsPlaying, Converter={StaticResource NotBoolToVisibilityConverter}}"
+                    Command="{Binding PlayQueue.PlayPausePlayer}"
+                    >
+                        <SymbolIcon
+                        Width="80"
+                        Height="80"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Symbol="Play"
+                        >
+                        </SymbolIcon>
+                    </Button>
+
+                    <Button
+                    Style="{StaticResource SquareButton}"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Visibility="{Binding PlayQueue.IsPlaying, Converter={StaticResource BoolToVisibilityConverter}}"
+                    Command="{Binding PlayQueue.PlayPausePlayer}"
+                    >
+                        <SymbolIcon
+                        Width="80"
+                        Height="80"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Symbol="Pause"
+                        >
+                        </SymbolIcon>
+                    </Button>
+                </Grid>
+
+                <Grid
+                x:Name="CurrentTrackPanel"
+                ManipulationMode="TranslateRailsX,TranslateX"
+                ManipulationCompleted="CurrentTrackPanel_ManipulationCompleted"
+                Grid.Row="2"                
+                HorizontalAlignment="Stretch"
+                Grid.Column="1"
+                VerticalAlignment="Stretch"
+                Margin="5,0,0,0"  
+                >
+
+                    <Button
+                    Style="{StaticResource EmptyButton}"
+                    Command="{Binding Navigate}"
+                    CommandParameter="Queue"
+                    >
+
+                        <ContentControl Content="{Binding PlayQueue.CurrentTrack}" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <ContentControl.ContentTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding PlayQueue.Name}" FontSize="{StaticResource TextStyleLargeFontSize}" />
+                                        <TextBlock Text="{Binding PlayQueue.Artist.Name}" FontSize="{StaticResource TextStyleMediumFontSize}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ContentControl.ContentTemplate>
+
+                            <ContentControl.ContentTransitions>
+                                <TransitionCollection>
+                                    <ContentThemeTransition HorizontalOffset="100" />
+                                </TransitionCollection>
+                            </ContentControl.ContentTransitions>
+                        </ContentControl>
+                    </Button>
+                </Grid>
+
+                <TextBlock
+                Text="{Binding PlayQueue.TimeLeft}"
+                Grid.Row="2"                
+                Grid.Column="2"
+                Grid.ColumnSpan="3"
+                HorizontalAlignment="Right"
+                Margin="3"
+                FontSize="{StaticResource TextStyleSmallFontSize}"
+                Visibility="{Binding PlayQueue.IsActive, Converter={StaticResource BoolToVisibilityConverter}}"                
+                />
+
+                <AppBarButton x:Name="HomeButton"
+                Grid.Row="2"                
+                Grid.Column="4"
+                Icon="Home"
+                IsCompact="True"
+                VerticalAlignment="Center"
+                Margin="0,0,0,5"
+                Command="{Binding GoHome}"
+                />
+
+                <Rectangle
+                Fill="Transparent"
+                Grid.ColumnSpan="5"
+                Margin="0,-10,0,-10"
+                ManipulationMode="TranslateX,TranslateRailsX,System"
+                ManipulationStarted="HandlePlayerControlProgressBarBezzelManipulationStarted"
+                ManipulationDelta="HandlePlayerControlProgressBarBezzelManipulationDelta"
+                ManipulationCompleted="HandlePlayerControlProgressBarBezzelManipulationCompleted"    
+                />
+
+            </Grid>
+
+            <Grid x:Name="ProgressBarScrubView" Visibility="Collapsed">
+                <Grid.Background>
+                    <SolidColorBrush Color="{StaticResource PhoneBackgroundColor}" Opacity="0.75" />
+                </Grid.Background>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+
+                <controls:ShiftedGrid
+                Grid.Row="1"
+                Margin="5,0,5,0"
+                Center="{Binding Width, ElementName=PlayerControlProgressBarCompleted}"
+                MinWidth="0"
+                HorizontalAlignment="Left"
+                >
+                    <TextBlock
+                    x:Name="PlayerControlText"
+                    Foreground="{StaticResource PhoneForegroundBrush}"
+                    FontSize="{StaticResource TextStyleExtraLargeFontSize}"
+                    FontWeight="SemiBold"
+                    HorizontalAlignment="Left"
+                    TextAlignment="Center"
+                    />
+                </controls:ShiftedGrid>
+
+                <Polygon
+                Margin="0,0,0,-5"
+                Grid.Row="2"
+                Points="{Binding Width, ElementName=PlayerControlProgressBarCompleted, Converter={StaticResource ProgressTriangle}}"
+                Fill="{StaticResource PhoneAccentBrush}"
+                Stroke="{StaticResource PhoneAccentBrush}"
+                >
+                    <Polygon.RenderTransform>
+                        <TranslateTransform X="{Binding Width, ElementName=PlayerControlProgressBarCompleted}" />
+                    </Polygon.RenderTransform>
+                </Polygon>
+            </Grid>
 
             <Grid x:Name="GRDButton" HorizontalAlignment="Center" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="3">
                 <Grid.RowDefinitions>
@@ -333,101 +535,8 @@
                             <TextBlock x:Uid="NewHomePageSettingsEntry" Style="{StaticResource ListViewItemTextBlockStyle}" VerticalAlignment="Center" />
                         </StackPanel>
                     </Button>
-
-
-
                 </StackPanel>
-
-                <!--
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                </Grid.RowDefinitions>
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
-                <Grid
-                    x:Name="LibraryTile"
-                    MinHeight="{Binding ActualWidth, ElementName=LibraryTile}"
-                    >
-                    <controls:SymbolTile x:Uid="NewHomePageLibraryTile"
-                        Margin="5"
-                        Symbol="Library"
-                        InnerMargin="25"                    
-                        />
-                </Grid>
-
-                <Grid
-                    x:Name="PlaylistsTile"
-                    Grid.Column="1"
-                    MinHeight="{Binding ActualWidth, ElementName=PlaylistsTile}"
-                    >
-                    <controls:SymbolTile x:Uid="NewHomePagePlaylistsTile"
-                        Margin="5"
-                        Symbol="List"
-                        InnerMargin="25"
-                        />
-                </Grid>
-
-                <Grid
-                    x:Name="NowPlayingTile"
-                    Grid.Row="1"
-                    MinHeight="{Binding ActualWidth, ElementName=NowPlayingTile}"
-                    >
-                    <controls:SymbolTile x:Uid="HomePageNowPlayingLibraryTile"
-                        Margin="5"
-                        Symbol="Audio"
-                        InnerMargin="25"
-                        />
-                </Grid>
-
-                <Grid
-                    x:Name="QueueTile"
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    MinHeight="{Binding ActualWidth, ElementName=QueueTile}"
-                    >
-                    <controls:SymbolTile x:Uid="NewHomePageQueueTile"
-                        Margin="5"
-                        Symbol="Clock"
-                        InnerMargin="25"
-                        />
-                </Grid>
-
-                <Grid
-                    x:Name="ManageLibraryTile"
-                    Grid.Row="2"
-                    MinHeight="{Binding ActualWidth, ElementName=ManageLibraryTile}"
-                    >
-                    <controls:SymbolTile x:Uid="NewHomePageManageLibraryTile"
-                        Margin="5"
-                        Symbol="MusicInfo"
-                        InnerMargin="25"
-                        />
-                </Grid>
-                
-                <Grid
-                    x:Name="SettingsTile"
-                    Grid.Row="2"
-                    Grid.Column="1"
-                    MinHeight="{Binding ActualWidth, ElementName=SettingsTile}"
-                    >
-                    <controls:SymbolTile x:Uid="NewHomePageSettingsTile"
-                        Margin="5"
-                        Symbol="Setting"
-                        InnerMargin="25"
-                        />
-                </Grid>
-            </Grid>
-            -->
             </ScrollViewer>
-
         </Grid>
     </Grid>
 </local:BasePage>

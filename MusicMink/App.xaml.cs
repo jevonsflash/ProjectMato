@@ -11,6 +11,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
@@ -40,7 +41,7 @@ namespace MusicMink
         async void LogUnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             DebugHelper.Alert(new CallerInfo(), "UnhandledException: TYPE: {0} MESSAGE: {1} STRING: {2} SOURCE: {3}", e.Exception.GetType(), e.Message, e.Exception.ToString(), e.Exception.Source);
-            
+
             await Logger.Current.Flush();
         }
 
@@ -153,8 +154,14 @@ namespace MusicMink
             c.R = (byte)(byte.MaxValue - c.R * 0.2);
             c.G = (byte)(byte.MaxValue - c.G * 0.2);
             c.B = (byte)(byte.MaxValue - c.B * 0.2);
-            
+
             ((SolidColorBrush)App.Current.Resources["PlayerControlBackgroundColor"]).Color = c;
+            string imgPath = SettingsViewModel.Current.BackgroundKey.Backgrounds.Find(parm => parm.IsSel == true).Img;
+            var bitmapImage = new BitmapImage(new Uri(string.Format("ms-appx:///{0}.png", imgPath)));
+            if (Application.Current.Resources.Keys.Contains("MainBackGroundBrush"))
+            {
+                ((ImageBrush)Application.Current.Resources["MainBackGroundBrush"]).ImageSource = bitmapImage;
+            }
         }
 
         /// <summary>
@@ -188,7 +195,7 @@ namespace MusicMink
 
             deferral.Complete();
         }
-      
+
         void OnResuming(object sender, object e)
         {
             Logger.Current.Init(LogType.FG);
