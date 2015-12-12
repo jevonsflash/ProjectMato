@@ -277,10 +277,10 @@
     <Content Include="Icon\Song.png" />
     <Content Include="Img\AlbumArtPlaceholder.png" />
     <Content Include="Img\AlbumCover.png" />
-    <Content Include="Img\matoblack.png" />
-    <Content Include="Img\matograss.png" />
-    <Content Include="Img\matopeace.png" />
-    <Content Include="Img\metro.png" />
+    <Content Include="Img\Mato.png" />
+    <Content Include="Img\Grass.png" />
+    <Content Include="Img\Peace.png" />
+    <Content Include="Img\Metro.png" />
     <Content Include="Img\thumb\thumb_classic.png" />
     <Content Include="Img\thumb\thumb_matoblack.png" />
     <Content Include="Img\thumb\thumb_matograss.png" />

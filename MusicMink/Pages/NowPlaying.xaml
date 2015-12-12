@@ -12,11 +12,15 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     >
 
+    <Page.Resources>
+        <converters:PercentageTransformConverter x:Key="DoubleToProgressBarWidth" FullMode="True"/>
+        <converters:ProgressTriangleConverter x:Key="ProgressTriangle" />
+    </Page.Resources>
     <d:Page.DataContext>
         <dv:PlayQueueDesignData />
     </d:Page.DataContext>
 
-    <Grid x:Name="GDLayout" RenderTransformOrigin="0.5,0.5" >
+    <Grid x:Name="GDLayout" RenderTransformOrigin="0.5,0.5"  Background="{StaticResource MainBackGroundBrush}">
         <Grid.RenderTransform>
             <CompositeTransform/>
         </Grid.RenderTransform>
@@ -64,7 +68,7 @@
             </Grid.ColumnDefinitions>
             <Grid Grid.Row="1" Grid.ColumnSpan="2" Visibility="{Binding IsActive, Converter={StaticResource NotBoolToVisibilityConverter}}">
                 <StackPanel>
-                <TextBlock x:Uid="NowPlayingNotActiveMessage"
+                    <TextBlock x:Uid="NowPlayingNotActiveMessage"
                 FontSize="{StaticResource TextStyleSmallFontSize}"
                 TextWrapping="WrapWholeWords"
                 TextAlignment="Justify"
@@ -190,7 +194,7 @@
                 </StackPanel>
             </Grid>
             <HyperlinkButton
-            Grid.Row="7"
+            Grid.Row="6"
             Grid.Column="0"
             Grid.ColumnSpan="5"
             FontSize="22"                    
@@ -204,170 +208,9 @@
             <Run x:Uid="NowPlayingPageQueueLeft" /></TextBlock>
                 </ContentControl>
             </HyperlinkButton>
-
-            <Grid x:Name="GDMusicTray"
-            Visibility="{Binding IsTrayVisible, Converter={StaticResource BoolToVisibilityConverter}}"
-            Grid.Row="1"
-            Background="{StaticResource PhoneBackgroundBrush}"
-            VerticalAlignment="Bottom"
-            >
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="5" />
-                    <RowDefinition Height="80" />
-                </Grid.RowDefinitions>
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="auto" />
-                    <ColumnDefinition Width="auto" />
-                    <ColumnDefinition Width="auto" />
-                </Grid.ColumnDefinitions>
-
-                <Rectangle
-                Fill="Black"
-                Grid.ColumnSpan="5"
-                />
-                <Rectangle
-                x:Name="PlayerControlProgressBarFull"
-                Fill="{StaticResource PhoneAccentBrush}"
-                Opacity="0.5"
-                Grid.ColumnSpan="5"
-                />
-
-                <Rectangle
-                x:Name="PlayerControlProgressBarCompleted"
-                Fill="{StaticResource PhoneAccentBrush}"
-                Width="{Binding PlayQueue.PercentTime, Converter={StaticResource DoubleToProgressBarWidth}}"
-                HorizontalAlignment="Left"
-                Visibility="{Binding PlayQueue.IsActive, Converter={StaticResource BoolToVisibilityConverter}}"
-                Grid.ColumnSpan="5"
-                />
-
-                <Grid
-                Grid.Row="2"
-                Height="80"
-                Width="80"
-                Visibility="{Binding PlayQueue.CurrentTrack, Converter={StaticResource NotNullToVisibilityConverter}}"
-                >
-                    <ContentControl
-                    Content="{Binding PlayQueue.CurrentTrack}"
-                    >
-                        <ContentControl.ContentTemplate>
-                            <DataTemplate>
-                                <Image Source="{Binding PlayQueue.Album.AlbumArt}" />
-                            </DataTemplate>
-                        </ContentControl.ContentTemplate>
-                    </ContentControl>
-
-                    <Rectangle Fill="{StaticResource PhoneBackgroundBrush}" Opacity="0.5" />
-
-                    <Button
-                    Style="{StaticResource SquareButton}"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Visibility="{Binding PlayQueue.IsPlaying, Converter={StaticResource NotBoolToVisibilityConverter}}"
-                    Command="{Binding PlayQueue.PlayPausePlayer}"
-                    >
-                        <SymbolIcon
-                        Width="80"
-                        Height="80"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Center"
-                        Symbol="Play"
-                        >
-                        </SymbolIcon>
-                    </Button>
-
-                    <Button
-                    Style="{StaticResource SquareButton}"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Visibility="{Binding PlayQueue.IsPlaying, Converter={StaticResource BoolToVisibilityConverter}}"
-                    Command="{Binding PlayQueue.PlayPausePlayer}"
-                    >
-                        <SymbolIcon
-                        Width="80"
-                        Height="80"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Center"
-                        Symbol="Pause"
-                        >
-                        </SymbolIcon>
-                    </Button>
-                </Grid>
-
-                <Grid
-                x:Name="CurrentTrackPanel"
-                ManipulationMode="TranslateRailsX,TranslateX"
-                ManipulationCompleted="CurrentTrackPanel_ManipulationCompleted"
-                Grid.Row="2"                
-                HorizontalAlignment="Stretch"
-                Grid.Column="1"
-                VerticalAlignment="Stretch"
-                Margin="5,0,0,0"  
-                >
-
-                    <Button
-                    Style="{StaticResource EmptyButton}"
-                    Command="{Binding Navigate}"
-                    CommandParameter="Queue"
-                    >
-
-                        <ContentControl Content="{Binding PlayQueue.CurrentTrack}" VerticalAlignment="Center" HorizontalAlignment="Left">
-                            <ContentControl.ContentTemplate>
-                                <DataTemplate>
-                                    <StackPanel>
-                                        <TextBlock Text="{Binding PlayQueue.Name}" FontSize="{StaticResource TextStyleLargeFontSize}" />
-                                        <TextBlock Text="{Binding PlayQueue.Artist.Name}" FontSize="{StaticResource TextStyleMediumFontSize}" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ContentControl.ContentTemplate>
-
-                            <ContentControl.ContentTransitions>
-                                <TransitionCollection>
-                                    <ContentThemeTransition HorizontalOffset="100" />
-                                </TransitionCollection>
-                            </ContentControl.ContentTransitions>
-                        </ContentControl>
-                    </Button>
-                </Grid>
-
-                <TextBlock
-                Text="{Binding PlayQueue.TimeLeft}"
-                Grid.Row="2"                
-                Grid.Column="2"
-                Grid.ColumnSpan="3"
-                HorizontalAlignment="Right"
-                Margin="3"
-                FontSize="{StaticResource TextStyleSmallFontSize}"
-                Visibility="{Binding PlayQueue.IsActive, Converter={StaticResource BoolToVisibilityConverter}}"                
-                />
-
-                <AppBarButton x:Name="HomeButton"
-                Grid.Row="2"                
-                Grid.Column="4"
-                Icon="Home"
-                IsCompact="True"
-                VerticalAlignment="Center"
-                Margin="0,0,0,5"
-                Command="{Binding GoHome}"
-                />
-
-                <Rectangle
-                Fill="Transparent"
-                Grid.ColumnSpan="5"
-                Margin="0,-10,0,-10"
-                ManipulationMode="TranslateX,TranslateRailsX,System"
-                ManipulationStarted="HandlePlayerControlProgressBarBezzelManipulationStarted"
-                ManipulationDelta="HandlePlayerControlProgressBarBezzelManipulationDelta"
-                ManipulationCompleted="HandlePlayerControlProgressBarBezzelManipulationCompleted"    
-                />
-
-            </Grid>
-
-            <Grid x:Name="ProgressBarScrubView" Visibility="Collapsed">
+            <Grid x:Name="ProgressBarScrubView"
+                  Grid.Row="7" Grid.ColumnSpan="3"
+                  Visibility="Visible">
                 <Grid.Background>
                     <SolidColorBrush Color="{StaticResource PhoneBackgroundColor}" Opacity="0.75" />
                 </Grid.Background>
@@ -408,7 +251,63 @@
                 </Polygon>
             </Grid>
 
-            <Grid x:Name="GRDButton" HorizontalAlignment="Center" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="3">
+            <Grid x:Name="GDMusicTray"
+            Grid.Row="8" Grid.ColumnSpan="3"
+            Background="Red" Margin="0,0,0,0" 
+            >
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+
+                <Rectangle
+                Fill="Black"
+                Grid.ColumnSpan="5"
+                />
+                <Rectangle
+                x:Name="PlayerControlProgressBarFull"
+                Fill="{StaticResource PhoneAccentBrush}"
+                Opacity="0.5"
+                Grid.ColumnSpan="5"
+                />
+
+                <Rectangle
+                x:Name="PlayerControlProgressBarCompleted"
+                Fill="{StaticResource PhoneAccentBrush}"
+                Width="{Binding PlayQueue.PercentTime, Converter={StaticResource DoubleToProgressBarWidth}}"
+                HorizontalAlignment="Left"
+                Visibility="{Binding PlayQueue.IsActive, Converter={StaticResource BoolToVisibilityConverter}}"
+                Grid.ColumnSpan="5"
+                />
+
+
+
+                <Rectangle
+                Fill="Transparent"
+                Grid.ColumnSpan="5"
+                Margin="0,-10,0,-10"
+                ManipulationMode="TranslateX,TranslateRailsX,System"
+                ManipulationStarted="HandlePlayerControlProgressBarBezzelManipulationStarted"
+                ManipulationDelta="HandlePlayerControlProgressBarBezzelManipulationDelta"
+                ManipulationCompleted="HandlePlayerControlProgressBarBezzelManipulationCompleted"    
+                />
+
+            </Grid>
+
+
+            <Grid x:Name="GRDButton" 
+                  HorizontalAlignment="Center" 
+                  Grid.Row="9" 
+                  Grid.Column="0" 
+                  Grid.ColumnSpan="3">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"></RowDefinition>
                 </Grid.RowDefinitions>

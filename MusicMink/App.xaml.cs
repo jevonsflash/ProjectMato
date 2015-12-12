@@ -3,6 +3,7 @@ using MusicMink.Pages;
 using MusicMink.ViewModels;
 using MusicMinkAppLayer.Diagnostics;
 using MusicMinkAppLayer.Helpers;
+using MusicMinkAppLayer.Models;
 using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -156,8 +157,8 @@ namespace MusicMink
             c.B = (byte)(byte.MaxValue - c.B * 0.2);
 
             ((SolidColorBrush)App.Current.Resources["PlayerControlBackgroundColor"]).Color = c;
-            string imgPath = SettingsViewModel.Current.BackgroundKey.Backgrounds.Find(parm => parm.IsSel == true).Img;
-            var bitmapImage = new BitmapImage(new Uri(string.Format("ms-appx:///{0}.png", imgPath)));
+            BackgroundModel bm = BackgroundsModel.Current.GetBackgroundList().Find(p => p.IsSel == true);
+            var bitmapImage = new BitmapImage(new Uri(string.Format("ms-resource:/Files{0}", bm.Img)));
             if (Application.Current.Resources.Keys.Contains("MainBackGroundBrush"))
             {
                 ((ImageBrush)Application.Current.Resources["MainBackGroundBrush"]).ImageSource = bitmapImage;

@@ -2,6 +2,7 @@
 using MusicMinkAppLayer.Diagnostics;
 using MusicMinkAppLayer.Helpers;
 using MusicMinkAppLayer.Models;
+using MusicMinkAppLayer.Tables;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,7 +22,6 @@ namespace MusicMink.ViewModels
             public const string IsStopWhenTerminate = "IsStopWhenTerminate";
             public const string IsAutoLrc = "IsAutoLrc";
             public const string IsAutoOffset = "IsAutoOffset";
-            public const string BackgroundKey = "BackgroundKey";
             public const string IsClassicModeEnabled = "IsClassicModeEnabled";
         }
 
@@ -97,26 +97,6 @@ namespace MusicMink.ViewModels
             }
         }
 
-        public BackgroundModel BackgroundKey
-        {
-            get
-            {
-                return GetSettingField<BackgroundModel>(ApplicationSettings.BACKGROUND_KEY, new BackgroundModel() {
-                    Backgrounds=new List<BackgroundEntityModel>() {
-                        new BackgroundEntityModel(0, "mato", "mato", "ss", true, ""),
-                        new BackgroundEntityModel(0, "mato", "mato", "DayResource", false, ""),
-                        new BackgroundEntityModel(0, "mato","mato","ss",false,""),
-                        new BackgroundEntityModel(0, "mato","mato","ss",true,"")
-                    }
-                });
-            }
-            set
-            {
-                SetSettingField<BackgroundModel>(ApplicationSettings.BACKGROUND_KEY, value, Properties.BackgroundKey);
-            }
-        }
-
-
         public bool IsClassicModeEnabled
         {
             get
@@ -127,6 +107,13 @@ namespace MusicMink.ViewModels
             {
                 SetSettingField<bool>(ApplicationSettings.SETTING_IS_CLASSIC_MODE_ON, value, Properties.IsClassicModeEnabled);
             }
+        }
+
+
+        public List<BackgroundModel> BackgroundList
+        {
+            get { return BackgroundsModel.Current.GetBackgroundList(); }
+            set { BackgroundsModel.Current.UpdateBackground(value); }
         }
 
         #endregion

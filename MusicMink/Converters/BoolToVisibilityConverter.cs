@@ -31,7 +31,21 @@ namespace MusicMink.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
-            throw new NotImplementedException();
+            if ((value != null && value is Visibility))
+            {
+                switch ((Visibility)value)
+                {
+                    case Visibility.Visible: return (true ^ Invert);
+                    case Visibility.Collapsed: return (false ^ Invert);
+                    default:
+                        return false;
+                }
+
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

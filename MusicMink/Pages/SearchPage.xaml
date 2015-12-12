@@ -16,7 +16,7 @@
         <converters:NumericTransformConverter x:Key="AppWidthToAlbumSectionConverter" Margin="2" Sections="3" />        
     </Page.Resources>
 
-    <Grid x:Name="LayoutRoot">
+    <Grid x:Name="LayoutRoot"  Background="{StaticResource MainBackGroundBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>

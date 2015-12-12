@@ -8,6 +8,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    
     <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -28,34 +29,41 @@
                 <StackPanel Orientation="Vertical">
 
                     <TextBlock FontSize="42" VerticalAlignment="Bottom" Padding="15,0,0,0" >未来天气</TextBlock>
-                    <ItemsControl x:Name="LVFeature" Grid.Row="1" ItemsSource="{Binding BackgroundKey ,Mode=TwoWay}">
+                    <ListBox 
+                        x:Name="LVFeature" 
+                        Grid.Row="1" 
+                        SelectionMode="Single"
+                        IsEnabled="True"
+                        SelectionChanged="LVFeature_SelectionChanged"
+                        SelectedItem="{Binding SelectedBackground,Mode=TwoWay}"
+                        ItemsSource="{Binding BackgroundList, Mode=TwoWay}">
                         <!--使用ItemsStackPanel控件作为ItemsControl的布局面板-->
-                        <ItemsControl.ItemsPanel>
+                        <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <ItemsStackPanel Orientation="Horizontal"/>
                             </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.Template>
+                        </ListBox.ItemsPanel>
+                        <ListBox.Template>
                             <ControlTemplate TargetType="ItemsControl">
                                 <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto"  ScrollViewer.VerticalScrollBarVisibility ="Disabled">
                                     <ItemsPresenter/>
                                 </ScrollViewer>
                             </ControlTemplate>
-                        </ItemsControl.Template>
-                        <ItemsControl.ItemTemplate>
+                        </ListBox.Template>
+                        <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid Margin="5,0" Width="160" Height="360">
                                     <Rectangle Fill="White" Opacity="0.2"></Rectangle>
                                     <StackPanel>
                                         <TextBlock Grid.Column="1" Text="{Binding Title}" Margin="10,20,0,0" FontSize="36"/>
                                         <Image Source="{Binding Img}" Width="144"  Height="144" Stretch="Uniform"></Image>
-                                        <TextBlock Text="当前"  Visibility="{Binding IsSel,Mode=TwoWay}" Margin="10,20,0,0" FontSize="24"/>
+                                        <TextBlock Text="当前"  Visibility="{Binding IsSel, Converter={StaticResource BoolToVisibilityConverter}, Mode=TwoWay}" Margin="10,20,0,0" FontSize="24"/>
                                     </StackPanel>
                                 </Grid>
                             </DataTemplate>
-                        </ItemsControl.ItemTemplate>
+                        </ListBox.ItemTemplate>
 
-                    </ItemsControl>
+                    </ListBox>
                     <StackPanel>
 
                         <TextBlock x:Uid="SettingsSettingsEnableClassicModeMessage"

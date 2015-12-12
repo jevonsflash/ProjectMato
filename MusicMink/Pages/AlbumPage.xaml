@@ -11,18 +11,14 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     >
-    
-    <Grid x:Name="LayoutRoot">
+
+    <Grid x:Name="LayoutRoot"  Background="{StaticResource MainBackGroundBrush}">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
-        <Grid.Background>
-            <ImageBrush ImageSource="{Binding AlbumArt}" Stretch="UniformToFill" AlignmentX="Center" AlignmentY="Center" Opacity="0.25" />
-        </Grid.Background>
-
         <StackPanel Margin="{StaticResource DefaultHeaderMargin}">
             <controls:ScalingTextBox x:Uid="AlbumPageHeader"
                 Text="{Binding Name}" 

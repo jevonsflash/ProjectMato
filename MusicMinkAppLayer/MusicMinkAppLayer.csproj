@@ -89,6 +89,7 @@
     <Compile Include="Models\AlbumModel.cs" />
     <Compile Include="Models\ArtistModel.cs" />
     <Compile Include="Models\BackgroundModel.cs" />
+    <Compile Include="Models\BackgroundsModel.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Models\LibraryModel.cs" />
@@ -106,6 +107,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLite.cs" />
     <Compile Include="SQLiteAsync.cs" />
+    <Compile Include="Tables\BackgroundTable.cs" />
     <Compile Include="Tables\HistoryTable.cs" />
     <Compile Include="Tables\AlbumTable.cs" />
     <Compile Include="Tables\ArtistTable.cs" />

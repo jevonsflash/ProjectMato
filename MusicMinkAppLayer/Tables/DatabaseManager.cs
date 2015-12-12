@@ -10,7 +10,7 @@ namespace MusicMinkAppLayer.Tables
     /// <summary>
     /// Manages the SQLite database. All updates to the database should be done through this class
     /// </summary>
-    internal class DatabaseManager
+    public class DatabaseManager
     {
         private static string DB_PATH = Path.Combine(ApplicationData.Current.LocalFolder.Path, "MusicMinkDB.sqlite");
         private static int DB_VERSION = 1;
@@ -18,7 +18,7 @@ namespace MusicMinkAppLayer.Tables
 
         public SQLiteConnection sqlConnection;
 
-        private static DatabaseManager _current; 
+        private static DatabaseManager _current;
         public static DatabaseManager Current
         {
             get
@@ -54,6 +54,7 @@ namespace MusicMinkAppLayer.Tables
                 sqlConnection.CreateTable<HistoryTable>();
                 sqlConnection.CreateTable<MixTable>();
                 sqlConnection.CreateTable<MixEntryTable>();
+                sqlConnection.CreateTable<BackgroundTable>();
             }
 
             if (currentDatabaseVersion < DB_VERSION)
@@ -124,6 +125,12 @@ namespace MusicMinkAppLayer.Tables
             return sqlConnection.Query<MixEntryTable>("SELECT * FROM MixEntryTable WHERE MixId = ?", MixId).ToList<MixEntryTable>();
         }
 
+        internal List<BackgroundTable> FetchBackgroundItems()
+        {
+            return sqlConnection.Table<BackgroundTable>().ToList<BackgroundTable>();
+        }
+
+
         #endregion
 
         #region ADD
@@ -189,6 +196,12 @@ namespace MusicMinkAppLayer.Tables
             sqlConnection.Insert(newMixEntry);
 
             return newMixEntry.EntryId;
+        }
+        internal int AddBackgroundEntry(BackgroundTable Entry)
+        {
+            sqlConnection.Insert(Entry);
+
+            return Entry.BackgroundId;
         }
 
         #endregion
@@ -263,6 +276,10 @@ namespace MusicMinkAppLayer.Tables
         internal List<PlayQueueEntryTable> LookupPlayQueueEntryBySongId(int songId)
         {
             return sqlConnection.Query<PlayQueueEntryTable>("SELECT * FROM PlayQueueEntryTable WHERE SongId = ?", songId);
+        }
+        internal BackgroundTable LookupSelectedBackground()
+        {
+            return sqlConnection.Query<BackgroundTable>("SELECT * FROM BackgroundTable WHERE IsSel =  '1'").FirstOrDefault();
         }
 
         #endregion

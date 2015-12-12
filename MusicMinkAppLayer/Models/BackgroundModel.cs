@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MusicMinkAppLayer.Tables;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,30 +7,88 @@ using System.Threading.Tasks;
 
 namespace MusicMinkAppLayer.Models
 {
-    public class BackgroundEntityModel
+    public class BackgroundModel : BaseModel<BackgroundTable>
     {
-        public BackgroundEntityModel(int id, string title, string name, string img, bool isSel, string ext)
+        public static class Properties
         {
-            Id = id;
-            Title = title;
-            Name = name;
-            Img = img;
-            IsSel = isSel;
-            Ext = ext;
+            public const string BackgroundId = "BackgroundId";
+            public const string Title = "Title";
+            public const string Name = "Name";
+            public const string Img = "Img";
+            public const string IsSel = "IsSel";
+            public const string Ext = "Ext";
         }
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public string Name { get; set; }
-        public string Img { get; set; }
-        public bool IsSel { get; set; }
-        public string Ext { get; set; }
+
+        public BackgroundModel(BackgroundTable table) : base(table)
+        {
+
+        }
+
+        public int BackgroundId
+        {
+            get
+            {
+                return GetTableField<int>(BackgroundTable.Properties.BackgroundId);
+            }
+        }
+
+        public string Title
+        {
+            get
+            {
+                return GetTableField<string>(BackgroundTable.Properties.Title);
+            }
+            set
+            {
+                SetTableField<string>(BackgroundTable.Properties.Title, value, Properties.Title);
+            }
+        }
+
+        public string Img
+        {
+            get
+            {
+                return GetTableField<string>(BackgroundTable.Properties.Img);
+            }
+            set
+            {
+                SetTableField<string>(BackgroundTable.Properties.Img, value, Properties.Img);
+            }
+        }
+
+        public string Name
+        {
+            get
+            {
+                return GetTableField<string>(BackgroundTable.Properties.Name);
+            }
+            set
+            {
+                SetTableField<string>(BackgroundTable.Properties.Name, value, Properties.Name);
+            }
+        }
+        public string Ext
+        {
+            get
+            {
+                return GetTableField<string>(BackgroundTable.Properties.Ext);
+            }
+            set
+            {
+                SetTableField<string>(BackgroundTable.Properties.Ext, value, Properties.Ext);
+            }
+        }
+
+        public bool IsSel
+        {
+            get
+            {
+                return GetTableField<bool>(BackgroundTable.Properties.IsSel);
+            }
+            set
+            {
+                SetTableField<bool>(BackgroundTable.Properties.IsSel, value, Properties.IsSel);
+            }
+        }
     }
-
-    public class BackgroundModel
-    {
-        public List<BackgroundEntityModel> Backgrounds { get; set; }
-        public string Ext { get; set; }
-
-    }
-
 }
