@@ -95,6 +95,7 @@
     <Compile Include="Models\BackgroundsModel.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Enums\Enums.cs" />
+    <Compile Include="Models\Gecime_Artist.cs" />
     <Compile Include="Models\LibraryModel.cs" />
     <Compile Include="Models\LRCItem.cs" />
     <Compile Include="Models\MixModel.cs" />
@@ -126,7 +127,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <Compile Include="Models\Gecime.cs" />
+    <Compile Include="Models\Gecime_Lyric.cs" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

@@ -16,7 +16,7 @@ namespace MusicMinkAppLayer.Models
     }
 
 
-    public class Gecime
+    public class Gecime_Lyric
     {
         public int count { get; set; }
         public int code { get; set; }

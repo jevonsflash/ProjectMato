@@ -150,20 +150,6 @@ namespace MusicMink.Pages
             PlayerControlText.Text = string.Empty;
         }
 
-        private void CurrentTrackPanel_ManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
-        {
-            if (Math.Abs(e.Cumulative.Translation.Y) < 10)
-            {
-                if (e.Cumulative.Translation.X > 30 && LibraryViewModel.Current.PlayQueue.PrevPlayer.CanExecute(null))
-                {
-                    LibraryViewModel.Current.PlayQueue.PrevPlayer.Execute(null);
-                }
-                else if (e.Cumulative.Translation.X < -30 && LibraryViewModel.Current.PlayQueue.SkipPlayer.CanExecute(null))
-                {
-                    LibraryViewModel.Current.PlayQueue.SkipPlayer.Execute(null);
-                }
-            }
-        }
 
     }
 }

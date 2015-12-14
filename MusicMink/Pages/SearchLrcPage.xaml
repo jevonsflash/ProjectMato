@@ -1,0 +1,74 @@
+﻿<Page
+    x:Class="MusicMink.Pages.SearchLrcPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MusicMink.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel 包含应用程序的名称和页标题-->
+        <StackPanel Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock Text="番茄播放器" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock Text="搜索歌词" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        </StackPanel>
+
+        <!--ContentPanel - 在此处放置其他内容-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="144"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="100"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Background="{StaticResource PhoneChromeBrush}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="144"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Image x:Name="IMGAlbumArt" Source="{Binding CurrentTrack.Album.AlbumArt}" Grid.RowSpan="2" Grid.Column="0" Margin="9"></Image>
+                    <TextBox Background="{x:Null}" 
+                             Foreground="Gray"
+                             BorderBrush="{x:Null}"                            
+                             x:Name="TBSongName" Grid.Row="0" Grid.Column="1" Width="336" ></TextBox>
+                    <TextBox Background="{x:Null}" 
+                             Foreground="Gray"
+                             BorderBrush="{x:Null}"                             
+                             x:Name="TBArtistName" Grid.Row="1" Grid.Column="1" Width="336" ></TextBox>
+
+                </Grid>
+                <ListBox Grid.Column="0" Grid.Row="1" Background="Transparent" x:Name="LBResult" ItemsSource="{Binding}" Margin="0,10,0,0" FontFamily="Portable User Interface">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid x:Name="LBILyricFragment" Height="80">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="48"></ColumnDefinition>
+                                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    <ColumnDefinition Width="72" ></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" Source="/Icon/LRCDocument.png"></Image>
+                                <TextBlock  Grid.Column="1" TextWrapping="NoWrap" Width="480" Text="{Binding Path=song}" FontSize="25" Foreground="LightGray" VerticalAlignment="Center" FontFamily="Portable User Interface"></TextBlock>
+                                <TextBlock x:Name="myTxt" Grid.Column="2" TextWrapping="NoWrap" Width="480" Text="{Binding Path=artist}" FontSize="25" Foreground="LightGray" VerticalAlignment="Center" FontFamily="Portable User Interface"></TextBlock>
+                                <Button Grid.Column="3"  Content="i" Height="80" Width="80" FontFamily="Wingdings 3" FontSize="36" Style="{StaticResource LrcDownload}" Margin="0,0,0,0" Click="Button_Click" DataContext="{Binding Path=lrc}" ></Button>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <Button x:Name="BTNCancel" Grid.Row="3" Content=" 取消" Style="{StaticResource Cancel}" FontSize="{StaticResource PhoneFontSizeLarge}" HorizontalAlignment="Left" Margin="30,0,0,0" Click="BTNCancel_Click" />
+                <Button x:Name="BTNSearch" Grid.Row="3" Content=" 搜索" Style="{StaticResource SearchText}" FontSize="{StaticResource PhoneFontSizeLarge}" HorizontalAlignment="Right" Margin="0,0,30,0" Click="BTNSearch_Click" />
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

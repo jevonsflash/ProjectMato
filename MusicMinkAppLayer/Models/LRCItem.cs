@@ -34,8 +34,5 @@ namespace MusicMinkAppLayer.Models
         /// 歌词
         /// </summary>
         public Dictionary<double, string> LrcWord = new Dictionary<double, string>();
-
-        public double TimeLine { get; set; }
-
     }
 }

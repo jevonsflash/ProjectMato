@@ -12,12 +12,12 @@ namespace MusicMinkAppLayer.Helpers
 {
     public class LRCSer
     {
-        public static Gecime GecimeDeserializer(string jsonStr)
+        public static Gecime_Lyric GecimeLyricDeserializer(string jsonStr)
         {
-            Gecime result = new Gecime();
+            Gecime_Lyric result = new Gecime_Lyric();
             if (!string.IsNullOrEmpty(jsonStr))
             {
-                result = JsonConvert.DeserializeObject<Gecime>(jsonStr);
+                result = JsonConvert.DeserializeObject<Gecime_Lyric>(jsonStr);
                 return result;
             }
             else
@@ -26,6 +26,19 @@ namespace MusicMinkAppLayer.Helpers
             }
         }
 
+        public static Gecime_Artist GecimeArtistDeserializer(string jsonStr)
+        {
+            Gecime_Artist result = new Gecime_Artist();
+            if (!string.IsNullOrEmpty(jsonStr))
+            {
+                result = JsonConvert.DeserializeObject<Gecime_Artist>(jsonStr);
+                return result;
+            }
+            else
+            {
+                return null;
+            }
+        }
 
         public static LRCItem InitLrc(string lrcStr)
         {

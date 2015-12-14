@@ -24,6 +24,8 @@ namespace MusicMink.Controls
 {
     public sealed partial class LrcControl : UserControl, INotifyPropertyChanged
     {
+        private List<Result2> list;
+
         public LrcControl()
         {
             this.InitializeComponent();
@@ -42,11 +44,13 @@ namespace MusicMink.Controls
 
         private void BTNLrcManage_Click(object sender, RoutedEventArgs e)
         {
+            NavigationManager.Current.Navigate(NavigationLocation.LrcListPage);
 
         }
 
         private void BTNLrcSearch_Click(object sender, RoutedEventArgs e)
         {
+            NavigationManager.Current.Navigate(NavigationLocation.SearchLrcPage);
 
         }
 
@@ -113,8 +117,6 @@ namespace MusicMink.Controls
 
         public static readonly DependencyProperty ArtistProperty =
             DependencyProperty.Register("Artist", typeof(string), typeof(LrcControl), new PropertyMetadata(new PropertyChangedCallback(OnMusicPropertyChanged)));
-        private List<Result2> list;
-
 
         private static void OnMusicPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
         {
@@ -122,6 +124,8 @@ namespace MusicMink.Controls
             if (lrcControl != null)
             {
                 lrcControl.InitializeLrc();
+                lrcControl.TBArtistName.Text = lrcControl.Artist;
+                lrcControl.TBSongName.Text = lrcControl.Music;
             }
         }
 
@@ -235,14 +239,11 @@ namespace MusicMink.Controls
 
         private void UpdateMusic()
         {
-
             if (Music == null)
             {
                 LBLyric.DataContext = null;
-
                 return;
             }
-
         }
 
         #region 工具方法
@@ -297,7 +298,7 @@ namespace MusicMink.Controls
                 TextBlock gd1 = FindFirstElementInVisualTree<TextBlock>(lbi);
                 if (gd1 != null)
                 {
-                    gd1.Foreground = new SolidColorBrush(Colors.White); ;
+                    gd1.Foreground = new SolidColorBrush(Colors.White); 
                     gd1.FontSize = 30;
                 }
             }
@@ -323,19 +324,6 @@ namespace MusicMink.Controls
                 }
             }
         }
-
-        /// <summary>
-        /// 清除歌词字典和时间列表
-        /// </summary>
-        public void ClearLrc()
-        {
-            this.LBLyric.DataContext = null;
-            this.ec.Visibility = Visibility.Collapsed;
-        }
-
-
-
         #endregion
-
     }
 }

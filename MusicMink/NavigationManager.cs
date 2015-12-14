@@ -12,10 +12,10 @@ namespace MusicMink
 {
     enum NavigationLocation
     {
-        AboutPage,
+        NowPlaying,
 
+        Queue,
         Library,
-
         PlaylistList,
 
         AlbumPage,
@@ -25,9 +25,10 @@ namespace MusicMink
         SearchPage,
         SettingsPage,
         ManageLibrary,
+        AboutPage,
 
-        Queue,
-        NowPlaying
+        SearchLrcPage,
+        LrcListPage
 
 
     }
@@ -115,6 +116,10 @@ namespace MusicMink
                     return typeof(Library);
                 case NavigationLocation.AboutPage:
                     return typeof(AboutPage);
+                case NavigationLocation.LrcListPage:
+                    return typeof(LrcListPage);
+                case NavigationLocation.SearchLrcPage:
+                    return typeof(SearchLrcPage);
                 default:
                     DebugHelper.Alert(new CallerInfo(), "Unexpected NavigationLocation {0}", location);
                     return typeof(NowPlaying);
