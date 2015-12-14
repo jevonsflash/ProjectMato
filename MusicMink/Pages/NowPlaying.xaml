@@ -66,6 +66,7 @@
                 <ColumnDefinition Width="4*" />
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
+            <!--没有歌曲时警示标语-->
             <Grid Grid.Row="1" Grid.ColumnSpan="2" Visibility="{Binding IsActive, Converter={StaticResource NotBoolToVisibilityConverter}}">
                 <StackPanel>
                     <TextBlock x:Uid="NowPlayingNotActiveMessage"
@@ -77,7 +78,7 @@
                 />
                 </StackPanel>
             </Grid>
-
+            <!--主菜单按钮-->
             <AppBarButton x:Name="BTNMainMenu"
                 Grid.Row="1" 
                 Grid.RowSpan="2"
@@ -88,6 +89,7 @@
                 Margin="0,0,0,5"
                 Click="BTNMainMenu_Click"
                 />
+            <!--当前歌曲专辑封面-->
             <Image
             Grid.Row="3"
             Grid.Column="1"
@@ -124,6 +126,7 @@
             ManipulationMode="TranslateX,TranslateRailsX,System"
             ManipulationCompleted="Rectangle_ManipulationCompleted"
             />
+            <!--星级评价-->
             <controls:StarRater
             ScaleToWidth="True"
             Rating="{Binding CurrentTrack.Rating, Mode=TwoWay}"
@@ -131,12 +134,12 @@
             Grid.Column="1"
             Margin="0,10" Width="200"
             />
+            <!--歌曲信息-->
             <Grid x:Name="GRDSongInfo" Grid.Row="5" Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"></RowDefinition>
                     <RowDefinition Height="1*"></RowDefinition>
                     <RowDefinition Height="1*"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0" Orientation="Horizontal" >
                     <Image Source="/Icon/Song.png" Height="49" Width="49"></Image>
@@ -193,6 +196,17 @@
                     </Canvas>
                 </StackPanel>
             </Grid>
+            <!--歌词-->
+            <controls:LrcControl 
+                Music="{Binding CurrentTrack.Name}"
+                Artist="{Binding CurrentTrack.Artist.Name}"
+                CanScroll="True"
+                EmphasisBrush="Red"
+                TimeLine="{Binding PlayQueue.ElapsedTime}"
+                >
+                
+            </controls:LrcControl>
+            <!--播放状态信息-->
             <HyperlinkButton
             Grid.Row="6"
             Grid.Column="0"
@@ -208,6 +222,7 @@
             <Run x:Uid="NowPlayingPageQueueLeft" /></TextBlock>
                 </ContentControl>
             </HyperlinkButton>
+            <!--进度条-->
             <Grid x:Name="ProgressBarScrubView"
                   Grid.Row="7" Grid.ColumnSpan="3"
                   Visibility="Visible">
@@ -302,7 +317,7 @@
 
             </Grid>
 
-
+            <!--播放控制按钮-->
             <Grid x:Name="GRDButton" 
                   HorizontalAlignment="Center" 
                   Grid.Row="9" 
@@ -437,5 +452,6 @@
                 </StackPanel>
             </ScrollViewer>
         </Grid>
+    
     </Grid>
 </local:BasePage>
