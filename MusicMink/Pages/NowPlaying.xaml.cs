@@ -14,14 +14,14 @@ namespace MusicMink.Pages
     /// </summary>
     public sealed partial class NowPlaying : BasePage
     {
-        
+
         public NowPlaying()
         {
 
             this.InitializeComponent();
             this.DataContext = LibraryViewModel.Current.PlayQueue;
             VisualStateManager.GoToState(this, "MenuClose", true);
-            this.GDMenu.DataContext= LibraryViewModel.Current;
+            this.GDMenu.DataContext = LibraryViewModel.Current;
         }
 
         private void PrevTrackImageDoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
@@ -126,7 +126,7 @@ namespace MusicMink.Pages
             TimeSpan newTime = TimeSpan.FromTicks((long)(percentage * LibraryViewModel.Current.PlayQueue.TotalTicks));
 
             PlayerControlText.Text = newTime.ToString(@"%m\:ss") + @"/" + LibraryViewModel.Current.PlayQueue.TotalTime;
-            
+
         }
 
         private void HandlePlayerControlProgressBarBezzelManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
@@ -150,6 +150,9 @@ namespace MusicMink.Pages
             PlayerControlText.Text = string.Empty;
         }
 
-
+        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.UCLrc.Visibility = Visibility.Visible;
+        }
     }
 }

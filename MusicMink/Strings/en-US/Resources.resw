@@ -262,16 +262,16 @@
     <value>the </value>
   </data>
   <data name="UnknownAlbumString" xml:space="preserve">
-    <value>Untitled Album</value>
+    <value>未命名专辑</value>
   </data>
   <data name="UnknownArtistString" xml:space="preserve">
-    <value>Untitled Artist</value>
+    <value>未命名艺术家</value>
   </data>
   <data name="UnknownPlaylistString" xml:space="preserve">
-    <value>Untitled Playlist</value>
+    <value>未命名歌单</value>
   </data>
   <data name="UnknownSongString" xml:space="preserve">
-    <value>Untitled Song</value>
+    <value>未命名歌曲</value>
   </data>
   <data name="DialogEditAlbum.PrimaryButtonText" xml:space="preserve">
     <value>更新</value>
@@ -442,7 +442,7 @@
     <value>设置</value>
   </data>
   <data name="UpdateLastFMArtAlbumsLeft.Text" xml:space="preserve">
-    <value>Albums Left To Process</value>
+    <value>剩余项目</value>
   </data>
   <data name="UpdateLastFMArtButton.Content" xml:space="preserve">
     <value>Update All Album Art</value>

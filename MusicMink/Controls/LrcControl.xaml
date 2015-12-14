@@ -7,13 +7,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:my="using:MusicMink.Controls"
     mc:Ignorable="d"
-    d:DesignHeight="300"
+    d:DesignHeight="500"
     d:DesignWidth="400">
 
     <Grid x:Name="LayoutRoot" Background="Transparent" Height="500">
+        <Rectangle Fill="Black" Opacity="0.3"></Rectangle>
         <Grid x:Name="ContentPanel"  Margin="12,0,12,0" >
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="350"></ColumnDefinition>
+                <ColumnDefinition Width="300"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -30,9 +31,10 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <StackPanel Grid.RowSpan="2" Grid.Column="1" VerticalAlignment="Center">
-                <Button x:Name="BTNLrcManage"  Content="@" Height="80" Width="80" FontFamily="Webdings" FontSize="35" Margin="0,0,0,20" Click="BTNLrcManage_Click"></Button>
-                <Button x:Name="BTNLrcSearch"  Content="" Height="80" Width="80" FontFamily="Webdings" FontSize="35"   Click="BTNLrcSearch_Click" ></Button>
+            <StackPanel Grid.RowSpan="2" Grid.Column="1" VerticalAlignment="Bottom">
+                <AppBarButton x:Name="BTNLrcManage" Icon="Setting"  Height="80" Width="80"  Click="BTNLrcManage_Click"></AppBarButton>
+                <AppBarButton x:Name="BTNLrcSearch" Icon="Find"  Height="80" Width="80"  Click="BTNLrcSearch_Click" ></AppBarButton>
+                <AppBarButton x:Name="BTNCollapse" Icon="Cancel"  Height="80" Width="80"  Click="BTNCollapse_Click" ></AppBarButton>
             </StackPanel>
             <Grid Grid.Column="0" Grid.Row="0">
                 <Grid.ColumnDefinitions>
@@ -46,7 +48,7 @@
 
                 <Image x:Name="IMGAlbumArt" Grid.RowSpan="2" Grid.Column="0"></Image>
                 <Canvas Grid.Row="0" Grid.Column="1" Margin="10">
-                    <TextBlock x:Name="TBSongName" Text="歌曲" Foreground="White" Canvas.ZIndex="1" FontSize="22"></TextBlock>
+                    <TextBlock x:Name="TBSongName" Text="{Binding TargetNullValue=歌曲}" Foreground="White" Canvas.ZIndex="1" FontSize="22"></TextBlock>
                     <TextBlock  Text="{Binding ElementName=TBSongName ,Path=Text}" Foreground="#FF535353" Canvas.ZIndex="0" FontSize="22">
                         <TextBlock.RenderTransform>
                             <TranslateTransform X="2" Y="1"></TranslateTransform>
@@ -55,7 +57,7 @@
                 </Canvas>
 
                 <Canvas Grid.Row="1" Grid.Column="1" Margin="10">
-                    <TextBlock x:Name="TBArtistName" Text="演唱者"  Foreground="White" Canvas.ZIndex="1" FontSize="22"></TextBlock>
+                    <TextBlock x:Name="TBArtistName" Text="{Binding TargetNullValue=艺术家}"  Foreground="White" Canvas.ZIndex="1" FontSize="22"></TextBlock>
                     <TextBlock  Text="{Binding ElementName=TBArtistName ,Path=Text}"  Foreground="#FF535353" Canvas.ZIndex="0" FontSize="22">
                         <TextBlock.RenderTransform>
                             <TranslateTransform X="2" Y="1"></TranslateTransform>

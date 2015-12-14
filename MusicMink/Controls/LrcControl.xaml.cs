@@ -17,6 +17,7 @@ using MusicMinkAppLayer.Models;
 using MusicMink.Common;
 using System.ComponentModel;
 using Windows.UI;
+using System.Threading.Tasks;
 
 // “用户控件”项模板在 http://go.microsoft.com/fwlink/?LinkId=234236 上有介绍
 
@@ -29,8 +30,10 @@ namespace MusicMink.Controls
         public LrcControl()
         {
             this.InitializeComponent();
-            this.InitializeLrc();
+            //this.InitializeLrc();
             this.DataContext = LrcData;
+            //this.TBArtistName.DataContext = this.ArtistName;
+            //this.TBSongName.DataContext = this.SongName;
         }
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -65,6 +68,21 @@ namespace MusicMink.Controls
                 NotifyPropertyChanged("LrcData");
             }
         }
+        //private string songName;
+
+        //public string SongName
+        //{
+        //    get { return songName; }
+        //    set { songName = value; }
+        //}
+
+        //private string artistName;
+
+        //public string ArtistName
+        //{
+        //    get { return artistName; }
+        //    set { artistName = value; }
+        //}
 
         /// <summary>
         /// 歌词高亮Brush
@@ -76,11 +94,11 @@ namespace MusicMink.Controls
         }
 
         public static readonly DependencyProperty EmphasisBrushProperty =
-            DependencyProperty.Register("EmphasisBrush", typeof(Brush), typeof(LrcControl), null);
+            DependencyProperty.Register("EmphasisBrush", typeof(Brush), typeof(LrcControl), new PropertyMetadata(Colors.Gray));
 
 
         /// <summary>
-        /// 歌词行高度
+        /// 时间轴
         /// </summary>
         public string TimeLine
         {
@@ -89,7 +107,7 @@ namespace MusicMink.Controls
         }
 
         public static readonly DependencyProperty TimeLineProperty =
-            DependencyProperty.Register("TimeLine", typeof(string), typeof(LrcControl), new PropertyMetadata(new PropertyChangedCallback(OnTimeLinePropertyChanged)));
+            DependencyProperty.Register("TimeLine", typeof(string), typeof(LrcControl), new PropertyMetadata("", new PropertyChangedCallback(OnTimeLinePropertyChanged)));
         public string Music
         {
             get { return (string)GetValue(MusicProperty); }
@@ -97,7 +115,7 @@ namespace MusicMink.Controls
         }
 
         public static readonly DependencyProperty MusicProperty =
-            DependencyProperty.Register("Music", typeof(string), typeof(LrcControl), new PropertyMetadata(new PropertyChangedCallback(OnMusicPropertyChanged)));
+            DependencyProperty.Register("Music", typeof(string), typeof(LrcControl), new PropertyMetadata("", new PropertyChangedCallback(OnMusicPropertyChanged)));
 
         public bool CanScroll
         {
@@ -116,16 +134,25 @@ namespace MusicMink.Controls
         }
 
         public static readonly DependencyProperty ArtistProperty =
-            DependencyProperty.Register("Artist", typeof(string), typeof(LrcControl), new PropertyMetadata(new PropertyChangedCallback(OnMusicPropertyChanged)));
+            DependencyProperty.Register("Artist", typeof(string), typeof(LrcControl), new PropertyMetadata("", new PropertyChangedCallback(OnMusicPropertyChanged)));
 
-        private static void OnMusicPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
+        private async static void OnMusicPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
         {
             LrcControl lrcControl = sender as LrcControl;
             if (lrcControl != null)
             {
-                lrcControl.InitializeLrc();
-                lrcControl.TBArtistName.Text = lrcControl.Artist;
-                lrcControl.TBSongName.Text = lrcControl.Music;
+                await Task.Run(() =>
+                {
+                    if (!string.IsNullOrEmpty(lrcControl.Music) && !string.IsNullOrEmpty(lrcControl.Artist))
+                    {
+
+                        lrcControl.InitializeLrc();
+                    }
+                });
+
+
+                //lrcControl.ArtistName = lrcControl.Artist;
+                //lrcControl.SongName = lrcControl.Music;
             }
         }
 
@@ -164,7 +191,7 @@ namespace MusicMink.Controls
         /// <param name="e"></param>
         void ht_FileWatchEvent(object sender, CompleteEventArgs e)
         {
-            list = LRCSer.GecimeDeserializer(e.Node).result.ToList();
+            list = LRCSer.GecimeLyricDeserializer(e.Node).result.ToList();
             if (list.Count == 0)
             {
                 DisplayErr("暂无内容");
@@ -298,7 +325,7 @@ namespace MusicMink.Controls
                 TextBlock gd1 = FindFirstElementInVisualTree<TextBlock>(lbi);
                 if (gd1 != null)
                 {
-                    gd1.Foreground = new SolidColorBrush(Colors.White); 
+                    gd1.Foreground = new SolidColorBrush(Colors.White);
                     gd1.FontSize = 30;
                 }
             }
@@ -325,5 +352,10 @@ namespace MusicMink.Controls
             }
         }
         #endregion
+
+        private void BTNCollapse_Click(object sender, RoutedEventArgs e)
+        {
+            this.Visibility = Visibility.Collapsed;
+        }
     }
 }

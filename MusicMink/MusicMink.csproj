@@ -102,6 +102,7 @@
     <Compile Include="Collections\SelectableOption.cs" />
     <Compile Include="Collections\SortedList.cs" />
     <Compile Include="Common\GenericComparer.cs" />
+    <Compile Include="Common\JMessBox.cs" />
     <Compile Include="Common\ListRestoreHelper.cs" />
     <Compile Include="Common\NavigationHelper.cs" />
     <Compile Include="Common\NotifyPropertyChangedUI.cs" />
@@ -112,6 +113,9 @@
       <DependentUpon>ErrorboxControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ImageButton.cs" />
+    <Compile Include="Controls\JMessboxControl.xaml.cs">
+      <DependentUpon>JMessboxControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\LrcControl.xaml.cs">
       <DependentUpon>LrcControl.xaml</DependentUpon>
     </Compile>
@@ -305,6 +309,10 @@
     <Page Include="Controls\ErrorboxControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\JMessboxControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\LrcControl.xaml">
       <SubType>Designer</SubType>

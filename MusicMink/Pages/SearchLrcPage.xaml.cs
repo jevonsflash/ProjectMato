@@ -3,6 +3,8 @@ using MusicMinkAppLayer.Helpers;
 using MusicMinkAppLayer.Models;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading.Tasks;
+using Weather.JMessbox;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -91,11 +93,7 @@ namespace MusicMink.Pages
             list = LRCSer.GecimeLyricDeserializer(e.Node);
             if (list.result.Count() == 0)
             {
-                Dispatcher(() =>
-                {
-                    JMessBox jb = new JMessBox("没有结果");
-                    jb.Show();
-                });
+
             }
             else
             {
@@ -127,10 +125,10 @@ namespace MusicMink.Pages
             ht.FileWatchEvent += ht_FileWatchEvent3;
         }
 
-        void ht_FileWatchEvent3(object sender, CompleteEventArgs e)
+        async void ht_FileWatchEvent3(object sender, CompleteEventArgs e)
         {
             //序列化作者列表
-           var artistModel = LRCSer.GecimeArtistDeserializer(e.Node);
+            var artistModel = LRCSer.GecimeArtistDeserializer(e.Node);
 
             //如果作者列表为空则返回
             if (artistModel == null)
@@ -139,9 +137,10 @@ namespace MusicMink.Pages
             }
             //当前作者结果对象
 
-            Model.Result2 temp = list.FirstOrDefault(c => c.artist_id.ToString() == e.Node2);
+            var temp = list.result.FirstOrDefault(c => c.artist_id.ToString() == e.Node2);
+            dynamic result = null;
             //加入到查询结果表
-            result.Add(new Model.Result2Plus()
+            result.Add(new
             {
                 sid = temp.sid,
                 song = temp.song,
@@ -149,37 +148,37 @@ namespace MusicMink.Pages
                 artist = artistModel.name,
             });
             //绑定结果表
-            Dispatcher.BeginInvoke(() =>
-            {
+            await Task.Run(() =>
+             {
 
-                this.LBResult.DataContext = null;
-                this.LBResult.DataContext = result;
-            });
+                 this.LBResult.DataContext = null;
+                 this.LBResult.DataContext = result;
+             });
         }
 
         /// <summary>
         /// 替换已存在的歌词文件
         /// </summary>
         /// <param name="content">歌词内容</param>
-        private void GetCompleted(string content)
+        private async void GetCompleted(string content)
         {
             string lrcFileName = this.songName + "-" + this.artistName + ".lrc";
-            XmlManipulate.RemoveLrcList(lrcFileName);
-            if (XmlManipulate.EstablishLrc(lrcFileName, content))
+            await FileHelper.DeleteFileAsync("/" + lrcFileName);
+            if (await FileHelper.CreateAndWriteFileAsync("/" + lrcFileName, content))
             {
-                Dispatcher.BeginInvoke(() =>
-                {
-                    JMessBox jb = new JMessBox(string.Format("已更新 {0}", lrcFileName));
-                    jb.Show();
-                });
+                await Task.Run(() =>
+                 {
+                     JMessBox jb = new JMessBox(string.Format("已更新 {0}", lrcFileName));
+                     jb.Show();
+                 });
             }
             else
             {
-                Dispatcher.BeginInvoke(() =>
-                {
-                    JMessBox jb = new JMessBox("更新失败");
-                    jb.Show();
-                });
+                await Task.Run(() =>
+                 {
+                     JMessBox jb = new JMessBox("更新失败");
+                     jb.Show();
+                 });
             }
         }
         private void BTNCancel_Click(object sender, RoutedEventArgs e)
@@ -189,16 +188,7 @@ namespace MusicMink.Pages
 
         private void BTNSearch_Click(object sender, RoutedEventArgs e)
         {
-            result.Clear();
-            if (DoHttpWebRequest())
-            {
-
-            }
-            else
-            {
-                JMessBox jb = new JMessBox("至少填写歌曲名称");
-                jb.Show();
-            }
+            DoHttpWebRequest(songName);
         }
 
         private void BTNDownLoad_Click(object sender, RoutedEventArgs e)

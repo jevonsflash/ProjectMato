@@ -196,21 +196,11 @@
                     </Canvas>
                 </StackPanel>
             </Grid>
-            <!--歌词-->
-            <controls:LrcControl 
-                Music="{Binding CurrentTrack.Name}"
-                Artist="{Binding CurrentTrack.Artist.Name}"
-                CanScroll="True"
-                EmphasisBrush="Red"
-                TimeLine="{Binding PlayQueue.ElapsedTime}"
-                >
-                
-            </controls:LrcControl>
             <!--播放状态信息-->
             <HyperlinkButton
             Grid.Row="6"
             Grid.Column="0"
-            Grid.ColumnSpan="5"
+            Grid.ColumnSpan="3"
             FontSize="22"                    
             HorizontalAlignment="Right"
             Margin="5"
@@ -225,7 +215,7 @@
             <!--进度条-->
             <Grid x:Name="ProgressBarScrubView"
                   Grid.Row="7" Grid.ColumnSpan="3"
-                  Visibility="Visible">
+                  Visibility="Collapsed">
                 <Grid.Background>
                     <SolidColorBrush Color="{StaticResource PhoneBackgroundColor}" Opacity="0.75" />
                 </Grid.Background>
@@ -452,6 +442,27 @@
                 </StackPanel>
             </ScrollViewer>
         </Grid>
-    
+        <!--歌词-->
+        <controls:LrcControl 
+            x:Name="UCLrc"
+            VerticalAlignment="Top"
+                Visibility="Visible"
+                Grid.Row="0"
+                Grid.ColumnSpan="3"
+                Grid.RowSpan="9"
+                Music="七里香"
+            Artist="周杰伦"
+                CanScroll="True"
+                EmphasisBrush="Red"
+                TimeLine="{Binding PlayQueue.ElapsedTime}"
+                >
+<!--Music="{Binding CurrentTrack.Name}"
+                Artist="{Binding CurrentTrack.Artist.Name}"-->
+        </controls:LrcControl>
+        <AppBarButton HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,150" Click="AppBarButton_Click">
+            <AppBarButton.Icon>
+                <FontIcon FontFamily="Webdings" Glyph="e"></FontIcon>
+            </AppBarButton.Icon>
+        </AppBarButton>
     </Grid>
 </local:BasePage>
