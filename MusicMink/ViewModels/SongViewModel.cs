@@ -6,6 +6,7 @@ using MusicMinkAppLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Reflection;
 
 namespace MusicMink.ViewModels
@@ -397,11 +398,12 @@ namespace MusicMink.ViewModels
 
         private string _sortName;
         public string SortName
-        {
+        { 
             get
             {
                 if (_sortName == null)
                 {
+                    CultureInfo ci = CultureInfo.CurrentUICulture;
                     if (Name.Length <= 4) _sortName = Name;
                     else
                     {
