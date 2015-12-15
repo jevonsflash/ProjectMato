@@ -53,7 +53,7 @@
                         <Image Grid.Row="0" Source="Assets/Logo.png"></Image>
                         <StackPanel Grid.Row="1">
                             <TextBlock  HorizontalAlignment="Center" FontSize="21">
-                            心情天气 -  版本<Run x:Name="TBVersion" Text="{Binding Version,Mode=OneWay}"></Run>
+                            <Run Text="{Binding Brief}"></Run> -  版本<Run x:Name="TBVersion" Text="{Binding Version,Mode=OneWay}"></Run>
                             </TextBlock>
                             <TextBlock HorizontalAlignment="Center" FontSize="21">
                             Design &amp; Code By LinXiao &#169; 2015
@@ -106,11 +106,7 @@
                             <RichTextBlock>
                                 <RichTextBlock.Blocks>
                                     <Paragraph TextIndent="20">
-                                        心情天气——免费中文天气APP，
-                                        一款真正经过用户调查的APP，满足您对于简洁呈现，快捷预报的需求。
-                                        一款心中的天气APP，随心选择背景色彩，卡片式的7天天气预报。
-                                        支持热门城市选择，更新模式设定等功能。
-                                        知冷暖，报晴雨，尽在心情天气。
+                                        <Run Text="{Binding Introduction}"></Run>
                                         <LineBreak/>
                                     </Paragraph>
 

@@ -12,7 +12,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Theme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-
+            <x:String x:Key="Version">3.0.0</x:String>
             <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
             <converters:NullToVisibilityConverter x:Key="NotNullToVisibilityConverter" Invert="True" />
 
@@ -25,7 +25,7 @@
 
             <!-- Scroll bar causes weird jumpy issues if we don't take a ~10 margin off all list items -->
             <converters:NumericTransformConverter x:Key="ListWidthToWorkableSectionWidthConverter" Margin="10" Sections="1" />
-
+            <converters:VisibleToCollapse x:Key="VisibleToCollapseConverter"></converters:VisibleToCollapse>
 
             <x:Double x:Key="HeaderFontSize">57.5</x:Double>
 

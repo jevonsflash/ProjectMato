@@ -62,9 +62,37 @@ namespace MusicMink.ViewModels
                 NotifyPropertyChanged("Version");
             }
         }
+
+        private string introduction;
+
+        public string Introduction
+        {
+            get { return introduction; }
+            set
+            {
+                introduction = value;
+                NotifyPropertyChanged("Introduction");
+            }
+        }
+
+        private string brief;
+
+        public string Brief
+        {
+            get { return brief; }
+            set
+            {
+                brief = value;
+                NotifyPropertyChanged("Brief");
+            }
+        }
+
+
         public AboutPageViewModel()
         {
-            Version = "1.1.0";
+            Version = (string)App.Current.Resources["Version"];
+            Brief = "番茄播放器";
+            Introduction = "番茄播放器(Mato Player)是一款本地音乐播放器，设计理念是单手操作，实用方便。支持定制播放列表，本地检索，歌词管理，睡眠模式等。";
             StrUpdate = new List<string>();
             StrUpdate.Add("暂无");
         }

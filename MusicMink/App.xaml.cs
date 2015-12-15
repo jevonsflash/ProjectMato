@@ -35,7 +35,7 @@ namespace MusicMink
             this.InitializeComponent();
             this.Suspending += this.OnSuspending;
             this.Resuming += this.OnResuming;
-
+            Application.Current.RequestedTheme = ApplicationTheme.Dark;
             this.UnhandledException += LogUnhandledException;
         }
 
@@ -111,11 +111,12 @@ namespace MusicMink
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-
+                
                 Type target = typeof(LandingPage);
-                if (SettingsViewModel.Current.IsClassicModeEnabled)
+                if (SettingsViewModel.Current.IsNewSeason!= (string)App.Current.Resources["Version"])
                 {
-                    target = typeof(LandingPage);
+                    SettingsViewModel.Current.IsNewSeason = (string)App.Current.Resources["Version"];
+                    target = typeof(GuidePage);
                 }
 
                 if (!rootFrame.Navigate(target, e.Arguments))

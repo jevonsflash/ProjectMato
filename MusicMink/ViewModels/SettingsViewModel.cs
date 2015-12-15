@@ -18,11 +18,11 @@ namespace MusicMink.ViewModels
 
         public static class Properties
         {
+            public const string IsNewSeason = "IsNewSeason";
             public const string IsSleepModeOn = "IsSleepModeOn";
             public const string IsStopWhenTerminate = "IsStopWhenTerminate";
             public const string IsAutoLrc = "IsAutoLrc";
             public const string IsAutoOffset = "IsAutoOffset";
-            public const string IsClassicModeEnabled = "IsClassicModeEnabled";
         }
 
         private static SettingsViewModel _current;
@@ -97,15 +97,15 @@ namespace MusicMink.ViewModels
             }
         }
 
-        public bool IsClassicModeEnabled
+        public string IsNewSeason
         {
             get
             {
-                return GetSettingField<bool>(ApplicationSettings.SETTING_IS_CLASSIC_MODE_ON, false);
+                return GetSettingField<string>(ApplicationSettings.SETTING_IS_NEW_SEASON, "0.0.0");
             }
             set
             {
-                SetSettingField<bool>(ApplicationSettings.SETTING_IS_CLASSIC_MODE_ON, value, Properties.IsClassicModeEnabled);
+                SetSettingField<string>(ApplicationSettings.SETTING_IS_NEW_SEASON, value, Properties.IsNewSeason);
             }
         }
 

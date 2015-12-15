@@ -126,6 +126,14 @@ namespace MusicMink.Controls
         public static readonly DependencyProperty CanScrollProperty =
             DependencyProperty.Register("CanScroll", typeof(bool), typeof(LrcControl), new PropertyMetadata(false));
 
+        public bool CanUseInternet
+        {
+            get { return (bool)GetValue(CanUseInternetProperty); }
+            set { SetValue(CanUseInternetProperty, value); }
+        }
+
+        public static readonly DependencyProperty CanUseInternetProperty =
+            DependencyProperty.Register("CanUseInternet", typeof(bool), typeof(LrcControl), new PropertyMetadata(false));
 
         public string Artist
         {
@@ -250,7 +258,10 @@ namespace MusicMink.Controls
             }
             else
             {
-                DoHttpWebRequest(Music);
+                if (CanUseInternet)
+                {
+                    DoHttpWebRequest(Music);
+                }
             }
         }
 

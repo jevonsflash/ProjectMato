@@ -142,6 +142,7 @@
     <Compile Include="Converters\ReorderModeToBoolConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\NumericTransformConverter.cs" />
+    <Compile Include="Converters\VisibleToCollapse.cs" />
     <Compile Include="Design\SongDesignStub.cs" />
     <Compile Include="Dialogs\AddMix.xaml.cs">
       <DependentUpon>AddMix.xaml</DependentUpon>
@@ -189,6 +190,9 @@
     </Compile>
     <Compile Include="Pages\ArtistPage.xaml.cs">
       <DependentUpon>ArtistPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\GuidePage.xaml.cs">
+      <DependentUpon>GuidePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Library.xaml.cs">
       <DependentUpon>Library.xaml</DependentUpon>
@@ -401,6 +405,10 @@
     <Page Include="Pages\ArtistPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\GuidePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Library.xaml">
       <SubType>Designer</SubType>

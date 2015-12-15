@@ -212,10 +212,10 @@ namespace MusicMinkAppLayer.Helpers
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
-         
+
         }
 
 
@@ -245,6 +245,28 @@ namespace MusicMinkAppLayer.Helpers
             }
 
             return file;
+        }
+
+        /// <summary>
+        /// 获取文件列表
+        /// </summary>
+        /// <returns></returns>
+        public async static Task<List<string>> GetFiles()
+        {
+            var storageFolder = ApplicationData.Current.LocalFolder;
+            try
+            {
+                IReadOnlyList<StorageFile> fileList;
+                fileList = await storageFolder.GetFilesAsync(Windows.Storage.Search.CommonFileQuery.OrderByDate);
+                List<string> result = fileList.Select(c => c.Name).ToList<string>();
+                return result;
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+
         }
     }
 
