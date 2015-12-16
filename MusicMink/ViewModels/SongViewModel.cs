@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.Reflection;
+using Windows.Globalization.Collation;
 
 namespace MusicMink.ViewModels
 {
@@ -205,7 +206,7 @@ namespace MusicMink.ViewModels
             get
             {
                 return _artist;
-            
+
             }
             set
             {
@@ -290,7 +291,7 @@ namespace MusicMink.ViewModels
         {
             get
             {
-                return (int) Duration.TotalSeconds;
+                return (int)Duration.TotalSeconds;
             }
         }
 
@@ -395,27 +396,28 @@ namespace MusicMink.ViewModels
                 }
             }
         }
-
+        private static List<string> CreateDefaultGroups(CharacterGroupings slg)
+        {
+            List<string> list = new List<string>();
+            foreach (CharacterGrouping cg in slg)
+            {
+                if (cg.Label == "") continue;
+                else
+                    list.Add(cg.Label);
+            }
+            return list;
+        }
         private string _sortName;
         public string SortName
-        { 
+        {
             get
             {
                 if (_sortName == null)
                 {
                     CultureInfo ci = CultureInfo.CurrentUICulture;
-                    if (Name.Length <= 4) _sortName = Name;
-                    else
-                    {
-                        if (Name.Substring(0, 4).ToLowerInvariant() == Strings.GetResource("TitleStartStripMatch"))
-                        {
-                            _sortName = Name.Substring(4);
-                        }
-                        else
-                        {
-                            _sortName = Name;
-                        }
-                    }
+                    CharacterGroupings slg = new CharacterGroupings();
+                    List<string> list = CreateDefaultGroups(slg);
+                    _sortName = slg.Lookup(Name);
                 }
 
                 return _sortName;

@@ -1,49 +1,33 @@
 ﻿using MusicMinkAppLayer.Helpers;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 using MusicMinkAppLayer.Models;
-using MusicMink.Common;
-using System.ComponentModel;
 using Windows.UI;
 using System.Threading.Tasks;
+using MusicMink.ViewModels;
 
 // “用户控件”项模板在 http://go.microsoft.com/fwlink/?LinkId=234236 上有介绍
 
 namespace MusicMink.Controls
 {
-    public sealed partial class LrcControl : UserControl, INotifyPropertyChanged
+    public sealed partial class LrcControl : UserControl
     {
+        private LrcControlViewModel lrcViewModel = new LrcControlViewModel();
         private List<Result2> list;
-
         public LrcControl()
         {
             this.InitializeComponent();
             //this.InitializeLrc();
-            this.DataContext = LrcData;
+            this.DataContext = lrcViewModel;
             //this.TBArtistName.DataContext = this.ArtistName;
             //this.TBSongName.DataContext = this.SongName;
         }
-        public event PropertyChangedEventHandler PropertyChanged;
 
-        public void NotifyPropertyChanged(string info)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(info));
-            }
-        }
+
 
         private void BTNLrcManage_Click(object sender, RoutedEventArgs e)
         {
@@ -57,17 +41,6 @@ namespace MusicMink.Controls
 
         }
 
-        private LRCItem lrcData;
-
-        public LRCItem LrcData
-        {
-            get { return lrcData; }
-            set
-            {
-                lrcData = value;
-                NotifyPropertyChanged("LrcData");
-            }
-        }
         //private string songName;
 
         //public string SongName
@@ -108,6 +81,8 @@ namespace MusicMink.Controls
 
         public static readonly DependencyProperty TimeLineProperty =
             DependencyProperty.Register("TimeLine", typeof(string), typeof(LrcControl), new PropertyMetadata("", new PropertyChangedCallback(OnTimeLinePropertyChanged)));
+
+
         public string Music
         {
             get { return (string)GetValue(MusicProperty); }
@@ -169,8 +144,8 @@ namespace MusicMink.Controls
             LrcControl lrcControl = sender as LrcControl;
             if (lrcControl != null)
             {
-                var item = lrcControl.LrcData.LrcWord.FirstOrDefault(c => c.Key < TimeSpan.Parse(lrcControl.TimeLine).TotalSeconds);
-                int currentIndex = lrcControl.lrcData.LrcWord.ToList().IndexOf(item);
+                var item = lrcControl.lrcViewModel.LrcData.LrcWord.FirstOrDefault(c => c.Key < TimeSpan.Parse(lrcControl.TimeLine).TotalSeconds);
+                int currentIndex = lrcControl.lrcViewModel.LrcData.LrcWord.ToList().IndexOf(item);
                 lrcControl.CleanBrush();
                 lrcControl.SetBrush(currentIndex);
                 if (lrcControl.CanScroll)
@@ -233,8 +208,7 @@ namespace MusicMink.Controls
                 if (await FileHelper.CreateAndWriteFileAsync("/" + fileName, lrcStr))
                 {
                     LRCItem lrcItem = LRCSer.InitLrc(lrcStr);
-                    LrcData = lrcItem;
-
+                    lrcViewModel.LrcData = lrcItem;
                 }
 
             }
@@ -254,7 +228,7 @@ namespace MusicMink.Controls
             if (!string.IsNullOrEmpty(lrcStr))
             {
                 LRCItem lrcItem = LRCSer.InitLrc(lrcStr);
-                LrcData = lrcItem;
+                lrcViewModel.LrcData = lrcItem;
             }
             else
             {

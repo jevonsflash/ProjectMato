@@ -61,7 +61,7 @@
                 </Setter>
             </Style>
 
-            <JumpListItemBackgroundConverter x:Key="BackgroundConverter" Disabled="{StaticResource PhoneBackgroundBrush}" Enabled="{StaticResource PhoneAccentBrush}" />
+            <JumpListItemBackgroundConverter x:Key="BackgroundConverter" Disabled="Gray" Enabled="{StaticResource PhoneAccentBrush}" />
 
             <Style x:Key="StandardAlphaListZoomedOutListStyle" TargetType="GridView">
                 <Setter Property="Background" Value="{StaticResource PhoneBackgroundBrush}" />
@@ -70,9 +70,9 @@
                         <DataTemplate>
                             <Border
         						Background="{Binding Converter={StaticResource BackgroundConverter}}"
-        						BorderBrush="{StaticResource PhoneAccentBrush}"
-        						BorderThickness="3"
+        						BorderThickness="0"
         						HorizontalAlignment="Left"
+                                CornerRadius="41"
         						Width="82"
         						Height="82"
         						Margin="5"
@@ -368,9 +368,9 @@
 
             <DataTemplate x:Key="StandardAlphaListHeaderTemplate">
                 <Border
-        			BorderBrush="{StaticResource PhoneAccentBrush}"
-        			BorderThickness="2"
-        			Background="{StaticResource PhoneBackgroundBrush}"
+                    Background="{StaticResource PhoneAccentBrush}"
+                    CornerRadius="30"
+        			BorderThickness="0"
         			Height="60"
         			Width="60"
         			Margin="0,5,0,5"

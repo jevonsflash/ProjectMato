@@ -239,6 +239,7 @@
     <Compile Include="ViewModels\DesignData\PlayQueueDesignData.cs" />
     <Compile Include="ViewModels\DesignData\SongDesignData.cs" />
     <Compile Include="ViewModels\LibraryViewModel.cs" />
+    <Compile Include="ViewModels\LrcControlViewModel.cs" />
     <Compile Include="ViewModels\MixEntryViewModel.cs" />
     <Compile Include="ViewModels\MixEvaluators\IMixEvaluator.cs" />
     <Compile Include="ViewModels\MixEvaluators\RangeMixEvaluator.cs" />
