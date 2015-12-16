@@ -35,5 +35,10 @@ namespace MusicMink.Pages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(LandingPage));
+        }
     }
 }

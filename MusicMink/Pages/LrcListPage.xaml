@@ -16,8 +16,8 @@
 
         <!--TitlePanel 包含应用程序的名称和页标题-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="番茄播放器" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="歌词管理" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock Text="番茄播放器" />
+            <TextBlock Text="歌词管理" Margin="9,-7,0,0" />
         </StackPanel>
 
         <!--ContentPanel - 在此处放置其他内容-->
@@ -39,12 +39,12 @@
 				Background="Transparent">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid x:Name="albumGrid" Margin="0,10,0,10" ManipulationStarted="albumGrid_ManipulationStarted" ManipulationCompleted="albumGrid_ManipulationCompleted">
+                        <Grid x:Name="albumGrid" Margin="0,10,0,10" >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="382"></ColumnDefinition>
                                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <TextBlock  Grid.Column="0" Text="{Binding}" Style="{StaticResource PhoneTextLargeStyle}" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock  Grid.Column="0" Text="{Binding}" FontSize="22" VerticalAlignment="Center"></TextBlock>
                             <HyperlinkButton x:Name="BTNDelete" Grid.Column="1" Content="删除" Click="MenuItem_Click"></HyperlinkButton>
                         </Grid>
                     </DataTemplate>

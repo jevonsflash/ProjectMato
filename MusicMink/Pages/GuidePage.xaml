@@ -8,7 +8,64 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid x:Name="GDLayout">
+        <Hub Background="Red">
+            <HubSection Background="Yellow">
+                <DataTemplate>
+                    <Grid
+                        HorizontalAlignment="Left"                                           
+                        Margin="-18,-10,0,0" 
+                        Width="{Binding ElementName=GDLayout,Path=ActualWidth}"  
+                        Height="{Binding ElementName=GDLayout,Path=ActualHeight}">
+                        <Image 
+                           Source="ms-appx:///Img/thumb/thumb_matoblack.png"
+                           Width="{Binding ElementName=GDLayout,Path=ActualWidth}" 
+                           Height="{Binding ElementName=GDLayout,Path=ActualHeight}"
+                           Stretch="UniformToFill">
+                        </Image>
+                        <TextBlock FontSize="48" FontStyle="Italic" FontFamily="Microsoft Tai Le"> 我去你大爷的终于</TextBlock>
+                    </Grid>
+                </DataTemplate>
+            </HubSection>
+            <HubSection>
+                <DataTemplate>
+                    <Grid
+                        HorizontalAlignment="Left"                                           
+                        Margin="-18,-10,0,0" 
+                        Width="{Binding ElementName=GDLayout,Path=ActualWidth}"  
+                        Height="{Binding ElementName=GDLayout,Path=ActualHeight}">
+                        <Image 
+                           Source="ms-appx:///Img/thumb/thumb_matopeace.jpg"
+                           Width="{Binding ElementName=GDLayout,Path=ActualWidth}" 
+                           Height="{Binding ElementName=GDLayout,Path=ActualHeight}"
+                           Stretch="UniformToFill">
+                        </Image>
+                    </Grid>
+                </DataTemplate>
+            </HubSection>
+            <HubSection>
+                <DataTemplate>
+                    <Grid
+                        HorizontalAlignment="Left"                                           
+                        Margin="-18,-10,0,0" 
+                        Width="{Binding ElementName=GDLayout,Path=ActualWidth}"  
+                        Height="{Binding ElementName=GDLayout,Path=ActualHeight}">
+                        <Image 
+                           Source="ms-appx:///Img/Metro.png"
+                           Width="{Binding ElementName=GDLayout,Path=ActualWidth}" 
+                           Height="{Binding ElementName=GDLayout,Path=ActualHeight}"
+                           Stretch="UniformToFill">
+                        </Image>
+                        <Button HorizontalAlignment="Center" 
+                                VerticalAlignment="Bottom" 
+                                Margin="50"
+                                Click="Button_Click">
+                            进入番茄播放器
+                        </Button>
+                    </Grid>
+                </DataTemplate>
+            </HubSection>
 
+        </Hub>
     </Grid>
 </Page>
