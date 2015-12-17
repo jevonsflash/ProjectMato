@@ -1,150 +1,69 @@
-﻿using MusicMinkAppLayer.Helpers;
+﻿using MusicMink.ViewModels;
+using MusicMinkAppLayer.Helpers;
+using MusicMinkAppLayer.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
+using Windows.Foundation;
+using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
-using MusicMinkAppLayer.Models;
-using Windows.UI;
-using System.Threading.Tasks;
-using MusicMink.ViewModels;
+using Windows.UI.Xaml.Navigation;
 
 // “用户控件”项模板在 http://go.microsoft.com/fwlink/?LinkId=234236 上有介绍
 
 namespace MusicMink.Controls
 {
-    public sealed partial class LrcControl : UserControl
+    public sealed partial class TestControl : UserControl
     {
         private LrcControlViewModel lrcViewModel = new LrcControlViewModel();
         private List<Result2> list;
-        public LrcControl()
+
+        public TestControl()
         {
             this.InitializeComponent();
-            //this.InitializeLrc();
-            this.DataContext = lrcViewModel;
-            //this.TBArtistName.DataContext = this.ArtistName;
-            //this.TBSongName.DataContext = this.SongName;
         }
 
 
-
-        private void BTNLrcManage_Click(object sender, RoutedEventArgs e)
+        public string test
         {
-            NavigationManager.Current.Navigate(NavigationLocation.LrcListPage);
-
+            get { return (string)GetValue(testProperty); }
+            set { SetValue(testProperty, value); }
         }
 
-        private void BTNLrcSearch_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationManager.Current.Navigate(NavigationLocation.SearchLrcPage);
+        // Using a DependencyProperty as the backing store for test.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty testProperty =
+            DependencyProperty.Register("test", typeof(string), typeof(TestControl), new PropertyMetadata("", OnChanged));
 
+
+
+
+        public string artist
+        {
+            get { return (string)GetValue(artistProperty); }
+            set { SetValue(artistProperty, value); }
         }
 
-        //private string songName;
+        // Using a DependencyProperty as the backing store for artist.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty artistProperty =
+            DependencyProperty.Register("artist", typeof(string), typeof(TestControl), new PropertyMetadata("", OnChanged));
 
-        //public string SongName
-        //{
-        //    get { return songName; }
-        //    set { songName = value; }
-        //}
 
-        //private string artistName;
-
-        //public string ArtistName
-        //{
-        //    get { return artistName; }
-        //    set { artistName = value; }
-        //}
-
-        /// <summary>
-        /// 歌词高亮Brush
-        /// </summary>
-        public Brush EmphasisBrush
+        private static void OnChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            get { return (Brush)GetValue(EmphasisBrushProperty); }
-            set { SetValue(EmphasisBrushProperty, value); }
-        }
-
-        public static readonly DependencyProperty EmphasisBrushProperty =
-            DependencyProperty.Register("EmphasisBrush", typeof(Brush), typeof(LrcControl), new PropertyMetadata(Colors.Gray));
-
-
-        /// <summary>
-        /// 时间轴
-        /// </summary>
-        public string TimeLine
-        {
-            get { return (string)GetValue(TimeLineProperty); }
-            set { SetValue(TimeLineProperty, value); }
-        }
-
-        public static readonly DependencyProperty TimeLineProperty =
-            DependencyProperty.Register("TimeLine", typeof(string), typeof(LrcControl), new PropertyMetadata("", new PropertyChangedCallback(OnTimeLinePropertyChanged)));
-
-
-        public SongViewModel Track
-        {
-            get { return (SongViewModel)GetValue(TrackProperty); }
-            set { SetValue(TrackProperty, value); }
-        }
-
-        public static readonly DependencyProperty TrackProperty =
-            DependencyProperty.Register("Track", typeof(SongViewModel), typeof(LrcControl), new PropertyMetadata("", new PropertyChangedCallback(OnTrackPropertyChanged)));
-
-        public bool CanScroll
-        {
-            get { return (bool)GetValue(CanScrollProperty); }
-            set { SetValue(CanScrollProperty, value); }
-        }
-
-        public static readonly DependencyProperty CanScrollProperty =
-            DependencyProperty.Register("CanScroll", typeof(bool), typeof(LrcControl), new PropertyMetadata(false));
-
-        public bool CanUseInternet
-        {
-            get { return (bool)GetValue(CanUseInternetProperty); }
-            set { SetValue(CanUseInternetProperty, value); }
-        }
-
-        public static readonly DependencyProperty CanUseInternetProperty =
-            DependencyProperty.Register("CanUseInternet", typeof(bool), typeof(LrcControl), new PropertyMetadata(false));
-
-        private async static void OnTrackPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
-        {
-            LrcControl lrcControl = sender as LrcControl;
-            if (lrcControl != null)
-            {
-                await Task.Run(() =>
-                {
-                    if (!string.IsNullOrEmpty(lrcControl.Track.Name) && !string.IsNullOrEmpty(lrcControl.Track.ArtistName))
-                    {
-
-                        lrcControl.InitializeLrc();
-                    }
-                });
-
-
-                //lrcControl.ArtistName = lrcControl.Artist;
-                //lrcControl.SongName = lrcControl.Music;
-            }
-        }
-
-        private static void OnTimeLinePropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
-        {
-            LrcControl lrcControl = sender as LrcControl;
-            if (lrcControl != null)
-            {
-                var item = lrcControl.lrcViewModel.LrcData.LrcWord.FirstOrDefault(c => c.Key < TimeSpan.Parse(lrcControl.TimeLine).TotalSeconds);
-                int currentIndex = lrcControl.lrcViewModel.LrcData.LrcWord.ToList().IndexOf(item);
-                lrcControl.CleanBrush();
-                lrcControl.SetBrush(currentIndex);
-                if (lrcControl.CanScroll)
-                {
-                    lrcControl.SetScroll(currentIndex);
-                }
-
-            }
+            TestControl testControl = d as TestControl;
+            testControl.TBSongName.DataContext = testControl.test;
+            testControl.TBArtistName.DataContext = testControl.artist;
+            Task.Run(() => { testControl.InitializeLrc(); });
+            
         }
 
         #region 请求歌词算法
@@ -193,7 +112,7 @@ namespace MusicMink.Controls
         async void ht_FileWatchEvent2(object sender, CompleteEventArgs e)
         {
             string lrcStr = e.Node;
-            string fileName = Track.Name + "-" + Track.ArtistName + ".lrc";
+            string fileName = test + "-" + artist + ".lrc";
             if (await FileHelper.IsExistFileAsync("/" + fileName))
             {
                 if (await FileHelper.CreateAndWriteFileAsync("/" + fileName, lrcStr))
@@ -214,7 +133,7 @@ namespace MusicMink.Controls
         public async void InitializeLrc()
         {
             string lrcStr;
-            string fileName = Track.Name + "-" + Track.ArtistName + ".lrc";
+            string fileName = test + "-" + artist + ".lrc";
             lrcStr = await ReadLrcFile(fileName);
             if (!string.IsNullOrEmpty(lrcStr))
             {
@@ -223,9 +142,9 @@ namespace MusicMink.Controls
             }
             else
             {
-                if (CanUseInternet)
+                if (true)
                 {
-                    DoHttpWebRequest(Track.Name);
+                    DoHttpWebRequest(test);
                 }
             }
         }
@@ -242,7 +161,7 @@ namespace MusicMink.Controls
 
         private void UpdateMusic()
         {
-            if (Track.Name == null)
+            if (test == null)
             {
                 LBLyric.DataContext = null;
                 return;
@@ -283,7 +202,7 @@ namespace MusicMink.Controls
                 if (lbiPre != null)
                 {
                     TextBlock gd1 = FindFirstElementInVisualTree<TextBlock>(lbiPre);
-                    gd1.Foreground = EmphasisBrush;
+                    gd1.Foreground = new SolidColorBrush(Colors.Gray);
                     gd1.FontSize = 25;
                 }
             }
@@ -333,5 +252,17 @@ namespace MusicMink.Controls
         {
             this.Visibility = Visibility.Collapsed;
         }
+        private void BTNLrcManage_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationManager.Current.Navigate(NavigationLocation.LrcListPage);
+
+        }
+
+        private void BTNLrcSearch_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationManager.Current.Navigate(NavigationLocation.SearchLrcPage);
+
+        }
+
     }
 }

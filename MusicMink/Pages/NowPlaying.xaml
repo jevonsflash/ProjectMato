@@ -16,9 +16,6 @@
         <converters:PercentageTransformConverter x:Key="DoubleToProgressBarWidth" FullMode="True"/>
         <converters:ProgressTriangleConverter x:Key="ProgressTriangle" />
     </Page.Resources>
-    <d:Page.DataContext>
-        <dv:PlayQueueDesignData />
-    </d:Page.DataContext>
 
     <Grid x:Name="GDLayout" RenderTransformOrigin="0.5,0.5"  Background="{StaticResource MainBackGroundBrush}">
         <Grid.RenderTransform>
@@ -442,22 +439,6 @@
                 </StackPanel>
             </ScrollViewer>
         </Grid>
-        <!--歌词-->
-        <controls:LrcControl 
-            x:Name="UCLrc"
-            VerticalAlignment="Top"
-                Visibility="Visible"
-                Grid.Row="0"
-                Grid.ColumnSpan="3"
-                Grid.RowSpan="9"
-                Track="{Binding CurrentTrack,Mode=OneWay}"
-                CanScroll="True"
-                EmphasisBrush="Red"
-                TimeLine="{Binding ElapsedTime,Mode=OneWay}"
-                >
-            <!--Music="{Binding CurrentTrack.Name}"
-                Artist="{Binding CurrentTrack.Artist.Name}"-->
-        </controls:LrcControl>
         <AppBarButton 
             HorizontalAlignment="Right" 
             VerticalAlignment="Bottom"
@@ -469,5 +450,14 @@
                 <FontIcon FontFamily="Webdings" Glyph="e"></FontIcon>
             </AppBarButton.Icon>
         </AppBarButton>
+        <!--歌词-->
+
+        <controls:TestControl VerticalAlignment="Top"
+                              x:Name="LrcControl"
+                              artist="{Binding  CurrentTrack.ArtistName,Mode=OneWay}"
+                              test="{Binding CurrentTrack.Name, Mode=OneWay}"
+>
+
+        </controls:TestControl>
     </Grid>
 </local:BasePage>

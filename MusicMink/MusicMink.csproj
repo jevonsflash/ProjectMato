@@ -116,9 +116,6 @@
     <Compile Include="Controls\JMessboxControl.xaml.cs">
       <DependentUpon>JMessboxControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\LrcControl.xaml.cs">
-      <DependentUpon>LrcControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\ScalingTextBox.xaml.cs">
       <DependentUpon>ScalingTextBox.xaml</DependentUpon>
     </Compile>
@@ -129,6 +126,9 @@
     </Compile>
     <Compile Include="Controls\SymbolTile.xaml.cs">
       <DependentUpon>SymbolTile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TestControl.xaml.cs">
+      <DependentUpon>TestControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\BoolToNotBoolConverter.cs" />
     <Compile Include="Converters\ColorToStyleConverter.cs" />
@@ -319,10 +319,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\LrcControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Controls\ScalingTextBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -332,6 +328,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\SymbolTile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\TestControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

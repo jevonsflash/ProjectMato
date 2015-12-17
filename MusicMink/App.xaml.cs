@@ -112,7 +112,7 @@ namespace MusicMink
                 // configuring the new page by passing required information as a navigation
                 // parameter
                 
-                Type target = typeof(GuidePage);
+                Type target = typeof(LandingPage);
                 if (SettingsViewModel.Current.IsNewSeason!= (string)App.Current.Resources["Version"])
                 {
                     SettingsViewModel.Current.IsNewSeason = (string)App.Current.Resources["Version"];

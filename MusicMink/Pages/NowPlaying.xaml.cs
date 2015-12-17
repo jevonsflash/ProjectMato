@@ -22,6 +22,7 @@ namespace MusicMink.Pages
             this.DataContext = LibraryViewModel.Current.PlayQueue;
             VisualStateManager.GoToState(this, "MenuClose", true);
             this.GDMenu.DataContext = LibraryViewModel.Current;
+            //this.UCLrc.DataContext = LibraryViewModel.Current.PlayQueue.CurrentTrack.Name;
         }
 
         private void PrevTrackImageDoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
@@ -152,7 +153,7 @@ namespace MusicMink.Pages
 
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
-            this.UCLrc.Visibility = Visibility.Visible;
+           this.LrcControl.Visibility = Visibility.Visible;
         }
     }
 }
