@@ -468,6 +468,11 @@ namespace MusicMink.ViewModels
             {
                 return _playQueue;
             }
+            set
+            {
+                _playQueue = value;
+                NotifyPropertyChanged("PlayQueue");
+            }
         }
 
 

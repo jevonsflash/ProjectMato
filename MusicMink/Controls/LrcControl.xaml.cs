@@ -83,14 +83,14 @@ namespace MusicMink.Controls
             DependencyProperty.Register("TimeLine", typeof(string), typeof(LrcControl), new PropertyMetadata("", new PropertyChangedCallback(OnTimeLinePropertyChanged)));
 
 
-        public string Music
+        public SongViewModel Track
         {
-            get { return (string)GetValue(MusicProperty); }
-            set { SetValue(MusicProperty, value); }
+            get { return (SongViewModel)GetValue(TrackProperty); }
+            set { SetValue(TrackProperty, value); }
         }
 
-        public static readonly DependencyProperty MusicProperty =
-            DependencyProperty.Register("Music", typeof(string), typeof(LrcControl), new PropertyMetadata("", new PropertyChangedCallback(OnMusicPropertyChanged)));
+        public static readonly DependencyProperty TrackProperty =
+            DependencyProperty.Register("Track", typeof(SongViewModel), typeof(LrcControl), new PropertyMetadata("", new PropertyChangedCallback(OnTrackPropertyChanged)));
 
         public bool CanScroll
         {
@@ -110,23 +110,14 @@ namespace MusicMink.Controls
         public static readonly DependencyProperty CanUseInternetProperty =
             DependencyProperty.Register("CanUseInternet", typeof(bool), typeof(LrcControl), new PropertyMetadata(false));
 
-        public string Artist
-        {
-            get { return (string)GetValue(ArtistProperty); }
-            set { SetValue(ArtistProperty, value); }
-        }
-
-        public static readonly DependencyProperty ArtistProperty =
-            DependencyProperty.Register("Artist", typeof(string), typeof(LrcControl), new PropertyMetadata("", new PropertyChangedCallback(OnMusicPropertyChanged)));
-
-        private async static void OnMusicPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
+        private async static void OnTrackPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
         {
             LrcControl lrcControl = sender as LrcControl;
             if (lrcControl != null)
             {
                 await Task.Run(() =>
                 {
-                    if (!string.IsNullOrEmpty(lrcControl.Music) && !string.IsNullOrEmpty(lrcControl.Artist))
+                    if (!string.IsNullOrEmpty(lrcControl.Track.Name) && !string.IsNullOrEmpty(lrcControl.Track.ArtistName))
                     {
 
                         lrcControl.InitializeLrc();
@@ -202,7 +193,7 @@ namespace MusicMink.Controls
         async void ht_FileWatchEvent2(object sender, CompleteEventArgs e)
         {
             string lrcStr = e.Node;
-            string fileName = Music + "-" + Artist + ".lrc";
+            string fileName = Track.Name + "-" + Track.ArtistName + ".lrc";
             if (await FileHelper.IsExistFileAsync("/" + fileName))
             {
                 if (await FileHelper.CreateAndWriteFileAsync("/" + fileName, lrcStr))
@@ -223,7 +214,7 @@ namespace MusicMink.Controls
         public async void InitializeLrc()
         {
             string lrcStr;
-            string fileName = Music + "-" + Artist + ".lrc";
+            string fileName = Track.Name + "-" + Track.ArtistName + ".lrc";
             lrcStr = await ReadLrcFile(fileName);
             if (!string.IsNullOrEmpty(lrcStr))
             {
@@ -234,7 +225,7 @@ namespace MusicMink.Controls
             {
                 if (CanUseInternet)
                 {
-                    DoHttpWebRequest(Music);
+                    DoHttpWebRequest(Track.Name);
                 }
             }
         }
@@ -251,7 +242,7 @@ namespace MusicMink.Controls
 
         private void UpdateMusic()
         {
-            if (Music == null)
+            if (Track.Name == null)
             {
                 LBLyric.DataContext = null;
                 return;

@@ -450,13 +450,12 @@
                 Grid.Row="0"
                 Grid.ColumnSpan="3"
                 Grid.RowSpan="9"
-                Music="七里香"
-                Artist="周杰伦"
+                Track="{Binding CurrentTrack,Mode=OneWay}"
                 CanScroll="True"
                 EmphasisBrush="Red"
-                TimeLine="{Binding PlayQueue.ElapsedTime}"
+                TimeLine="{Binding ElapsedTime,Mode=OneWay}"
                 >
-<!--Music="{Binding CurrentTrack.Name}"
+            <!--Music="{Binding CurrentTrack.Name}"
                 Artist="{Binding CurrentTrack.Artist.Name}"-->
         </controls:LrcControl>
         <AppBarButton 
