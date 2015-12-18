@@ -62,8 +62,8 @@ namespace MusicMink.Controls
             TestControl testControl = d as TestControl;
             testControl.TBSongName.DataContext = testControl.test;
             testControl.TBArtistName.DataContext = testControl.artist;
-            Task.Run(() => { testControl.InitializeLrc(); });
-            
+            testControl.InitializeLrc(testControl.test + "-" + testControl.artist + ".lrc");
+
         }
 
         #region 请求歌词算法
@@ -130,10 +130,10 @@ namespace MusicMink.Controls
         /// <summary>
         /// 初始化
         /// </summary>
-        public async void InitializeLrc()
+        public async void InitializeLrc(string fileName)
         {
             string lrcStr;
-            string fileName = test + "-" + artist + ".lrc";
+
             lrcStr = await ReadLrcFile(fileName);
             if (!string.IsNullOrEmpty(lrcStr))
             {

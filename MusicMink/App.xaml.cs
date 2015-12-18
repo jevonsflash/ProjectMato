@@ -1,4 +1,5 @@
-﻿using MusicMink.MediaSources;
+﻿using MusicMink.Common;
+using MusicMink.MediaSources;
 using MusicMink.Pages;
 using MusicMink.ViewModels;
 using MusicMinkAppLayer.Diagnostics;
@@ -25,7 +26,13 @@ namespace MusicMink
     public sealed partial class App : Application
     {
         private TransitionCollection transitions;
-
+        private SleepModeDispatcher smd01 = new SleepModeDispatcher();
+        //睡眠模式使用的定时器
+        public SleepModeDispatcher Smd01
+        {
+            get { return smd01; }
+            set { smd01 = value; }
+        }
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().

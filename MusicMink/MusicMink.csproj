@@ -108,6 +108,7 @@
     <Compile Include="Common\NotifyPropertyChangedUI.cs" />
     <Compile Include="Common\ObservableDictionary.cs" />
     <Compile Include="Common\RelayCommand.cs" />
+    <Compile Include="Common\SleepModeDispatcher.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
     <Compile Include="Controls\ErrorboxControl.xaml.cs">
       <DependentUpon>ErrorboxControl.xaml</DependentUpon>
@@ -227,6 +228,9 @@
     </Compile>
     <Compile Include="Pages\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SleepModePage.xaml.cs">
+      <DependentUpon>SleepModePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Strings.cs" />
@@ -452,6 +456,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SleepModePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

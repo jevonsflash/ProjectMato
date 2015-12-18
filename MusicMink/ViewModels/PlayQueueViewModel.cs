@@ -421,7 +421,7 @@ namespace MusicMink.ViewModels
             }
         }
 
-        private void ExecutePlayPausePlayer(object parameter)
+        public void ExecutePlayPausePlayer(object parameter)
         {
             this.rootModel.PlayPause();
         }
