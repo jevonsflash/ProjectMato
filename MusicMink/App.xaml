@@ -64,7 +64,7 @@
             <JumpListItemBackgroundConverter x:Key="BackgroundConverter" Disabled="Gray" Enabled="{StaticResource PhoneAccentBrush}" />
 
             <Style x:Key="StandardAlphaListZoomedOutListStyle" TargetType="GridView">
-                <Setter Property="Background" Value="{StaticResource PhoneBackgroundBrush}" />
+                <Setter Property="Background" Value="{StaticResource PhoneAccentBrush}" />
                 <Setter Property="ItemTemplate">
                     <Setter.Value>
                         <DataTemplate>
@@ -78,8 +78,8 @@
         						Margin="5"
                             >
                                 <Grid>
-                                    <TextBlock Text="{Binding Group.Title}" FontSize="{StaticResource TextStyleMediumFontSize}" Foreground="{StaticResource PhoneForegroundBrush}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    <TextBlock Text="{Binding Group.Count}" FontSize="{StaticResource TextStyleSmallFontSize}" Foreground="{StaticResource PhoneForegroundBrush}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,2"/>
+                                    <TextBlock Text="{Binding Group.Title}" FontSize="{StaticResource TextStyleMediumFontSize}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Group.Count}" FontSize="{StaticResource TextStyleSmallFontSize}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,2"/>
                                 </Grid>
                             </Border>
                         </DataTemplate>
@@ -379,7 +379,7 @@
                     <TextBlock
         				Text="{Binding Title}"
         				FontSize="32"
-        				Foreground="{StaticResource PhoneAccentBrush}"
+        				Foreground="White"
         				HorizontalAlignment="Center"
         				VerticalAlignment="Center"
                     />

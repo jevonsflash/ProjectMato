@@ -33,7 +33,7 @@ namespace MusicMink.Pages
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            this.TSIsStopMusic.IsChecked = SettingsViewModel.Current.IsStopWhenTerminate;
+            this.TSIsStopMusic.IsOn = SettingsViewModel.Current.IsStopWhenTerminate;
 
             this.BTNStart.IsChecked = ((Application.Current as App).Smd01.IsSleepModeOn);
             this.TBMessage.Opacity = ((Application.Current as App).Smd01.IsSleepModeOn) ? 0.3 : 1.0;
@@ -65,11 +65,11 @@ namespace MusicMink.Pages
 
         private void BTNIsStopMusic_Tap(object sender, RoutedEventArgs e)
         {
-            SettingsViewModel.Current.IsStopWhenTerminate = this.TSIsStopMusic.IsChecked;
+            SettingsViewModel.Current.IsStopWhenTerminate = this.TSIsStopMusic.IsOn;
 
         }
 
     }
 }
 
-}
+
