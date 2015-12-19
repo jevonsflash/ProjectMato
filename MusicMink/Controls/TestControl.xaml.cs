@@ -24,14 +24,54 @@ namespace MusicMink.Controls
 {
     public sealed partial class TestControl : UserControl
     {
+        private string elapsedtime = string.Empty;
+        private string songname = string.Empty;
+        private string artistname = string.Empty;
         private LrcControlViewModel lrcViewModel = new LrcControlViewModel();
         private List<Result2> list;
 
         public TestControl()
         {
             this.InitializeComponent();
+            Loaded += TestControl_Loaded;
+
         }
 
+        private void TestControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            //UpdateMusic();
+        }
+
+
+
+        public string ElapsedTime
+        {
+            get { return (string)GetValue(ElapsedTimeProperty); }
+            set { SetValue(ElapsedTimeProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ElapsedTime.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ElapsedTimeProperty =
+            DependencyProperty.Register("ElapsedTime", typeof(string), typeof(TestControl), new PropertyMetadata("", OnElapsedTimeChanged));
+
+        private static void OnElapsedTimeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            TestControl testControl = d as TestControl;
+            testControl.elapsedtime = testControl.ElapsedTime;
+            if (testControl.LBLyric.DataContext is Dictionary<double, string>)
+            {
+
+
+                Dictionary<double, string> nn = testControl.LBLyric.DataContext as Dictionary<double, string>;
+                var item = nn.FirstOrDefault(c => c.Key.ToString().Contains(testControl.elapsedtime));
+                int currentIndex = nn.ToList().IndexOf(item);
+                testControl.SetBrush(currentIndex);
+                if (true)
+                {
+                    testControl.SetScroll(currentIndex);
+                }
+            }
+        }
 
         public string test
         {
@@ -62,7 +102,15 @@ namespace MusicMink.Controls
             TestControl testControl = d as TestControl;
             testControl.TBSongName.DataContext = testControl.test;
             testControl.TBArtistName.DataContext = testControl.artist;
-            testControl.InitializeLrc(testControl.test + "-" + testControl.artist + ".lrc");
+            testControl.songname = testControl.test;
+            testControl.artistname = testControl.artist;
+            testControl.UpdateMusic();
+
+            if (!string.IsNullOrEmpty(testControl.songname) && !string.IsNullOrEmpty(testControl.artistname))
+            {
+                testControl.InitializeLrc();
+
+            }
 
         }
 
@@ -112,16 +160,15 @@ namespace MusicMink.Controls
         async void ht_FileWatchEvent2(object sender, CompleteEventArgs e)
         {
             string lrcStr = e.Node;
-            string fileName = test + "-" + artist + ".lrc";
-            if (await FileHelper.IsExistFileAsync("/" + fileName))
+            string fileName = "MatoLrc\\" + songname + "-" + artistname + ".lrc";
+            if (await FileHelper.CreateAndWriteFileAsync(fileName, lrcStr))
             {
-                if (await FileHelper.CreateAndWriteFileAsync("/" + fileName, lrcStr))
-                {
-                    LRCItem lrcItem = LRCSer.InitLrc(lrcStr);
-                    lrcViewModel.LrcData = lrcItem;
-                }
-
+                LRCItem lrcItem = LRCSer.InitLrc(lrcStr);
+                this.LBLyric.DataContext = lrcItem.LrcWord.Values;
+                
+                
             }
+
 
         }
 
@@ -130,21 +177,22 @@ namespace MusicMink.Controls
         /// <summary>
         /// 初始化
         /// </summary>
-        public async void InitializeLrc(string fileName)
+        public async void InitializeLrc()
         {
+            string fileName = "MatoLrc\\" + songname + "-" + artistname + ".lrc";
             string lrcStr;
 
             lrcStr = await ReadLrcFile(fileName);
             if (!string.IsNullOrEmpty(lrcStr))
             {
                 LRCItem lrcItem = LRCSer.InitLrc(lrcStr);
-                lrcViewModel.LrcData = lrcItem;
+                this.LBLyric.DataContext = lrcItem.LrcWord.Values;
             }
             else
             {
                 if (true)
                 {
-                    DoHttpWebRequest(test);
+                    DoHttpWebRequest(songname);
                 }
             }
         }
@@ -152,20 +200,18 @@ namespace MusicMink.Controls
         private static async System.Threading.Tasks.Task<string> ReadLrcFile(string fileName)
         {
             string lrcStr = string.Empty;
-            if (await FileHelper.IsExistFileAsync("/" + fileName))
+            if (await FileHelper.IsExistFileAsync(fileName))
             {
-                lrcStr = await FileHelper.ReadTxtFileAsync("/" + fileName);
+                lrcStr = await FileHelper.ReadTxtFileAsync(fileName);
             }
             return lrcStr;
         }
 
         private void UpdateMusic()
         {
-            if (test == null)
-            {
-                LBLyric.DataContext = null;
-                return;
-            }
+            LBLyric.DataContext = null;
+            return;
+
         }
 
         #region 工具方法

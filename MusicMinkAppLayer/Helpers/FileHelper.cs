@@ -56,7 +56,7 @@ namespace MusicMinkAppLayer.Helpers
                 string fileName = filePath.Split('\\')[1];
 
                 bool isExistFolder = await IsExistFolderAsync(fileFolder);
-
+                System.Diagnostics.Debug.WriteLineIf(isExistFolder, "存在" + filePath);
                 if (isExistFolder)
                 {
                     IStorageFolder local = Windows.Storage.ApplicationData.Current.LocalFolder;
@@ -74,8 +74,9 @@ namespace MusicMinkAppLayer.Helpers
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
                 isExistFile = false;
             }
 
@@ -96,8 +97,9 @@ namespace MusicMinkAppLayer.Helpers
                 StorageFolder sampleFile = await local.CreateFolderAsync(dirName, CreationCollisionOption.OpenIfExists);
                 isCreateDir = true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
                 isCreateDir = false;
             }
 
@@ -163,8 +165,11 @@ namespace MusicMinkAppLayer.Helpers
                 await Windows.Storage.FileIO.WriteBufferAsync(storageFile, buffer);
                 isCreateFile = true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine(filePath+"|||"+content);
+
+                System.Diagnostics.Debug.WriteLine(ex.Message);
                 isCreateFile = false;
             }
 

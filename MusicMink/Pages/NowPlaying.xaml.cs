@@ -60,6 +60,11 @@ namespace MusicMink.Pages
         {
             NavigationManager.Current.Navigate(NavigationLocation.Queue);
         }
+        private void TextBlock_Tapped(object sender, RoutedEventArgs e)
+        {
+            NavigationManager.Current.Navigate(NavigationLocation.Queue);
+        }
+
         private void BTPre_Click(object sender, RoutedEventArgs e)
         {
             if (LibraryViewModel.Current.PlayQueue.PrevPlayer.CanExecute(null))
@@ -155,5 +160,6 @@ namespace MusicMink.Pages
         {
            this.LrcControl.Visibility = Visibility.Visible;
         }
+
     }
 }

@@ -20,7 +20,7 @@
                 <RowDefinition Height="100"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
-            <ListBox Grid.Column="0" Grid.Row="1" Background="Transparent" x:Name="LBLyric" ItemsSource="{Binding}" Margin="0,10,0,0">
+            <ListBox Grid.Column="0" Grid.Row="1" Background="Transparent" x:Name="LBLyric" Margin="0,10,0,0" ItemsSource="{Binding}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid x:Name="LBILyricFragment">

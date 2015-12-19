@@ -769,7 +769,7 @@
     <value>正在播放</value>
   </data>
   <data name="NowPlayingPageQueueLeft.Text" xml:space="preserve">
-    <value>当前列队剩余</value>
+    <value>剩余</value>
   </data>
   <data name="QueuePageHeader.Text" xml:space="preserve">
     <value>列队</value>
