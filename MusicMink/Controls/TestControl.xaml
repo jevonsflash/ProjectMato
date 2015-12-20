@@ -24,7 +24,7 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid x:Name="LBILyricFragment">
-                            <TextBlock TextWrapping="Wrap" Text="{Binding}" FontSize="25" Foreground="LightGray"></TextBlock>
+                            <TextBlock TextWrapping="Wrap" Text="{Binding Content}" FontSize="25" Foreground="LightGray"></TextBlock>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

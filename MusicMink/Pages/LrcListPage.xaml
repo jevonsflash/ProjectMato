@@ -16,8 +16,7 @@
 
         <!--TitlePanel 包含应用程序的名称和页标题-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="番茄播放器" />
-            <TextBlock Text="歌词管理" Margin="9,-7,0,0" />
+            <TextBlock Text="歌词管理" Margin="9,-7,0,0" FontSize="36"/>
         </StackPanel>
 
         <!--ContentPanel - 在此处放置其他内容-->
@@ -28,29 +27,39 @@
                 <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal" Grid.Row="0" Height="72" Background="{StaticResource PhoneChromeBrush}">
-                <TextBlock FontSize="30" Margin="0,15,0,0">
-                   已缓存 <Run x:Name="TBLrcCount" Text="{Binding}"></Run> 个歌词文件
+                <TextBlock FontSize="30" VerticalAlignment="Center">
+                   已缓存 <Run x:Name="TBLrcCount" Text="{Binding LrcCount}"></Run> 个歌词文件
                 </TextBlock>
-                <Button x:Name="BTNCleanUnavailableLrc" Content="智能清理"  Margin="40,0,0,0" Click="BTNCleanUnavailableLrc_Click" />
+                <Button x:Name="BTNCleanUnavailableLrc" Content="智能清理" BorderThickness="1" Width="85" Height="40" Margin="20,0,0,0" Click="BTNCleanUnavailableLrc_Click"  Template="{StaticResource RoundButton}"/>
             </StackPanel>
-            <ListBox 
+            <ListView 
 				Grid.Row="1"
 				x:Name="CustomListLB" 
+                ItemsSource="{Binding LrcList}"
 				Background="Transparent">
-                <ListBox.ItemTemplate>
+                <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid x:Name="albumGrid" Margin="0,10,0,10" >
+                        <Grid x:Name="albumGrid" Margin="0,10,0,10" Width="380" >
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="382"></ColumnDefinition>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="3*"></ColumnDefinition>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <TextBlock  Grid.Column="0" Text="{Binding}" FontSize="22" VerticalAlignment="Center"></TextBlock>
-                            <HyperlinkButton x:Name="BTNDelete" Grid.Column="1" Content="删除" Click="MenuItem_Click"></HyperlinkButton>
+                            <Button x:Name="BTNDelete" 
+                                    Grid.Column="1" 
+                                    BorderThickness="1" 
+                                    Content="删除" 
+                                    Height="40" 
+                                    Width="70" 
+                                    Click="BTNDelete_Click"
+                                    Template="{StaticResource RoundButton}">
+                                    <!--Command="{Binding DeleteLrcFileCommand}" CommandParameter="{Binding ElementName=albumGrid, Path=DataContext}">-->
+                            </Button>
                         </Grid>
                     </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-            <TextBlock Grid.Row="2" Text="长按可删除" HorizontalAlignment="Center"></TextBlock>
+                </ListView.ItemTemplate>
+            </ListView>
+            <TextBlock Grid.Row="2" Text="文件删除后将不可恢复" HorizontalAlignment="Center"></TextBlock>
 
         </Grid>
     </Grid>

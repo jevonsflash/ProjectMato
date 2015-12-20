@@ -86,12 +86,32 @@ namespace MusicMinkAppLayer.Helpers
                     {
                         foreach (var item in matchTime)
                         {
-                            lrc.LrcWord.Add(Math.Round(stringToInterval(item.ToString()), 1), matchContent.ToString());
+                            System.Diagnostics.Debug.WriteLine(item.ToString());
+                            try
+                            {
+                                lrc.LrcWords.Add(new LrcWord()
+                                {
+                                    Time = TimeSpan.Parse(item.ToString().Split('.')[0]),
+                                    //Time = Math.Round(stringToInterval(item.ToString()), 1),
+                                    Content = matchContent.ToString()
+                                });
+
+                            }
+                            catch (Exception)
+                            {
+
+                                lrc.LrcWords.Add(new LrcWord()
+                                {
+                                    Time = default(TimeSpan),
+                                    //Time = Math.Round(stringToInterval(item.ToString()), 1),
+                                    Content = matchContent.ToString()
+                                });
+                            }
                         }
                     }
-                    lrc.LrcWord = (from a in lrc.LrcWord
-                                   orderby a.Key ascending
-                                   select a).ToDictionary(k => k.Key, v => v.Value);
+                    lrc.LrcWords = (from a in lrc.LrcWords
+                                    orderby a.Time ascending
+                                    select a).ToList();
 
                 }
             }

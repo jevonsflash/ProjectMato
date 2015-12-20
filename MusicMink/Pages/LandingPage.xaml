@@ -12,11 +12,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     >
-    
-    <d:Page.DataContext>
-        <dv:PlayQueueDesignData />
-    </d:Page.DataContext>
-    
+
     <Page.Resources>
         <converters:PercentageTransformConverter x:Key="DoubleToProgressBarWidth" FullMode="True"/>
         <converters:NumericTransformConverter x:Key="WidthTimesTwo" Sections="-2" Margin="0"/>
@@ -91,7 +87,7 @@
                     >
                     <ContentControl.ContentTemplate>
                         <DataTemplate>
-                            <Image Source="{Binding PlayQueue.Album.AlbumArt}" />
+                            <Image Source="{Binding Album.AlbumArt}" />
                         </DataTemplate>
                     </ContentControl.ContentTemplate>
                 </ContentControl>
@@ -154,8 +150,8 @@
                         <ContentControl.ContentTemplate>
                             <DataTemplate>
                                 <StackPanel>
-                                    <TextBlock Text="{Binding PlayQueue.CurrentTrack.Name}" FontSize="{StaticResource TextStyleLargeFontSize}" />
-                                    <TextBlock Text="{Binding PlayQueue.CurrentTrack.ArtistName}" FontSize="{StaticResource TextStyleMediumFontSize}" />
+                                    <TextBlock Text="{Binding Name}" FontSize="{StaticResource TextStyleLargeFontSize}" />
+                                    <TextBlock Text="{Binding ArtistName}" FontSize="{StaticResource TextStyleMediumFontSize}" />
                                 </StackPanel>
                             </DataTemplate>
                         </ContentControl.ContentTemplate>

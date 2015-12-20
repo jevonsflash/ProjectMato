@@ -51,7 +51,6 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             
-            <Rectangle Fill="{StaticResource PhoneBackgroundBrush}" Opacity="0.50" Grid.Row="1" Margin="-15,0,-15,0" />
             <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" Margin="0,0,0,0">
                 <Button x:Uid="AlbumPagePlayButton"
                 Template="{StaticResource RoundButton}"

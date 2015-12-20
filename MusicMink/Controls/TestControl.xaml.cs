@@ -3,20 +3,11 @@ using MusicMinkAppLayer.Helpers;
 using MusicMinkAppLayer.Models;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Threading.Tasks;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 // “用户控件”项模板在 http://go.microsoft.com/fwlink/?LinkId=234236 上有介绍
 
@@ -58,17 +49,22 @@ namespace MusicMink.Controls
         {
             TestControl testControl = d as TestControl;
             testControl.elapsedtime = testControl.ElapsedTime;
-            if (testControl.LBLyric.DataContext is Dictionary<double, string>)
+            if (testControl.LBLyric.DataContext is List<LrcWord>)
             {
 
 
-                Dictionary<double, string> nn = testControl.LBLyric.DataContext as Dictionary<double, string>;
-                var item = nn.FirstOrDefault(c => c.Key.ToString().Contains(testControl.elapsedtime));
-                int currentIndex = nn.ToList().IndexOf(item);
-                testControl.SetBrush(currentIndex);
-                if (true)
+                List<LrcWord> nn = testControl.LBLyric.DataContext as List<LrcWord>;
+                var item = nn.FirstOrDefault(c => c.Time.ToString().Contains(testControl.elapsedtime));
+                if (item != null)
                 {
-                    testControl.SetScroll(currentIndex);
+                    int currentIndex = nn.ToList().IndexOf(item);
+                    testControl.CleanBrush();
+                    testControl.SetBrush(currentIndex);
+                    if (true)
+                    {
+                        //testControl.SetScroll(currentIndex);
+                    }
+
                 }
             }
         }
@@ -164,9 +160,13 @@ namespace MusicMink.Controls
             if (await FileHelper.CreateAndWriteFileAsync(fileName, lrcStr))
             {
                 LRCItem lrcItem = LRCSer.InitLrc(lrcStr);
-                this.LBLyric.DataContext = lrcItem.LrcWord.Values;
-                
-                
+                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                {
+                    this.LBLyric.DataContext = lrcItem.LrcWords;
+                });
+
+
+
             }
 
 
@@ -186,7 +186,7 @@ namespace MusicMink.Controls
             if (!string.IsNullOrEmpty(lrcStr))
             {
                 LRCItem lrcItem = LRCSer.InitLrc(lrcStr);
-                this.LBLyric.DataContext = lrcItem.LrcWord.Values;
+                this.LBLyric.DataContext = lrcItem.LrcWords;
             }
             else
             {

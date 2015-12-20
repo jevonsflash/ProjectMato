@@ -23,4 +23,10 @@ namespace MusicMinkAppLayer.Models
         public Result2[] result { get; set; }
     }
 
+    public class Result2ForShow:Result2
+    {
+       
+        public string artist { get; set; }
+    }
+
 }

@@ -167,7 +167,7 @@ namespace MusicMinkAppLayer.Helpers
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine(filePath+"|||"+content);
+                System.Diagnostics.Debug.WriteLine(filePath + "|||" + content);
 
                 System.Diagnostics.Debug.WriteLine(ex.Message);
                 isCreateFile = false;
@@ -256,19 +256,31 @@ namespace MusicMinkAppLayer.Helpers
         /// 获取文件列表
         /// </summary>
         /// <returns></returns>
-        public async static Task<List<string>> GetFiles()
+        public async static Task<List<string>> GetFiles(string folderName)
         {
-            var storageFolder = ApplicationData.Current.LocalFolder;
             try
             {
-                IReadOnlyList<StorageFile> fileList;
-                fileList = await storageFolder.GetFilesAsync(Windows.Storage.Search.CommonFileQuery.OrderByDate);
-                List<string> result = fileList.Select(c => c.Name).ToList<string>();
-                return result;
-            }
-            catch (Exception)
-            {
+                IStorageFolder local = Windows.Storage.ApplicationData.Current.LocalFolder;
 
+                IReadOnlyList<StorageFolder> folderList = await local.GetFoldersAsync();
+
+                StorageFolder existFolder = folderList.FirstOrDefault(x => x.Name == folderName);
+                if (existFolder != null)
+                {
+                    IReadOnlyList<StorageFile> fileList;
+                    fileList = await existFolder.GetFilesAsync(Windows.Storage.Search.CommonFileQuery.DefaultQuery);
+                    List<string> result = fileList.Select(c => c.Name).ToList<string>();
+                    System.Diagnostics.Debug.WriteLine(result.Count);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
                 return null;
             }
 

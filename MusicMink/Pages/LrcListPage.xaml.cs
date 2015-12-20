@@ -25,100 +25,28 @@ namespace MusicMink.Pages
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class LrcListPage : Page, INotifyPropertyChanged
+    public sealed partial class LrcListPage : Page
     {
-        private List<string> lrcList;
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void NotifyPropertyChanged(string info)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(info));
-            }
-        }
-
-        public List<string> LrcList
-        {
-            get { return lrcList; }
-            set
-            {
-                lrcList = value;
-                NotifyPropertyChanged("LrcList");
-            }
-        }
-
-        private string lrcCount;
-
-        public string LrcCount
-        {
-            get { return lrcCount; }
-            set
-            {
-                lrcCount = value;
-                NotifyPropertyChanged("LrcCount");
-            }
-        }
-
+        private LrcListPageViewModel lrcListPageViewModel = new LrcListPageViewModel();
         public LrcListPage()
         {
             this.InitializeComponent();
-            CustomListLB.DataContext = LrcList;
+            this.DataContext = lrcListPageViewModel;
         }
 
-        /// <summary>
-        /// 在此页将要在 Frame 中显示时进行调用。
-        /// </summary>
-        /// <param name="e">描述如何访问此页的事件数据。
-        /// 此参数通常用于配置页。</param>
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-        }
-        private async void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-
-            var item = ((sender as HyperlinkButton).Parent as ListBoxItem).Content;
-            await FileHelper.DeleteFileAsync("/" + item);
-
-        }
-
-        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
-        {
-            this.InitializeLrcList();
-        }
-
-        private async Task<int> CleanUnavailableLrc()
-        {
-
-            int delCount = 0;
-            List<string> LrcListTemp = await FileHelper.GetFiles();
-
-            foreach (string strItem in LrcListTemp)
-            {
-                string fileNameWithoutExtention = strItem.Split('.')[0];
-                string songName = fileNameWithoutExtention.Split('-')[0];
-                string artistName = fileNameWithoutExtention.Split('-')[1];
-                SongViewModel song = LibraryViewModel.Current.LookupSongByName(songName, artistName);
-                if (song == null)
-                {
-                    await FileHelper.DeleteFileAsync("/" + strItem);
-                    delCount++;
-                }
-            }
-            return delCount;
-        }
 
         private async void BTNCleanUnavailableLrc_Click(object sender, RoutedEventArgs e)
         {
-            int delCount = await this.CleanUnavailableLrc();
-            this.InitializeLrcList();
+            int delCount = await lrcListPageViewModel.CleanUnavailableLrc();
             JMessBox jb = new JMessBox(string.Format("完成，已清理{0}个文件", delCount.ToString()));
             jb.Show();
         }
-        private async void InitializeLrcList()
+
+        private void BTNDelete_Click(object sender, RoutedEventArgs e)
         {
-            LrcList = await FileHelper.GetFiles();
-            lrcCount = LrcList.Count().ToString();
+            var item = ((sender as Button).Parent as Grid).DataContext;
+            lrcListPageViewModel.DeleteLrcFile(item);
+
         }
     }
 

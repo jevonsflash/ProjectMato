@@ -33,6 +33,12 @@ namespace MusicMinkAppLayer.Models
         /// <summary>
         /// 歌词
         /// </summary>
-        public Dictionary<double, string> LrcWord = new Dictionary<double, string>();
+        public List<LrcWord> LrcWords = new List<LrcWord>();
+    }
+
+    public class LrcWord
+    {
+        public TimeSpan Time { get; set; }
+        public string Content { get; set; }
     }
 }

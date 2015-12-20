@@ -244,6 +244,7 @@
     <Compile Include="ViewModels\DesignData\SongDesignData.cs" />
     <Compile Include="ViewModels\LibraryViewModel.cs" />
     <Compile Include="ViewModels\LrcControlViewModel.cs" />
+    <Compile Include="ViewModels\LrcListPageViewModel.cs" />
     <Compile Include="ViewModels\MixEntryViewModel.cs" />
     <Compile Include="ViewModels\MixEvaluators\IMixEvaluator.cs" />
     <Compile Include="ViewModels\MixEvaluators\RangeMixEvaluator.cs" />
@@ -306,6 +307,7 @@
     <Content Include="Img\thumb\thumb_matopeace.jpg" />
     <Content Include="Img\thumb\thumb_metro.png" />
     <Content Include="Img\UserContro.png" />
+    <None Include="Package.StoreAssociation.xml" />
     <Content Include="ViewModels\DesignData\Art\AV.jpg" />
     <Content Include="ViewModels\DesignData\Art\SS.jpg" />
     <None Include="packages.config" />

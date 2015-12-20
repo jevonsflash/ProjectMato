@@ -33,10 +33,6 @@ namespace MusicMink.Pages
             base.OnNavigatedTo(e);
 
             this.DataContext = LibraryViewModel.Current;
-            //this.GDMusicTray.DataContext = LibraryViewModel.Current;
-            //this.HomeButton.DataContext = LibraryViewModel.Current;
-            //this.CurrentTrackPanel.DataContext = LibraryViewModel.Current;
-
             NavigationManager.Current.SetRootFrame(MainContentFrame);
             NavigationManager.Current.Navigate(NavigationLocation.NowPlaying);
 

@@ -52,7 +52,7 @@
                 <RowDefinition Height="220" />
                 <RowDefinition Height="30" />
                 <RowDefinition Height="150" />
-                <RowDefinition Height="47" />
+                <RowDefinition Height="40" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="138" />
@@ -210,12 +210,12 @@
                 </StackPanel>
             </Grid>
             <!--播放状态信息-->
-            
+
             <HyperlinkButton
                 Grid.Row="6"
                 Grid.Column="0"
                 Grid.ColumnSpan="3"
-                FontSize="22"                    
+                FontSize="18"                    
                 HorizontalAlignment="Left"
                 Margin="5"
                 Tapped="TextBlock_Tapped"
@@ -234,6 +234,8 @@
                 Grid.Column="0"
                 Grid.ColumnSpan="3"
                 HorizontalAlignment="Right"
+                FontSize="22" 
+                VerticalAlignment="Bottom"
                 Text="{Binding ProgressTime}" />
 
             <!--进度条-->
@@ -284,7 +286,7 @@
             >
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="5" />
+                    <RowDefinition Height="10" />
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
@@ -297,29 +299,29 @@
 
                 <Rectangle
                 Fill="Black"
-                Grid.ColumnSpan="5"
+                Grid.ColumnSpan="3"
                 />
                 <Rectangle
                 x:Name="PlayerControlProgressBarFull"
                 Fill="{StaticResource PhoneAccentBrush}"
                 Opacity="0.5"
-                Grid.ColumnSpan="5"
+                Grid.ColumnSpan="3"
                 />
 
                 <Rectangle
                 x:Name="PlayerControlProgressBarCompleted"
                 Fill="{StaticResource PhoneAccentBrush}"
-                Width="{Binding PlayQueue.PercentTime, Converter={StaticResource DoubleToProgressBarWidth}}"
+                Width="{Binding PercentTime, Converter={StaticResource DoubleToProgressBarWidth}}"
                 HorizontalAlignment="Left"
-                Visibility="{Binding PlayQueue.IsActive, Converter={StaticResource BoolToVisibilityConverter}}"
-                Grid.ColumnSpan="5"
+                Visibility="{Binding IsActive, Converter={StaticResource BoolToVisibilityConverter}}"
+                Grid.ColumnSpan="3"
                 />
 
 
 
                 <Rectangle
                 Fill="Transparent"
-                Grid.ColumnSpan="5"
+                Grid.ColumnSpan="3"
                 Margin="0,-10,0,-10"
                 ManipulationMode="TranslateX,TranslateRailsX,System"
                 ManipulationStarted="HandlePlayerControlProgressBarBezzelManipulationStarted"
@@ -344,7 +346,7 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                
+
                 <controls:ImageButton x:Name="BTPre" Grid.Row="0" Grid.Column="0" ImageSource="/Icon/rew.png" Click="BTPre_Click" Style="{StaticResource ImageButtonStyle}"></controls:ImageButton>
                 <controls:ImageButton x:Name="BTPlay" Grid.Row="0" 
                                 Grid.Column="1" 
@@ -370,7 +372,7 @@
                                       ImageSource="/Icon/ff.png" 
                                       Click="BTNext_Click"  
                                       Style="{StaticResource ImageButtonStyle}">
-                    
+
                 </controls:ImageButton>
                 <controls:ImageButton  
                                       Grid.Row="1"

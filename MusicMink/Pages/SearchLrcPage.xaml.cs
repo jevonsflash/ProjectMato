@@ -1,6 +1,7 @@
 ﻿using MusicMink.ViewModels;
 using MusicMinkAppLayer.Helpers;
 using MusicMinkAppLayer.Models;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,10 +25,14 @@ namespace MusicMink.Pages
         {
             InitializeComponent();
             this.DataContext = LibraryViewModel.Current.PlayQueue;
-
+            Loaded += SearchLrcPage_Loaded;
         }
 
-
+        private void SearchLrcPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            songName = this.TBSongName.Text;
+            artistName = this.TBArtistName.Text;
+        }
 
         private LRCItem lrcData;
         private Gecime_Lyric list;
@@ -52,19 +57,7 @@ namespace MusicMink.Pages
             }
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            if (e.Parameter != null)
-            {
-                songName = (e.Parameter as string[]).First();
-                artistName = (e.Parameter as string[]).Last();
-            }
-            base.OnNavigatedTo(e);
-        }
 
-        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
-        {
-        }
 
 
 
@@ -138,22 +131,28 @@ namespace MusicMink.Pages
             //当前作者结果对象
 
             var temp = list.result.FirstOrDefault(c => c.artist_id.ToString() == e.Node2);
-            dynamic result = null;
-            //加入到查询结果表
-            result.Add(new
+            if (temp != null)
             {
-                sid = temp.sid,
-                song = temp.song,
-                lrc = temp.lrc,
-                artist = artistModel.name,
-            });
-            //绑定结果表
-            await Task.Run(() =>
-             {
+                List<Result2ForShow> result = new List<Result2ForShow>();
+                //加入到查询结果表
+                result.Add(new Result2ForShow
+                {
+                    sid = temp.sid,
+                    song = temp.song,
+                    lrc = temp.lrc,
+                    artist = artistModel.name,
+                });
+                //绑定结果表
 
-                 this.LBResult.DataContext = null;
-                 this.LBResult.DataContext = result;
-             });
+
+                //await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                //{
+                //    this.LBResult.DataContext = result;
+                //});
+
+
+
+            }
         }
 
         /// <summary>
@@ -188,7 +187,20 @@ namespace MusicMink.Pages
 
         private void BTNSearch_Click(object sender, RoutedEventArgs e)
         {
-            DoHttpWebRequest(songName);
+            songName = this.TBSongName.Text;
+            artistName = this.TBArtistName.Text;
+            if (!string.IsNullOrEmpty(songName))
+            {
+                DoHttpWebRequest(songName);
+
+            }
+            else
+            {
+
+                JMessBox jb = new JMessBox("至少填写歌曲名称");
+                jb.Show();
+
+            }
         }
 
         private void BTNDownLoad_Click(object sender, RoutedEventArgs e)
