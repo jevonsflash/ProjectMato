@@ -396,17 +396,6 @@ namespace MusicMink.ViewModels
                 }
             }
         }
-        private static List<string> CreateDefaultGroups(CharacterGroupings slg)
-        {
-            List<string> list = new List<string>();
-            foreach (CharacterGrouping cg in slg)
-            {
-                if (cg.Label == "") continue;
-                else
-                    list.Add(cg.Label);
-            }
-            return list;
-        }
         private string _sortName;
         public string SortName
         {
@@ -416,7 +405,7 @@ namespace MusicMink.ViewModels
                 {
                     CultureInfo ci = CultureInfo.CurrentUICulture;
                     CharacterGroupings slg = new CharacterGroupings();
-                    List<string> list = CreateDefaultGroups(slg);
+                    List<string> list = HeaderCharacter.CreateDefaultGroups(slg);
                     _sortName = slg.Lookup(Name);
                 }
 

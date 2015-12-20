@@ -78,7 +78,7 @@
         						Margin="5"
                             >
                                 <Grid>
-                                    <TextBlock Text="{Binding Group.Title}" FontSize="{StaticResource TextStyleMediumFontSize}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Group.Title}" FontSize="{StaticResource TextStyleLargeFontSize}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     <TextBlock Text="{Binding Group.Count}" FontSize="{StaticResource TextStyleSmallFontSize}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,2"/>
                                 </Grid>
                             </Border>

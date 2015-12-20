@@ -5,10 +5,13 @@ using MusicMinkAppLayer.Diagnostics;
 using MusicMinkAppLayer.Helpers;
 using MusicMinkAppLayer.Models;
 using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Globalization;
 using System.IO;
 using System.Threading.Tasks;
+using Windows.Globalization.Collation;
 using Windows.Storage;
 
 namespace MusicMink.ViewModels
@@ -251,18 +254,10 @@ namespace MusicMink.ViewModels
             {
                 if (_sortName == null)
                 {
-                    if (Name.Length <= 4) _sortName = Name;
-                    else
-                    {
-                        if (Name.Substring(0, 4).ToLowerInvariant() == Strings.GetResource("TitleStartStripMatch"))
-                        {
-                            _sortName = Name.Substring(4);
-                        }
-                        else
-                        {
-                            _sortName = Name;
-                        }
-                    }
+                    CultureInfo ci = CultureInfo.CurrentUICulture;
+                    CharacterGroupings slg = new CharacterGroupings();
+                    List<string> list = HeaderCharacter.CreateDefaultGroups(slg);
+                    _sortName = slg.Lookup(Name);
                 }
 
                 return _sortName;

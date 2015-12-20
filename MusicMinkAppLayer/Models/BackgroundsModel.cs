@@ -57,6 +57,7 @@ namespace MusicMinkAppLayer.Models
             if (backgroundTableList.Count() == 0)
             {
                 Init();
+                backgroundTableList = DatabaseManager.Current.FetchBackgroundItems();
             }
             foreach (BackgroundTable item in backgroundTableList)
             {

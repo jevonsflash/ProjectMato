@@ -80,7 +80,7 @@
                                 </ListView>
                             </SemanticZoom.ZoomedInView>
                             <SemanticZoom.ZoomedOutView>
-                                <GridView Background="Black" Opacity="0.5"
+                                <GridView Background="Black"
                                     Style="{StaticResource StandardAlphaListZoomedOutListStyle}"                                                                              
                                     ItemsSource="{Binding Source={StaticResource SongGroupInfo}, Path=CollectionGroups}"
                                     />
@@ -134,7 +134,7 @@
                                 </GridView>
                             </SemanticZoom.ZoomedInView>
                             <SemanticZoom.ZoomedOutView>
-                                <GridView Background="Black" Opacity="0.5"
+                                <GridView Background="Black"
                                     Style="{StaticResource StandardAlphaListZoomedOutListStyle}"                                                                              
                                     ItemsSource="{Binding Source={StaticResource AlbumGroupInfo}, Path=CollectionGroups}"
                                     />
@@ -187,7 +187,7 @@
                                 </ListView>
                             </SemanticZoom.ZoomedInView>
                             <SemanticZoom.ZoomedOutView>
-                                <GridView Background="Black" Opacity="0.5"
+                                <GridView Background="Black"
                                     Style="{StaticResource StandardAlphaListZoomedOutListStyle}"                                                                              
                                     ItemsSource="{Binding Source={StaticResource ArtistGroupInfo}, Path=CollectionGroups}"
                                     />

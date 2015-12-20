@@ -131,7 +131,7 @@ namespace MusicMink.Controls
             list = LRCSer.GecimeLyricDeserializer(e.Node).result.ToList();
             if (list.Count == 0)
             {
-                DisplayErr("暂无内容");
+                ShowErr();
             }
             else
             {
@@ -143,10 +143,15 @@ namespace MusicMink.Controls
             }
         }
 
-        private void DisplayErr(string v)
+        private void ShowErr()
         {
-            throw new NotImplementedException();
+            this.ErrNoLrc.Visibility = Visibility.Visible;
         }
+        private void HideErr()
+        {
+            this.ErrNoLrc.Visibility = Visibility.Collapsed;
+        }
+
 
         /// <summary>
         /// 处理返回值2
@@ -210,6 +215,7 @@ namespace MusicMink.Controls
         private void UpdateMusic()
         {
             LBLyric.DataContext = null;
+            HideErr();
             return;
 
         }

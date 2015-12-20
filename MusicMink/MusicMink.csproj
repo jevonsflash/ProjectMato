@@ -101,6 +101,7 @@
     <Compile Include="Collections\ObservableCopyCollection.cs" />
     <Compile Include="Collections\SelectableOption.cs" />
     <Compile Include="Collections\SortedList.cs" />
+    <Compile Include="Common\HeaderCharacter.cs" />
     <Compile Include="Common\GenericComparer.cs" />
     <Compile Include="Common\JMessBox.cs" />
     <Compile Include="Common\ListRestoreHelper.cs" />

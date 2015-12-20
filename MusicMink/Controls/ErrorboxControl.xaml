@@ -6,14 +6,48 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="300"
-    d:DesignWidth="400">
+    d:DesignHeight="380"
+    d:DesignWidth="300">
 
-    <Grid x:Name="LayoutRoot">
+    <Grid x:Name="GDLayer"
+            Height="380" 
+            Width="300">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Border Background="Black" Grid.RowSpan="3" CornerRadius="15" Opacity="0.5" >
+        </Border>        
+        <Image Height="300" Grid.RowSpan="2" Source="ms-appx:///Img/AlbumArtPlaceholder.png" >
+        </Image> 
+        <AppBarButton 
+            x:Name="BTNClose"
+            IsCompact="True" 
+            Icon="Cancel"
+            Margin="5,0,0,0"
+            Click="BTNClose_Click"
+            >
+            
+        </AppBarButton>
 
-        <StackPanel Width="220" Orientation="Vertical"  HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Image Width="180" Height="180" Source="/Img/UserContro.png"  ></Image>
-            <TextBlock x:Name="TBMessage" TextAlignment="Center" TextWrapping="Wrap" Foreground="Gray" FontSize="30" HorizontalAlignment="Center"  ></TextBlock>
-        </StackPanel>
+        <TextBlock x:Name="TBMessage" 
+                   HorizontalAlignment="Center"  
+                    Grid.Row="2" 
+                    Text="你还没有添加任何歌曲哦~"
+                    FontSize="22"
+                       >
+        </TextBlock>
+        <Button x:Name="BTNFun"
+                Content="现在添加" 
+                Grid.Row="2"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                Margin="0,0,0,20"
+                Template="{StaticResource RoundButton}" 
+                Height="45" 
+                BorderThickness="1">
+        </Button>
     </Grid>
+
 </UserControl>

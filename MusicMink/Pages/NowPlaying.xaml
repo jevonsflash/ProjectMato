@@ -47,7 +47,7 @@
         <Grid x:Name="GDPage" Visibility="Visible">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
-                <RowDefinition Height="37" />
+                <RowDefinition Height="45" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="220" />
                 <RowDefinition Height="30" />
@@ -63,31 +63,6 @@
                 <ColumnDefinition Width="4*" />
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
-            <!--没有歌曲时警示标语-->
-            <Grid Grid.Row="1" 
-                  Grid.ColumnSpan="2" 
-                  Visibility="{Binding IsActive, Converter={StaticResource NotBoolToVisibilityConverter}}">
-                <StackPanel>
-                    <TextBlock x:Uid="NowPlayingNotActiveMessage"
-                        FontSize="{StaticResource TextStyleSmallFontSize}"
-                        TextWrapping="WrapWholeWords"
-                        TextAlignment="Justify"
-                        FontStyle="Italic"
-                        Foreground="{StaticResource PhoneForegroundBrush}">
-                    </TextBlock>
-                </StackPanel>
-            </Grid>
-            <!--主菜单按钮-->
-            <AppBarButton x:Name="BTNMainMenu"
-                Grid.Row="1" 
-                Grid.RowSpan="2"
-                Grid.Column="2"
-                Icon="List"
-                IsCompact="True"
-                VerticalAlignment="Center"
-                Margin="0,0,0,5"
-                Click="BTNMainMenu_Click"
-                />
             <!--当前歌曲专辑封面-->
             <Image
                 Grid.Row="3"
@@ -385,6 +360,7 @@
 
             </Grid>
         </Grid>
+        <!--侧滑菜单-->
         <Grid x:Name="GDMenu" HorizontalAlignment="Right" VerticalAlignment="Top" Height="{Binding ElementName=GDLayout, Path=ActualHeight}" Width="200" Background="Gray" Margin="0,0,-200,0">
             <ScrollViewer Grid.Row="1" x:Name="ContentRoot" Margin="0">
                 <StackPanel>
@@ -484,19 +460,7 @@
                 </StackPanel>
             </ScrollViewer>
         </Grid>
-        <AppBarButton 
-            HorizontalAlignment="Right" 
-            VerticalAlignment="Bottom"
-            Margin="0,0,10,150"
-            Click="AppBarButton_Click"
-            Visibility="{Binding ElementName=LrcControl,Path=Visibility,Converter={StaticResource VisibleToCollapseConverter}}"
-            >
-            <AppBarButton.Icon>
-                <FontIcon FontFamily="Webdings" Glyph="e"></FontIcon>
-            </AppBarButton.Icon>
-        </AppBarButton>
         <!--歌词-->
-
         <controls:TestControl VerticalAlignment="Top"
                               x:Name="LrcControl"
                               Visibility="Collapsed"
@@ -506,5 +470,39 @@
 >
 
         </controls:TestControl>
+        <!--错误提示框-->
+        <controls:ErrorboxControl 
+            Visibility="{Binding IsActive, Converter={StaticResource NotBoolToVisibilityConverter}}"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Margin="0,70,0,0"
+            IsBtnShow="True"
+            Message="你还没有添加任何歌曲哦~"
+            >
+        </controls:ErrorboxControl>        
+        <!--歌词按钮-->
+        <AppBarButton 
+            HorizontalAlignment="Right" 
+            VerticalAlignment="Bottom"
+            Margin="0,0,10,150"
+            Click="AppBarButton_Click"
+            Visibility="{Binding ElementName=LrcControl,Path=Visibility,Converter={StaticResource VisibleToCollapseConverter}}"
+            IsEnabled="{Binding IsActive}">
+            <AppBarButton.Icon>
+                <FontIcon FontFamily="Webdings" Glyph="e"></FontIcon>
+            </AppBarButton.Icon>
+        </AppBarButton>
+        <!--主菜单按钮-->
+        <AppBarButton x:Name="BTNMainMenu"
+            HorizontalAlignment="Right" 
+            Margin="0,10,10,0"
+            Grid.Row="1" 
+            Grid.RowSpan="2"
+            Grid.Column="2"
+            Icon="List"
+            VerticalAlignment="Top"
+            Click="BTNMainMenu_Click"
+                />
+
     </Grid>
 </local:BasePage>
