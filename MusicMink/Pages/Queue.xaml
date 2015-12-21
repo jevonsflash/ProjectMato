@@ -99,7 +99,7 @@
         <TextBlock x:Uid="PlayqueueEmptyMessage"
             Grid.Row="1"
             Visibility="{Binding IsEmpty, Converter={StaticResource BoolToVisibilityConverter}}"                           
-            FontSize="{StaticResource TextStyleSmallFontSize}"
+            FontSize="{StaticResource TextStyleMediumFontSize}"
             TextWrapping="WrapWholeWords"
             TextAlignment="Center"
             FontStyle="Italic"

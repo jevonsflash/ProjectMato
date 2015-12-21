@@ -23,7 +23,7 @@
             <controls:ScalingTextBox x:Uid="AlbumPageHeader"
                 Text="{Binding Name}" 
                 MaxFontSize="{StaticResource HeaderFontSize}"                    
-                MinFontSize="{StaticResource TextStyleSmallFontSize}"
+                MinFontSize="{StaticResource TextStyleMediumFontSize}"
                 TextForeground="{ThemeResource PhoneForegroundBrush}"
                 />
 
@@ -35,7 +35,7 @@
             
             <TextBlock
                 Text="{Binding LengthInfo}" 
-                FontSize="{StaticResource TextStyleSmallFontSize}"
+                FontSize="{StaticResource TextStyleMediumFontSize}"
                 Foreground="{ThemeResource PhoneForegroundBrush}"
                 />
 

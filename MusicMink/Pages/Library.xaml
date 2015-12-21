@@ -47,9 +47,10 @@
 
                         <TextBlock x:Uid="LibraryPagesEmptyLibraryMessage"
                             Visibility="{Binding IsEmpty, Converter={StaticResource BoolToVisibilityConverter}}"                           
-                            FontSize="{StaticResource TextStyleSmallFontSize}"
+                            FontSize="{StaticResource TextStyleMediumFontSize}"
                             TextWrapping="WrapWholeWords"
                             TextAlignment="Justify"
+                            FontStyle="Italic"
                             Foreground="{StaticResource PhoneForegroundBrush}"
                             />
 
@@ -98,7 +99,7 @@
                     <Grid Visibility="{Binding LibraryLoaded, Converter={StaticResource BoolToVisibilityConverter}}">
                         <TextBlock x:Uid="LibraryPagesEmptyLibraryMessage"
                             Visibility="{Binding IsEmpty, Converter={StaticResource BoolToVisibilityConverter}}"                           
-                            FontSize="{StaticResource TextStyleSmallFontSize}"
+                            FontSize="{StaticResource TextStyleMediumFontSize}"
                             TextWrapping="WrapWholeWords"
                             TextAlignment="Justify"
                             FontStyle="Italic"
@@ -152,7 +153,7 @@
                     <Grid Visibility="{Binding LibraryLoaded, Converter={StaticResource BoolToVisibilityConverter}}">
                         <TextBlock x:Uid="LibraryPagesEmptyLibraryMessage"
                             Visibility="{Binding IsEmpty, Converter={StaticResource BoolToVisibilityConverter}}"                           
-                            FontSize="{StaticResource TextStyleSmallFontSize}"
+                            FontSize="{StaticResource TextStyleMediumFontSize}"
                             TextWrapping="WrapWholeWords"
                             TextAlignment="Justify"
                             FontStyle="Italic"

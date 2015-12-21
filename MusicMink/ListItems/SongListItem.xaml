@@ -138,7 +138,7 @@
                 <TextBlock
                     Grid.Row="1"
                     Grid.Column="1"
-                    FontSize="{StaticResource TextStyleSmallFontSize}"
+                    FontSize="{StaticResource TextStyleMediumFontSize}"
                     Foreground="{ThemeResource PhoneMidBrush}"
                     >
                     <Run x:Name="SongInfoFirstPart" Text="{Binding ArtistName}" />

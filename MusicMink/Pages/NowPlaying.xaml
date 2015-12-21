@@ -257,7 +257,7 @@
 
             <Grid x:Name="GDMusicTray"
             Grid.Row="8" Grid.ColumnSpan="3"
-            Background="Red" Margin="0,0,0,0" 
+            Background="Transparent" Margin="0,0,0,0" 
             >
 
                 <Grid.RowDefinitions>
@@ -273,24 +273,31 @@
                 </Grid.ColumnDefinitions>
 
                 <Rectangle
-                Fill="Black"
+                Fill="Transparent"
                 Grid.ColumnSpan="3"
                 />
                 <Rectangle
                 x:Name="PlayerControlProgressBarFull"
-                Fill="{StaticResource PhoneAccentBrush}"
-                Opacity="0.5"
+                Fill="White"
+                Opacity="0.2"
                 Grid.ColumnSpan="3"
                 />
 
                 <Rectangle
                 x:Name="PlayerControlProgressBarCompleted"
-                Fill="{StaticResource PhoneAccentBrush}"
                 Width="{Binding PercentTime, Converter={StaticResource DoubleToProgressBarWidth}}"
                 HorizontalAlignment="Left"
                 Visibility="{Binding IsActive, Converter={StaticResource BoolToVisibilityConverter}}"
                 Grid.ColumnSpan="3"
-                />
+                >
+                    <Rectangle.Fill>
+                        <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                            <GradientStop Color="#7FFFFFFF" Offset="0"/>
+                            <GradientStop Color="#CCFFFFFF" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+
+                </Rectangle>
 
 
 
@@ -469,7 +476,7 @@
             IsBtnShow="True"
             Message="你还没有添加任何歌曲哦~"
             >
-        </controls:ErrorboxControl>        
+        </controls:ErrorboxControl>
         <!--歌词按钮-->
         <AppBarButton 
             HorizontalAlignment="Right" 

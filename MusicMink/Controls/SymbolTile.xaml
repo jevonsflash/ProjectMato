@@ -28,7 +28,7 @@
 
             <Style x:Key="TileTextStyleSmall" TargetType="TextBlock">
                 <Setter Property="Foreground" Value="White" />
-                <Setter Property="FontSize" Value="{StaticResource TextStyleSmallFontSize}" />
+                <Setter Property="FontSize" Value="{StaticResource TextStyleMediumFontSize}" />
                 <Setter Property="HorizontalAlignment" Value="Right" />
                 <Setter Property="VerticalAlignment" Value="Bottom" />
                 <Setter Property="TextAlignment" Value="Center" />

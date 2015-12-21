@@ -94,7 +94,7 @@
                 <TextBlock
                     Grid.Row="1"
                     Grid.Column="1"                    
-                    FontSize="{StaticResource TextStyleSmallFontSize}"
+                    FontSize="{StaticResource TextStyleMediumFontSize}"
                     >
                     <Run Text="{Binding Song.ArtistName}" />
                     <Run Text=" - " />
@@ -154,7 +154,7 @@
                     Grid.Row="0"
                     x:Name="ExtraInfoStringTextBlock"
                     Margin="30,0,0,0"
-					FontSize="{StaticResource TextStyleSmallFontSize}"
+					FontSize="{StaticResource TextStyleMediumFontSize}"
 					Text="{Binding Song.ExtraInfoString}"
 					/>
 
@@ -205,7 +205,6 @@
                         Height="45"
                         BorderThickness="1"
                         Command="{Binding Song.EditSong}"
-                        Style="{Binding Foreground, ElementName=ExtraInfoStringTextBlock, Converter={StaticResource AppBarButtonStyleSelector}}" 
                         />
 
                     <Button x:Uid="QueueItemRemoveRoundButton"
@@ -216,7 +215,6 @@
                         Height="45"
                         BorderThickness="1"
                         Command="{Binding RemoveFromQueue}"      
-                        Style="{Binding Foreground, ElementName=ExtraInfoStringTextBlock, Converter={StaticResource AppBarButtonStyleSelector}}" 
                         />                    
                 </Grid>
             </Grid>

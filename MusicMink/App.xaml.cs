@@ -195,23 +195,64 @@ namespace MusicMink
         private void UpdateTheme()
         {
             BackgroundModel bm = BackgroundsModel.Current.GetBackgroundList().Find(p => p.IsSel == true);
-            SolidColorBrush brush1;
-            SolidColorBrush brush2;
-
+            Color color1;
+            Color color2;
+            Color color3;
+            Color color4;
             if (bm == null)
             {
                 SolidColorBrush defaultbrush = DebugHelper.CastAndAssert<SolidColorBrush>(App.Current.Resources["PhoneAccentBrush"]);
-                brush1 = defaultbrush;
-                brush2 = defaultbrush;
+                color1 = defaultbrush.Color;
+                color2 = color1.GetLighterColor(40);
+                color3 = color1.GetLighterColor(40);
+                color4 = color2.GetLighterColor(40);
+
             }
             else
             {
-                brush1 = MusicMinkAppLayer.Helpers.ColorHelper.GetBrushFromHEX(bm.Ext.Split('|')[0]) as SolidColorBrush;
-                brush2 = MusicMinkAppLayer.Helpers.ColorHelper.GetBrushFromHEX(bm.Ext.Split('|')[1]) as SolidColorBrush;
+                color1 = MusicMinkAppLayer.Helpers.ColorHelper.GetColorFromHEX(bm.Ext.Split('|')[0]);
+                color2 = MusicMinkAppLayer.Helpers.ColorHelper.GetColorFromHEX(bm.Ext.Split('|')[1]);
+                color3 = color1.GetLighterColor(10);
+                color4 = color2.GetLighterColor(10);
             }
 
-            ((SolidColorBrush)App.Current.Resources["PlayerControlForegroundColor1"]).Color = brush1.Color;
-            ((SolidColorBrush)App.Current.Resources["PlayerControlForegroundColor2"]).Color = brush2.Color;
+            ((SolidColorBrush)App.Current.Resources["PlayerControlForegroundColor1"]).Color = color1;
+            ((SolidColorBrush)App.Current.Resources["PlayerControlForegroundColor2"]).Color = color2;
+            ((LinearGradientBrush)App.Current.Resources["PlayerControlGradientColor2"]).GradientStops = new GradientStopCollection() {
+                new GradientStop()
+                {
+                    Color=color1,
+                    Offset =0
+                },
+                new GradientStop()
+                {
+                    Color=color3,
+                    Offset =1
+                }
+            };
+
+            ((LinearGradientBrush)App.Current.Resources["PlayerControlGradientColor1"]).GradientStops = new GradientStopCollection() {
+                new GradientStop()
+                {
+                    Color=color4,
+                    Offset =0
+                },
+                new GradientStop()
+                {
+                    Color=color2,
+                    Offset =0.12
+                },
+                new GradientStop()
+                {
+                    Color=color1,
+                    Offset =0.58
+                },
+                new GradientStop()
+                {
+                    Color=color3,
+                    Offset =1
+                }
+            };
 
             var bitmapImage = new BitmapImage(new Uri(string.Format("ms-resource:/Files{0}", bm.Img)));
             if (Application.Current.Resources.Keys.Contains("MainBackGroundBrush"))

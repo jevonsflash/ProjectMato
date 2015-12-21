@@ -28,7 +28,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-        
+
         <Frame
             x:Name="MainContentFrame"
             Grid.Row="0"
@@ -38,10 +38,9 @@
         <Grid x:Name="GDMusicTray"
             Visibility="{Binding IsTrayVisible, Converter={StaticResource BoolToVisibilityConverter}}"
             Grid.Row="1"
-            Background="{StaticResource PhoneBackgroundBrush}"
             VerticalAlignment="Bottom"
+              Background="{StaticResource PlayerControlGradientColor1}"
             >
-            
             <Grid.RowDefinitions>
                 <RowDefinition Height="5" />
                 <RowDefinition Height="80" />
@@ -54,22 +53,23 @@
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
-           
+
             <Rectangle
                 Fill="Black"
                 Grid.ColumnSpan="5"
                 />
-            
+
             <Rectangle
                 x:Name="PlayerControlProgressBarFull"
-                Fill="{StaticResource PhoneAccentBrush}"
+                Fill="{StaticResource PlayerControlForegroundColor2}"
                 Opacity="0.5"
                 Grid.ColumnSpan="5"
                 />
-            
+
             <Rectangle
                 x:Name="PlayerControlProgressBarCompleted"
-                Fill="{StaticResource PhoneAccentBrush}"
+                Fill="White"
+                Opacity="0.5"
                 Width="{Binding PlayQueue.PercentTime, Converter={StaticResource DoubleToProgressBarWidth}}"
                 HorizontalAlignment="Left"
                 Visibility="{Binding PlayQueue.IsActive, Converter={StaticResource BoolToVisibilityConverter}}"
@@ -81,7 +81,7 @@
                 Height="80"
                 Width="80"
                 Visibility="{Binding PlayQueue.CurrentTrack, Converter={StaticResource NotNullToVisibilityConverter}}"
-                >                
+                >
                 <ContentControl
                     Content="{Binding PlayQueue.CurrentTrack}"
                     >
@@ -100,7 +100,7 @@
                     VerticalAlignment="Center"
                     Visibility="{Binding PlayQueue.IsPlaying, Converter={StaticResource NotBoolToVisibilityConverter}}"
                     Command="{Binding PlayQueue.PlayPausePlayer}"
-                    >   
+                    >
                     <SymbolIcon
                         Width="80"
                         Height="80"
@@ -172,10 +172,10 @@
                 Grid.ColumnSpan="3"
                 HorizontalAlignment="Right"
                 Margin="3"
-                FontSize="{StaticResource TextStyleSmallFontSize}"
+                FontSize="{StaticResource TextStyleMediumFontSize}"
                 Visibility="{Binding PlayQueue.IsActive, Converter={StaticResource BoolToVisibilityConverter}}"                
                 />
-            
+
             <AppBarButton x:Name="HomeButton"
                 Grid.Row="2"                
                 Grid.Column="4"

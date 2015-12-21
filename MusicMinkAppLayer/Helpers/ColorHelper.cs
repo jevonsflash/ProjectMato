@@ -8,7 +8,7 @@ using Windows.UI.Xaml.Media;
 
 namespace MusicMinkAppLayer.Helpers
 {
-    public class ColorHelper
+    public static class ColorHelper
     {
         public static Color GetColorFromHEX(object value)
         {
@@ -32,6 +32,33 @@ namespace MusicMinkAppLayer.Helpers
             SolidColorBrush Result = new SolidColorBrush(cc);
             return Result;
 
+        }
+
+        public static Color GetLighterColor(this Color origin, int buff)
+        {
+            Color result = Windows.UI.ColorHelper.FromArgb(origin.A, GetValue(origin.R, buff, true), GetValue(origin.G, buff, true), GetValue(origin.B, buff, true));
+            return result;
+        }
+        public static Color GetDarkerColor(this Color origin, int buff)
+        {
+            Color result = Windows.UI.ColorHelper.FromArgb(origin.A, GetValue(origin.R, buff, false), GetValue(origin.G, buff, false), GetValue(origin.B, buff, false));
+            return result;
+        }
+
+        
+
+        private static byte GetValue(int originvalue, int buff, bool isLighter)
+        {
+            int result = isLighter ? originvalue + buff : originvalue - buff;
+            if (result > 255)
+            {
+                result = 255;
+            }
+            if (result < 0)
+            {
+                result = 0;
+            }
+            return Convert.ToByte(result);
         }
     }
 }

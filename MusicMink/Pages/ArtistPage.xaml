@@ -25,7 +25,7 @@
             <controls:ScalingTextBox
                 Text="{Binding Name}" 
                 MaxFontSize="{StaticResource HeaderFontSize}"                    
-                MinFontSize="{StaticResource TextStyleSmallFontSize}"
+                MinFontSize="{StaticResource TextStyleMediumFontSize}"
                 TextForeground="{ThemeResource PhoneForegroundBrush}"
                 />
         </StackPanel>

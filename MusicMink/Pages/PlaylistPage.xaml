@@ -27,7 +27,7 @@
             <controls:ScalingTextBox x:Uid="PlaylistPageHeader"
                 Text="{Binding Name}" 
                 MaxFontSize="{StaticResource HeaderFontSize}"                    
-                MinFontSize="{StaticResource TextStyleSmallFontSize}"
+                MinFontSize="{StaticResource TextStyleMediumFontSize}"
                 TextForeground="{ThemeResource PhoneForegroundBrush}"
                 />
 
