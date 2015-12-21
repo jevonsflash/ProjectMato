@@ -235,10 +235,10 @@
     <value>{0}, 最近播放 {1}</value>
   </data>
   <data name="SongExtraInfoPlay" xml:space="preserve">
-    <value>播放</value>
+    <value>次播放</value>
   </data>
   <data name="SongExtraInfoPlays" xml:space="preserve">
-    <value>Plays</value>
+    <value>次播放</value>
   </data>
   <data name="SongItemAddRoundButton.Content" xml:space="preserve">
     <value>添加至..</value>
@@ -252,14 +252,8 @@
   <data name="SongItemQueueRoundButton.Content" xml:space="preserve">
     <value>加入列队</value>
   </data>
-  <data name="SongsListHeader.Text" xml:space="preserve">
-    <value>Songs</value>
-  </data>
   <data name="HomePageSongsTile.Caption" xml:space="preserve">
     <value>歌曲</value>
-  </data>
-  <data name="TitleStartStripMatch" xml:space="preserve">
-    <value>the </value>
   </data>
   <data name="UnknownAlbumString" xml:space="preserve">
     <value>未命名专辑</value>
@@ -328,7 +322,7 @@
     <value>播放全部</value>
   </data>
   <data name="DialogEditNoArtMessage.Text" xml:space="preserve">
-    <value>Couldn't get song. Please try again.</value>
+    <value>无法获取歌曲信息，请重试</value>
   </data>
   <data name="DialogEditSong.PrimaryButtonText" xml:space="preserve">
     <value>更新</value>
@@ -412,19 +406,19 @@
     <value>跳过曲目</value>
   </data>
   <data name="DefaultSyncPhoneContentButton.Content" xml:space="preserve">
-    <value>Sync Phone Content</value>
+    <value>更新</value>
   </data>
   <data name="SyncPhoneContentCancelButton.Content" xml:space="preserve">
-    <value>Cancel</value>
+    <value>取消</value>
   </data>
   <data name="ImportStatsContentButton.Content" xml:space="preserve">
-    <value>Import Stat File</value>
+    <value>导入统计文件</value>
   </data>
   <data name="ImportStatsSongsFoundCount.Text" xml:space="preserve">
-    <value>Matches Found</value>
+    <value>已找到</value>
   </data>
   <data name="ImportStatsSongsSkippedCount.Text" xml:space="preserve">
-    <value>Entries Skipped</value>
+    <value>已跳过</value>
   </data>
   <data name="HomePageAlbumsTile.Caption" xml:space="preserve">
     <value>专辑</value>
@@ -676,13 +670,13 @@
     <value>查找</value>
   </data>
   <data name="SearchPageSearchedForText.Text" xml:space="preserve">
-    <value>Searched for</value>
+    <value>的查找结果</value>
   </data>
   <data name="SearchPageSearchingForText.Text" xml:space="preserve">
-    <value>Searching for</value>
+    <value>正在查询</value>
   </data>
   <data name="SearchPageSearchTermBox.PlaceholderText" xml:space="preserve">
-    <value>Search Query</value>
+    <value>请输入关键字</value>
   </data>
   <data name="PlayQueueClearAll.Content" xml:space="preserve">
     <value>清空</value>
@@ -703,7 +697,7 @@
     <value>剩余曲目</value>
   </data>
   <data name="CleanSongsToRemove.Text" xml:space="preserve">
-    <value>Orphaned Songs Found:</value>
+    <value>已发现无效曲目:</value>
   </data>
   <data name="ExportStatsContentButton.Content" xml:space="preserve">
     <value>Export Stat File</value>
@@ -748,7 +742,7 @@
     <value>随机播放全部</value>
   </data>
   <data name="CustomSyncPhoneContentButton.Content" xml:space="preserve">
-    <value>Pick Sync Folder</value>
+    <value>选择文件夹</value>
   </data>
   <data name="ImportStatsMessage.Text" xml:space="preserve">
     <value>正在导入...</value>
@@ -823,7 +817,7 @@
     <value>打开</value>
   </data>
   <data name="SettingsSettingsEnableClassicModeMessage.Text" xml:space="preserve">
-    <value>Note: You must close and restart the app for this setting to take effect</value>
+    <value>注意: 重启后生效</value>
   </data>
   <data name="LibraryPageManageButton.Content" xml:space="preserve">
     <value>管理库</value>

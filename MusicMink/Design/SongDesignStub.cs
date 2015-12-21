@@ -57,7 +57,7 @@ namespace MusicMink.Design
         {
             get
             {
-                return "0 plays";
+                return "无播放记录";
             }
         }
     }

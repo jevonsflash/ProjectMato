@@ -60,7 +60,10 @@
                             FontSize="{StaticResource TextStyleMediumFontSize}"
                             >
                             <Run x:Uid="SearchPageSearchingForText" />
-                            <Run Text="{Binding LastSearchTerm}" FontStyle="Italic" FontWeight="Bold" />
+                            "
+                            <Run Text="{Binding LastSearchTerm}"  FontWeight="Bold" />
+                            
+                            "
                         </TextBlock>
 
                         <ProgressRing
@@ -80,8 +83,10 @@
                         <TextBlock
                             FontSize="{StaticResource TextStyleMediumFontSize}"
                             >
+                            "   
+                            <Run Text="{Binding LastSearchTerm}" FontWeight="Bold"/>
+                            "
                             <Run x:Uid="SearchPageSearchedForText" />
-                            <Run Text="{Binding LastSearchTerm}" FontStyle="Italic" FontWeight="Bold"/>
                         </TextBlock>
 
                         <Pivot
