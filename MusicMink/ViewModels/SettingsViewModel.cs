@@ -13,8 +13,6 @@ namespace MusicMink.ViewModels
 {
     class SettingsViewModel : NotifyPropertyChangedUI
     {
-        public const string EMAIL_TARGET = "chimewp@gmail.com";
-        public const string EMAIL_NAME = "MusicMink";
 
         public static class Properties
         {

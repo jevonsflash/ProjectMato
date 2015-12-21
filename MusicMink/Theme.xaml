@@ -5,8 +5,9 @@
 
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Default">
-            <SolidColorBrush x:Key="PlayerControlBackgroundColor" Color="White"/>
-            <SolidColorBrush x:Key="PlayerControlForegroundColor" Color="Black" />
+            <SolidColorBrush x:Key="PlayerControlBackgroundColor" Color="Black"/>
+            <SolidColorBrush x:Key="PlayerControlForegroundColor1" Color="Black" />
+            <SolidColorBrush x:Key="PlayerControlForegroundColor2" Color="Black" />
             <ImageBrush x:Key="MainBackGroundBrush" ImageSource="Img/Mato.png"></ImageBrush>
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>

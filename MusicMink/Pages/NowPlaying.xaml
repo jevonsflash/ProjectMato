@@ -409,16 +409,6 @@
                     <Button
                     Style="{StaticResource EmptyButton}"
                     Command="{Binding Navigate}"
-                    CommandParameter="MixList"
-                    >
-                        <StackPanel Orientation="Horizontal">
-                            <SymbolIcon Symbol="List" Width="60" Height="60" />
-                            <TextBlock x:Uid="NewHomePageMixesEntry" Style="{StaticResource ListViewItemTextBlockStyle}" VerticalAlignment="Center" />
-                        </StackPanel>
-                    </Button>
-                    <Button
-                    Style="{StaticResource EmptyButton}"
-                    Command="{Binding Navigate}"
                     CommandParameter="SearchPage"
                     >
                         <StackPanel Orientation="Horizontal">

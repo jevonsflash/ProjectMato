@@ -50,7 +50,6 @@
                             FontSize="{StaticResource TextStyleSmallFontSize}"
                             TextWrapping="WrapWholeWords"
                             TextAlignment="Justify"
-                            FontStyle="Italic"
                             Foreground="{StaticResource PhoneForegroundBrush}"
                             />
 

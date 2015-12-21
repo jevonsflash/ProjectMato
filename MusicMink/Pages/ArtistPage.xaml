@@ -50,7 +50,7 @@
                 />
                 <Button x:Uid="ArtistPageQueueButton"
                 Template="{StaticResource RoundButton}"
-                Width="100"
+                Width="120"
                 Height="45"
                 BorderThickness="1"
                 Command="{Binding QueueAllSongs}"

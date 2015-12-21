@@ -60,9 +60,9 @@ namespace MusicMink.Controls
                     int currentIndex = nn.ToList().IndexOf(item);
                     testControl.CleanBrush();
                     testControl.SetBrush(currentIndex);
-                    if (true)
+                    if (SettingsViewModel.Current.IsAutoOffset)
                     {
-                        //testControl.SetScroll(currentIndex);
+                        testControl.SetScroll(currentIndex);
                     }
 
                 }
@@ -195,7 +195,7 @@ namespace MusicMink.Controls
             }
             else
             {
-                if (true)
+                if (SettingsViewModel.Current.IsAutoLrc)
                 {
                     DoHttpWebRequest(songname);
                 }

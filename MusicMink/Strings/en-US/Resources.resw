@@ -196,7 +196,7 @@
     <value>正在播放</value>
   </data>
   <data name="PlaylistPageQueueButton.Content" xml:space="preserve">
-    <value>添加至末尾</value>
+    <value>追加至列队</value>
   </data>
   <data name="PlaylistPageReorderButton.Content" xml:space="preserve">
     <value>排序</value>
@@ -322,10 +322,10 @@
     <value>编辑</value>
   </data>
   <data name="ArtistPageQueueButton.Content" xml:space="preserve">
-    <value>Shuffle Later</value>
+    <value>追加至列队</value>
   </data>
   <data name="ArtistPageShuffleButton.Content" xml:space="preserve">
-    <value>全部随机播放</value>
+    <value>播放全部</value>
   </data>
   <data name="DialogEditNoArtMessage.Text" xml:space="preserve">
     <value>Couldn't get song. Please try again.</value>
@@ -379,7 +379,7 @@
     <value>Enabled</value>
   </data>
   <data name="SettingsHeader.Text" xml:space="preserve">
-    <value>Settings</value>
+    <value>设置</value>
   </data>
   <data name="SettingsUploadLogs.Content" xml:space="preserve">
     <value>Upload Logs</value>
@@ -670,7 +670,7 @@
     <value>艺术家</value>
   </data>
   <data name="LibraryPagesEmptyLibraryMessage.Text" xml:space="preserve">
-    <value>Your music collection is either empty or you haven't imported it yet. To import your music collection, use "manage library"</value>
+    <value>您的库是空的，可能您还没有更新，点击"管理库"进行更新</value>
   </data>
   <data name="SearchPageHeader.Text" xml:space="preserve">
     <value>查找</value>
@@ -751,7 +751,7 @@
     <value>Pick Sync Folder</value>
   </data>
   <data name="ImportStatsMessage.Text" xml:space="preserve">
-    <value>Importing Stats...</value>
+    <value>正在导入...</value>
   </data>
   <data name="RemoveOldSongsMessage.Text" xml:space="preserve">
     <value>移除无效歌曲</value>
@@ -760,7 +760,7 @@
     <value>开始扫描</value>
   </data>
   <data name="TapToCancel.Caption" xml:space="preserve">
-    <value>Tap to Cancel</value>
+    <value>停止扫描</value>
   </data>
   <data name="UpdateArtMessage.Text" xml:space="preserve">
     <value>Updating Art...</value>

@@ -6,8 +6,10 @@ using MusicMinkAppLayer.Diagnostics;
 using MusicMinkAppLayer.Helpers;
 using MusicMinkAppLayer.Models;
 using System;
+using Weather.JMessbox;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.Phone.UI.Input;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -44,6 +46,42 @@ namespace MusicMink
             this.Resuming += this.OnResuming;
             Application.Current.RequestedTheme = ApplicationTheme.Dark;
             this.UnhandledException += LogUnhandledException;
+            HardwareButtons.BackPressed += HardwareButtons_BackPressed;
+        }
+
+        private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
+        {
+            Frame frame = Window.Current.Content as Frame;
+            if (frame == null)
+            {
+                return;
+            }
+
+            if (frame.CanGoBack)
+            {
+                frame.GoBack();
+                e.Handled = true;
+            }
+            else
+            {
+                e.Handled = true;
+                JMessBox jb = new JMessBox("再按一次离开");
+                jb.Completed += (b) =>
+                {
+                    if (b)
+                    {
+                        //退出代码
+                        if (SettingsViewModel.Current.IsStopWhenTerminate)
+                        {
+                            //暂停播放
+                            LibraryViewModel.Current.PlayQueue.ExecutePlayPausePlayer(null);
+                        }
+                        Application.Current.Exit();
+                    }
+                };
+                jb.Show();
+
+            }
         }
 
         async void LogUnhandledException(object sender, UnhandledExceptionEventArgs e)
@@ -118,9 +156,9 @@ namespace MusicMink
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                
+
                 Type target = typeof(LandingPage);
-                if (SettingsViewModel.Current.IsNewSeason!= (string)App.Current.Resources["Version"])
+                if (SettingsViewModel.Current.IsNewSeason != (string)App.Current.Resources["Version"])
                 {
                     SettingsViewModel.Current.IsNewSeason = (string)App.Current.Resources["Version"];
                     target = typeof(GuidePage);
@@ -156,16 +194,25 @@ namespace MusicMink
 
         private void UpdateTheme()
         {
-            SolidColorBrush brush = DebugHelper.CastAndAssert<SolidColorBrush>(App.Current.Resources["PhoneAccentBrush"]);
-
-            Color c = brush.Color;
-
-            c.R = (byte)(byte.MaxValue - c.R * 0.2);
-            c.G = (byte)(byte.MaxValue - c.G * 0.2);
-            c.B = (byte)(byte.MaxValue - c.B * 0.2);
-
-            ((SolidColorBrush)App.Current.Resources["PlayerControlBackgroundColor"]).Color = c;
             BackgroundModel bm = BackgroundsModel.Current.GetBackgroundList().Find(p => p.IsSel == true);
+            SolidColorBrush brush1;
+            SolidColorBrush brush2;
+
+            if (bm == null)
+            {
+                SolidColorBrush defaultbrush = DebugHelper.CastAndAssert<SolidColorBrush>(App.Current.Resources["PhoneAccentBrush"]);
+                brush1 = defaultbrush;
+                brush2 = defaultbrush;
+            }
+            else
+            {
+                brush1 = MusicMinkAppLayer.Helpers.ColorHelper.GetBrushFromHEX(bm.Ext.Split('|')[0]) as SolidColorBrush;
+                brush2 = MusicMinkAppLayer.Helpers.ColorHelper.GetBrushFromHEX(bm.Ext.Split('|')[1]) as SolidColorBrush;
+            }
+
+            ((SolidColorBrush)App.Current.Resources["PlayerControlForegroundColor1"]).Color = brush1.Color;
+            ((SolidColorBrush)App.Current.Resources["PlayerControlForegroundColor2"]).Color = brush2.Color;
+
             var bitmapImage = new BitmapImage(new Uri(string.Format("ms-resource:/Files{0}", bm.Img)));
             if (Application.Current.Resources.Keys.Contains("MainBackGroundBrush"))
             {
