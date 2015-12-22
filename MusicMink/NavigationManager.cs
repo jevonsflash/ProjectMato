@@ -28,9 +28,8 @@ namespace MusicMink
         AboutPage,
 
         SearchLrcPage,
-        LrcListPage
-
-
+        LrcListPage,
+        SleepModePage
     }
 
     abstract class ContinuationInfo { }
@@ -120,6 +119,9 @@ namespace MusicMink
                     return typeof(LrcListPage);
                 case NavigationLocation.SearchLrcPage:
                     return typeof(SearchLrcPage);
+                case NavigationLocation.SleepModePage:
+                    return typeof(SleepModePage);
+
                 default:
                     DebugHelper.Alert(new CallerInfo(), "Unexpected NavigationLocation {0}", location);
                     return typeof(NowPlaying);

@@ -44,5 +44,10 @@ namespace MusicMink.Pages
             }
 
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationManager.Current.Navigate(NavigationLocation.SleepModePage);
+        }
     }
 }
