@@ -29,6 +29,14 @@
                 <StackPanel Orientation="Vertical">
 
                     <TextBlock FontSize="42" VerticalAlignment="Bottom" Padding="15,0,0,0" >主题设置</TextBlock>
+                    <TextBlock x:Uid="SettingsSettingsEnableClassicModeMessage"
+                    FontSize="{StaticResource TextStyleMediumFontSize}"
+                    TextWrapping="WrapWholeWords"
+                    TextAlignment="Justify"
+                    FontStyle="Italic"
+                                Padding="15,0,0,0"
+                    Foreground="{StaticResource PhoneForegroundBrush}"
+                    />
                     <ListBox 
                         x:Name="LVFeature" 
                         Grid.Row="1" 
@@ -52,17 +60,17 @@
                         </ListBox.Template>
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <Grid Margin="5,0" Width="160" Height="360">
-                                    <Rectangle Fill="White" Opacity="0.2"></Rectangle>
+                                <Grid Margin="5,0" Width="150" Height="260">
                                     <StackPanel>
-                                        <TextBlock Grid.Column="1" Text="{Binding Title}" Margin="10,20,0,0" FontSize="36"/>
-                                        <Image Source="{Binding Img}" Width="144"  Height="144" Stretch="Uniform"></Image>
-                                        <TextBlock Text="当前"  Visibility="{Binding IsSel, Converter={StaticResource BoolToVisibilityConverter}, Mode=TwoWay}" Margin="10,20,0,0" FontSize="24"/>
+                                        <Grid>
+                                            <Image  Stretch="Uniform"  Source="{Binding Img}"/>
+                                            <TextBlock Grid.Column="1" Foreground="White" Text="{Binding Title}" Margin="10,20,0,0" FontSize="36"/>
+                                            <Image Source="ms-appx:///Icon/Check.png" Width="32"  Visibility="{Binding IsSel, Converter={StaticResource BoolToVisibilityConverter}, Mode=TwoWay}"></Image>
+                                        </Grid>
                                     </StackPanel>
                                 </Grid>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
-
                     </ListBox>
                     <StackPanel>
                         <TextBlock  x:Uid="SettingsIsGoMainPage" Text="退出时停止音乐" 

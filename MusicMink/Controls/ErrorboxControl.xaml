@@ -46,6 +46,7 @@
                 Margin="0,0,0,20"
                 Template="{StaticResource RoundButton}" 
                 Height="45" 
+                Click="BTNFun_Click"
                 BorderThickness="1">
         </Button>
     </Grid>

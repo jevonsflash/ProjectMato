@@ -1,9 +1,13 @@
 ﻿using MusicMink.ViewModels;
 using System;
+using Weather.JMessbox;
+using Windows.Phone.UI.Input;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Shapes;
+using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -158,7 +162,42 @@ namespace MusicMink.Pages
 
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
-           this.LrcControl.Visibility = Visibility.Visible;
+            this.LrcControl.Visibility = Visibility.Visible;
+        }
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            HardwareButtons.BackPressed += HardwareButtons_BackPressed;
+
+        }
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            HardwareButtons.BackPressed -= HardwareButtons_BackPressed;
+        }
+        private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
+        {
+            Frame frame = Window.Current.Content as Frame;
+            if (frame == null)
+            {
+                return;
+            }
+            e.Handled = true;
+            JMessBox jb = new JMessBox("再按一次离开");
+            jb.Completed += (b) =>
+            {
+                if (b)
+                {
+                        //退出代码
+                        if (SettingsViewModel.Current.IsStopWhenTerminate)
+                    {
+                            //暂停播放
+                            LibraryViewModel.Current.PlayQueue.ExecutePlayPausePlayer(null);
+                    }
+                    Application.Current.Exit();
+                }
+            };
+            jb.Show();
         }
 
     }

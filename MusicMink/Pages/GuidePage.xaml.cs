@@ -35,7 +35,13 @@ namespace MusicMink.Pages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
         }
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+                this.Frame.BackStack.Remove(this.Frame.BackStack.LastOrDefault());
+            
 
+        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(LandingPage));

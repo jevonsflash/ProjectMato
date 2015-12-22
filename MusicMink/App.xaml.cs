@@ -6,10 +6,8 @@ using MusicMinkAppLayer.Diagnostics;
 using MusicMinkAppLayer.Helpers;
 using MusicMinkAppLayer.Models;
 using System;
-using Weather.JMessbox;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Phone.UI.Input;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -46,43 +44,8 @@ namespace MusicMink
             this.Resuming += this.OnResuming;
             Application.Current.RequestedTheme = ApplicationTheme.Dark;
             this.UnhandledException += LogUnhandledException;
-            HardwareButtons.BackPressed += HardwareButtons_BackPressed;
         }
 
-        private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
-        {
-            Frame frame = Window.Current.Content as Frame;
-            if (frame == null)
-            {
-                return;
-            }
-
-            if (frame.CanGoBack)
-            {
-                frame.GoBack();
-                e.Handled = true;
-            }
-            else
-            {
-                e.Handled = true;
-                JMessBox jb = new JMessBox("再按一次离开");
-                jb.Completed += (b) =>
-                {
-                    if (b)
-                    {
-                        //退出代码
-                        if (SettingsViewModel.Current.IsStopWhenTerminate)
-                        {
-                            //暂停播放
-                            LibraryViewModel.Current.PlayQueue.ExecutePlayPausePlayer(null);
-                        }
-                        Application.Current.Exit();
-                    }
-                };
-                jb.Show();
-
-            }
-        }
 
         async void LogUnhandledException(object sender, UnhandledExceptionEventArgs e)
         {

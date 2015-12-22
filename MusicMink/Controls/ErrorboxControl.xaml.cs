@@ -74,5 +74,10 @@ namespace MusicMink.Controls
         {
             this.Visibility = Visibility.Collapsed;
         }
+
+        private void BTNFun_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationManager.Current.Navigate(NavigationLocation.ManageLibrary);
+        }
     }
 }

@@ -368,20 +368,18 @@
             </Grid>
         </Grid>
         <!--侧滑菜单-->
-        <Grid x:Name="GDMenu" HorizontalAlignment="Right" VerticalAlignment="Top" Height="{Binding ElementName=GDLayout, Path=ActualHeight}" Width="200" Background="Gray" Margin="0,0,-200,0">
+        <Grid x:Name="GDMenu" 
+              HorizontalAlignment="Right" 
+              VerticalAlignment="Top" 
+              Height="{Binding ElementName=GDLayout, Path=ActualHeight}" 
+              Width="200" 
+              Margin="0,0,-200,0" CompositeMode="SourceOver">
+            <Grid.Background>
+                <ImageBrush 
+                            ImageSource="ms-appx:///Img/Slide_200x550.png"/>
+            </Grid.Background>
             <ScrollViewer Grid.Row="1" x:Name="ContentRoot" Margin="0">
                 <StackPanel>
-                    <Button
-                    Style="{StaticResource EmptyButton}"
-                    Command="{Binding Navigate}"
-                    CommandParameter="NowPlaying"
-                    Visibility="{Binding PlayQueue.IsActive, Converter={StaticResource BoolToVisibilityConverter}}"                    
-                    >
-                        <StackPanel Orientation="Horizontal">
-                            <SymbolIcon Symbol="Audio" Width="60" Height="60" />
-                            <TextBlock x:Uid="NewHomePageNowPlayingEntry" Style="{StaticResource ListViewItemTextBlockStyle}" VerticalAlignment="Center" />
-                        </StackPanel>
-                    </Button>
                     <Button
                     Style="{StaticResource EmptyButton}"
                     Command="{Binding Navigate}"
