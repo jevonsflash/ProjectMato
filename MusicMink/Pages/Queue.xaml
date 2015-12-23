@@ -41,22 +41,11 @@
             HorizontalAlignment="Center"
             >
 
-            <Button x:Uid="LibraryPageSearchButton"
-                    MinWidth="0"
-                Grid.Column="2"
-                Template="{StaticResource RoundButton}"
-                    Margin="2,0"
-                Width="65"
-                Height="45"
-                BorderThickness="1"
-                Command="{Binding Navigate}"
-                CommandParameter="SearchPage"
-                />
 
             <Button x:Uid="PlayQueueShuffleRemaining"
                 Template="{StaticResource RoundButton}"
                     Margin="2,0"
-                    MinWidth="0"
+                    MinWidth="80"
                 Width="65"
                 Height="45"
                 BorderThickness="1"
@@ -65,7 +54,7 @@
                 />
             <ToggleButton x:Uid="PlayQueueReorder"
                 Template="{StaticResource RoundToggleButton}"
-                          MinWidth="0"
+                          MinWidth="80"
                           Margin="2,0"
                 Width="65"
                 Height="45"
@@ -87,7 +76,7 @@
             <Button x:Uid="PlayQueueClearAll"
                 Template="{StaticResource RoundButton}"
                     Margin="2,0"
-                    MinWidth="0"
+                    MinWidth="80"
                 Width="65"
                 Height="45"
                 BorderThickness="1"

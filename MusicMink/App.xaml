@@ -26,10 +26,10 @@
             <!-- Scroll bar causes weird jumpy issues if we don't take a ~10 margin off all list items -->
             <converters:NumericTransformConverter x:Key="ListWidthToWorkableSectionWidthConverter" Margin="10" Sections="1" />
             <converters:VisibleToCollapse x:Key="VisibleToCollapseConverter"></converters:VisibleToCollapse>
-
+            <converters:SecondsToTimeSpanConverter x:Key="SecondsToTimeSpanConverter"></converters:SecondsToTimeSpanConverter>
             <x:Double x:Key="HeaderFontSize">57.5</x:Double>
 
-            <Thickness x:Key="DefaultHeaderMargin">20,0,20,0</Thickness>
+            <Thickness x:Key="DefaultHeaderMargin">10,0,10,0</Thickness>
             <Thickness x:Key="DefaultContentMargin">10,5,10,0</Thickness>
 
             <Style x:Key="DefaultTitleStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">

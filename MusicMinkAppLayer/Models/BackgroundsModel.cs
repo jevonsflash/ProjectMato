@@ -30,14 +30,13 @@ namespace MusicMinkAppLayer.Models
         private void Init()
         {
 
-            DatabaseManager.Current.AddBackgroundEntry(new BackgroundTable("绿茵", "Grass", "/Img/Grass.png", true, "0x091000|0x122000"));
+            DatabaseManager.Current.AddBackgroundEntry(new BackgroundTable("绿茵", "Grass", "/Img/Grass.png", false, "0x091000|0x122000"));
             DatabaseManager.Current.AddBackgroundEntry(new BackgroundTable("伞", "Umbrella", "/Img/Umbrella.png", false, "0x2f1f01|0x462e01"));
             DatabaseManager.Current.AddBackgroundEntry(new BackgroundTable("平静", "Peace", "/Img/Peace.png", false, "0x01102f|0x01194b"));
             DatabaseManager.Current.AddBackgroundEntry(new BackgroundTable("地下铁", "Metro", "/Img/Metro.png", false, "0x000000|0x2d2d2d"));
-            DatabaseManager.Current.AddBackgroundEntry(new BackgroundTable("紫罗兰", "Violet", "/Img/Violet.png", false, "0x000000|0x2d2d2d"));
-            DatabaseManager.Current.AddBackgroundEntry(new BackgroundTable("童话", "Fairyland", "/Img/Fairyland.png", false, "0x000000|0x2d2d2d"));
-            DatabaseManager.Current.AddBackgroundEntry(new BackgroundTable("葡萄酒", "Wine", "/Img/Wine.png", false, "0x000000|0x2d2d2d"));
-
+            DatabaseManager.Current.AddBackgroundEntry(new BackgroundTable("紫罗兰", "Violet", "/Img/Violet.png", false, "0x1d082d|0x2d0d47"));
+            DatabaseManager.Current.AddBackgroundEntry(new BackgroundTable("童话", "Fairyland", "/Img/Fairyland.png", false, "0x14262d|0x213e4a"));
+            DatabaseManager.Current.AddBackgroundEntry(new BackgroundTable("葡萄酒", "Wine", "/Img/Wine.png", true, "0x2d1d20|0x4a2f35"));
         }
         public BackgroundModel GetSelected()
         {

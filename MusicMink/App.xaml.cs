@@ -9,6 +9,7 @@ using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
@@ -62,6 +63,8 @@ namespace MusicMink
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
+            StatusBar sb = StatusBar.GetForCurrentView();
+            sb.HideAsync();
             Logger.Current.Init(LogType.FG);
 
             Logger.Current.Log(new CallerInfo(), LogLevel.Info, "App launched");

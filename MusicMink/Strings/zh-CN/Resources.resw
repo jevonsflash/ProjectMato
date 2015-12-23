@@ -186,17 +186,17 @@
   <data name="PlaylistListHeader.Text" xml:space="preserve">
     <value>歌单</value>
   </data>
-  <data name="PlaylistListShowButton.Label" xml:space="preserve">
+  <data name="PlaylistListShowButton.Content" xml:space="preserve">
     <value>显示/隐藏</value>
   </data>
   <data name="PlaylistPageEditButton.Content" xml:space="preserve">
     <value>编辑</value>
   </data>
-  <data name="PlaylistPagePlayButton.Label" xml:space="preserve">
-    <value>正在播放</value>
+  <data name="PlaylistPagePlayButton.Content" xml:space="preserve">
+    <value>播放全部</value>
   </data>
   <data name="PlaylistPageQueueButton.Content" xml:space="preserve">
-    <value>追加至列队</value>
+    <value>加入列队</value>
   </data>
   <data name="PlaylistPageReorderButton.Content" xml:space="preserve">
     <value>排序</value>
@@ -316,7 +316,7 @@
     <value>编辑</value>
   </data>
   <data name="ArtistPageQueueButton.Content" xml:space="preserve">
-    <value>追加至列队</value>
+    <value>加入列队</value>
   </data>
   <data name="ArtistPageShuffleButton.Content" xml:space="preserve">
     <value>播放全部</value>

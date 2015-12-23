@@ -29,6 +29,24 @@ namespace MusicMink.Pages
             this.DataContext = new AboutPageViewModel();
         }
 
+        private void BTNGoAPP1_Click(object sender, RoutedEventArgs e)
+        {
+            Windows.System.Launcher.LaunchUriAsync(new Uri("ms-windows-store:reviewapp?appid=0ea38a62-e96a-49c0-a66d-d00455bfd885"));
+
+        }
+
+        private void BTNGoAPP2_Click(object sender, RoutedEventArgs e)
+        {
+            Windows.System.Launcher.LaunchUriAsync(new Uri("ms-windows-store:reviewapp?appid=32cfd431-937c-4816-b44e-44933c914f9d"));
+
+        }
+
+        private void BTNGoAPP3_Click(object sender, RoutedEventArgs e)
+        {
+            Windows.System.Launcher.LaunchUriAsync(new Uri("ms-windows-store:reviewapp?appid=e769ee70-60d3-45e1-bc70-86f2ed1e39a0"));
+
+        }
+
         /// <summary>
         /// 在此页将要在 Frame 中显示时进行调用。
         /// </summary>

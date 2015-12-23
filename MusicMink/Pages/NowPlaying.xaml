@@ -387,7 +387,7 @@
                     Visibility="{Binding PlayQueue.IsEmpty, Converter={StaticResource NotBoolToVisibilityConverter}}"                    
                     >
                         <StackPanel Orientation="Horizontal">
-                            <SymbolIcon Symbol="Clock" Width="60" Height="60" />
+                            <SymbolIcon Symbol="AllApps" Width="60" Height="60" />
                             <TextBlock x:Uid="NewHomePageQueueEntry" Style="{StaticResource ListViewItemTextBlockStyle}" VerticalAlignment="Center" />
                         </StackPanel>
                     </Button>
@@ -407,7 +407,7 @@
                     CommandParameter="PlaylistList"
                     >
                         <StackPanel Orientation="Horizontal">
-                            <SymbolIcon Symbol="List" Width="60" Height="60" />
+                            <SymbolIcon Symbol="Pin" Width="60" Height="60" />
                             <TextBlock x:Uid="NewHomePagePlaylistsEntry" Style="{StaticResource ListViewItemTextBlockStyle}" VerticalAlignment="Center" />
                         </StackPanel>
                     </Button>
@@ -479,7 +479,7 @@
         <AppBarButton 
             HorizontalAlignment="Right" 
             VerticalAlignment="Bottom"
-            Margin="0,0,10,150"
+            Margin="0,0,10,200"
             Click="AppBarButton_Click"
             Visibility="{Binding ElementName=LrcControl,Path=Visibility,Converter={StaticResource VisibleToCollapseConverter}}"
             IsEnabled="{Binding IsActive}">

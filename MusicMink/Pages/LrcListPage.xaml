@@ -1,4 +1,4 @@
-﻿<Page
+﻿<local:BasePage
     x:Class="MusicMink.Pages.LrcListPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -26,11 +26,15 @@
                 <RowDefinition Height="1*"></RowDefinition>
                 <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
-            <StackPanel Orientation="Horizontal" Grid.Row="0" Height="72" Background="{StaticResource PhoneChromeBrush}">
+            <Rectangle Grid.Row="0" Fill="White" Opacity="0.3"></Rectangle>
+            <StackPanel Orientation="Horizontal" 
+                        Grid.Row="0" 
+                        Height="72" 
+                        >
                 <TextBlock FontSize="30" VerticalAlignment="Center">
-                   已缓存 <Run x:Name="TBLrcCount" Text="{Binding LrcCount}"></Run> 个歌词文件
+                   已缓存 <Run x:Name="TBLrcCount" Text="{Binding LrcCount,Mode=OneWay}"></Run> 个歌词文件
                 </TextBlock>
-                <Button x:Name="BTNCleanUnavailableLrc" Content="智能清理" BorderThickness="1" Width="85" Height="40" Margin="20,0,0,0" Click="BTNCleanUnavailableLrc_Click"  Template="{StaticResource RoundButton}"/>
+                <Button x:Name="BTNCleanUnavailableLrc" Content="智能清理" BorderThickness="1" Width="85" Height="40" Click="BTNCleanUnavailableLrc_Click"  Template="{StaticResource RoundButton}"/>
             </StackPanel>
             <ListView 
 				Grid.Row="1"
@@ -63,4 +67,4 @@
 
         </Grid>
     </Grid>
-</Page>
+</local:BasePage>

@@ -20,8 +20,8 @@
         <TextBox x:Uid="DialogEditAlbumArtistNameTextBox"
             Name="editAlbumArtistName"
             Text="{Binding Artist.Name}"
-            />             
-        
+            />
+
         <TextBlock x:Uid="DialogEditAlbumCurrentArtTextBlock"
             FontSize="{StaticResource TextStyleMediumFontSize}"
             />
@@ -37,55 +37,40 @@
                 Stretch="Fill"
                 />
         </Border>
-                      
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-            </Grid.RowDefinitions>
-            
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <CheckBox x:Uid="DialogEditAlbumUpdateArtCheckbox"
-                x:Name="updateArt"
-                />
-            <Button x:Uid="DialogEditAlbumLaunchFilePickerButton"            
-                Grid.Row="1"
-                Click="HandleLaunchFilePickerButtonClick"
-                />
-
-            <Button x:Uid="DialogEditAlbumGetLastFMButton"            
-                Grid.Row="2"                    
-                x:Name="lastFMArtButton"
-                
-                />
-
-            <Border
-                Grid.Column="1"
-                Grid.RowSpan="3"
-                BorderThickness="3"
-                BorderBrush="White"
-                Margin="10"
-                >
-                <Image
-                    x:Name="ImagePreview"
-                    Stretch="Fill"
-                    />
-            </Border>
-            
+        <StackPanel>  
             <TextBlock x:Uid="DialogEditNoArtMessage"
                 x:Name="noArtMessage"     
                 Visibility="Collapsed"                       
-                Grid.Row="3"
-                Grid.ColumnSpan="2"
                 FontSize="{StaticResource TextStyleMediumFontSize}"
+               />
+
+            <StackPanel Orientation="Horizontal">
+                <Border
+                Height="175"
+                Width="175"
+                Grid.Column="1"
+                Grid.RowSpan="3"
+                BorderThickness="3"
+                HorizontalAlignment="Left"
+                BorderBrush="White"
+                Margin="10"
+                >
+                    <Image
+                    x:Name="ImagePreview"
+                    Stretch="Fill"
+                    />
+                </Border>
+                <StackPanel Orientation="Vertical" >
+                    <CheckBox x:Uid="DialogEditAlbumUpdateArtCheckbox"
+                x:Name="updateArt"
                 />
-                
-        </Grid>
+                    <Button x:Uid="DialogEditAlbumLaunchFilePickerButton"            
+                Click="HandleLaunchFilePickerButtonClick"
+                />
+                </StackPanel>
+            </StackPanel>
+
+        </StackPanel>
+
     </StackPanel>
 </ContentDialog>

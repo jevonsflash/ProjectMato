@@ -9,7 +9,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
 
-    <Grid x:Name="LayoutRoot">
+    <Grid x:Name="LayoutRoot" Background="{StaticResource MainBackGroundBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -27,8 +27,7 @@
             <ScrollViewer>
 
                 <StackPanel Orientation="Vertical">
-
-                    <TextBlock FontSize="42" VerticalAlignment="Bottom"  >主题设置</TextBlock>
+                    <TextBlock FontSize="{StaticResource TextStyleExtraLargePlusFontSize}" VerticalAlignment="Bottom"  >主题</TextBlock>
                     <TextBlock x:Uid="SettingsSettingsEnableClassicModeMessage"
                     FontSize="{StaticResource TextStyleMediumFontSize}"
                     TextWrapping="WrapWholeWords"
@@ -72,6 +71,14 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
+                    <TextBlock FontSize="{StaticResource TextStyleExtraLargePlusFontSize}" VerticalAlignment="Bottom"  >定时关闭</TextBlock>
+                    <StackPanel>
+
+                        <Button Template="{StaticResource RoundButton}" Height="45" Width="200" BorderThickness="1" Click="Button_Click">定时关闭</Button>
+                    </StackPanel>
+
+                    <TextBlock FontSize="{StaticResource TextStyleExtraLargePlusFontSize}" VerticalAlignment="Bottom"  >常规</TextBlock>
+
                     <StackPanel>
                         <TextBlock  x:Uid="SettingsIsGoMainPage" Text="退出时停止音乐" 
                                     Style="{StaticResource ComboBoxPlaceholderTextBlockStyle}"/>
@@ -92,11 +99,6 @@
                         <ToggleSwitch x:Name="TSIsAutoOffset"
                                       IsOn="{Binding IsAutoOffset, Mode=TwoWay}" >
                         </ToggleSwitch>
-                    </StackPanel>
-                    <StackPanel>
-                        <TextBlock  x:Uid="SettingsIsGoMainPage" Text="定时关闭" 
-                                    Style="{StaticResource ComboBoxPlaceholderTextBlockStyle}"/>
-                        <Button Click="Button_Click">定时关闭</Button>
                     </StackPanel>
 
                 </StackPanel>
