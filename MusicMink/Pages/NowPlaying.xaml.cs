@@ -8,6 +8,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Shapes;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.Xaml.Media.Animation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -98,10 +99,13 @@ namespace MusicMink.Pages
                 if (this.VisualStateGroup.CurrentState.Name == "MenuOpen")
                 {
                     VisualStateManager.GoToState(this, "MenuClose", true);
+                    this.GDMask.Visibility = Visibility.Collapsed;
                 }
                 else
                 {
                     VisualStateManager.GoToState(this, "MenuOpen", true);
+                    this.GDMask.Visibility = Visibility.Visible;
+
                 }
             }
             else
@@ -188,11 +192,11 @@ namespace MusicMink.Pages
             {
                 if (b)
                 {
-                        //退出代码
-                        if (SettingsViewModel.Current.IsStopWhenTerminate)
+                    //退出代码
+                    if (SettingsViewModel.Current.IsStopWhenTerminate)
                     {
-                            //暂停播放
-                            LibraryViewModel.Current.PlayQueue.ExecutePlayPausePlayer(null);
+                        //暂停播放
+                        LibraryViewModel.Current.PlayQueue.ExecutePlayPausePlayer(null);
                     }
                     Application.Current.Exit();
                 }
@@ -200,5 +204,13 @@ namespace MusicMink.Pages
             jb.Show();
         }
 
+        private void GDMask_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            if (this.VisualStateGroup.CurrentState != null)
+            {
+                VisualStateManager.GoToState(this, "MenuClose", true);
+                this.GDMask.Visibility = Visibility.Collapsed;
+            }
+        }
     }
 }

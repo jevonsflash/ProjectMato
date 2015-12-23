@@ -487,6 +487,15 @@
                 <FontIcon FontFamily="Webdings" Glyph="e"></FontIcon>
             </AppBarButton.Icon>
         </AppBarButton>
+
+        <!--遮罩层-->
+        <Grid x:Name="GDMask"
+              Background="Black" 
+              Visibility="Collapsed"
+              Tapped="GDMask_Tapped"
+              Opacity="0.8">
+
+        </Grid>
         <!--主菜单按钮-->
         <AppBarButton x:Name="BTNMainMenu"
             HorizontalAlignment="Right" 
