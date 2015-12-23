@@ -17,7 +17,7 @@ namespace MusicMink.Pages
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class SearchLrcPage : Page, INotifyPropertyChanged
+    public sealed partial class SearchLrcPage : BasePage, INotifyPropertyChanged
     {
         private string songName = string.Empty;
         private string artistName = string.Empty;

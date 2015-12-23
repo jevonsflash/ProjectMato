@@ -25,7 +25,7 @@ namespace MusicMink.Pages
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class LrcListPage : Page
+    public sealed partial class LrcListPage : BasePage
     {
         private LrcListPageViewModel lrcListPageViewModel = new LrcListPageViewModel();
         public LrcListPage()

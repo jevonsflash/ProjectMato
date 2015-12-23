@@ -30,8 +30,8 @@
             <Setter Property="Margin" Value="10" />
         </Style>
     </Page.Resources>
-    
-    <Grid x:Name="LayoutRoot">       
+
+    <Grid x:Name="LayoutRoot" Background="{StaticResource MainBackGroundBrush}">       
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>

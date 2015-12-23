@@ -71,14 +71,9 @@
                                     Metro Studio
                                     <LineBreak/>
                                 </Paragraph>
-                                <Paragraph FontStretch="Undefined" TextIndent="20">
-                                    感谢给予帮助的人和站点
-                                    <LineBreak/>
-                                </Paragraph>
                                 <Paragraph FontStretch="Undefined" FontSize="15" TextIndent="20">
-                                    此应用数据来源于 和风天气(www.heweather.com)
+                                    歌词内容来源于歌词迷(geci.me)，部分图标元素来源于互联网。
                                     <LineBreak></LineBreak>
-                                    应用数据对于用户造成的任何影响与本应用无关。
                                 </Paragraph>
                             </RichTextBlock.Blocks>
                         </RichTextBlock>
@@ -151,16 +146,22 @@
                         </StackPanel>
                         <RichTextBlock Grid.Row="12" HorizontalAlignment="Center" VerticalAlignment="Top">
                             <Paragraph FontStretch="Undefined" TextIndent="20">
-                                1.心情天气只需要联网就能获取天气，无需开启GPS功能。
+                                1.长按技巧，长按播放或随机播放按钮会出现小范围的播放选项，在列队页面也可通过长按激活排序状态
+                                <InlineUIContainer>
+                                    <Image></Image>
+                                </InlineUIContainer>
+                            </Paragraph>
+                            
+                            <Paragraph FontStretch="Undefined" TextIndent="20">
+                                2.在新歌曲拷贝到手机后，需要通过“更新库”同步至播放器，否则不会出现在库里面。
                             </Paragraph>
                             <Paragraph FontStretch="Undefined" TextIndent="20">
-                                2.心情天气不获取用户任何资料，只提供天气数据。
-                            </Paragraph>
-                            <Paragraph FontStretch="Undefined" TextIndent="20">
-                                3.当您进行联网更新数据时，会将天气数据存储于本地。当在无网络情况下，会使用本地数据，加载为期三天的天气数据，但这些数据只是参考数据，天气可能这三天内会发生剧烈变化，所以建议开启网络实时更新。
+                                3.由于技术限制，暂无法读取音乐文件专辑封面图片，将在未来版本中修复。
                             </Paragraph>
                         </RichTextBlock>
-
+                        <Button>
+                            使用帮助
+                        </Button>
                     </Grid>
                 </ScrollViewer>
             </Grid>
