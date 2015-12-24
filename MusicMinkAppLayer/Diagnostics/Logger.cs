@@ -184,7 +184,7 @@ namespace MusicMinkAppLayer.Diagnostics
 
             var async = ThreadPool.RunAsync(new WorkItemHandler((IAsyncAction) =>
             {
-                WriteLog(builder.ToString());   
+                WriteLog(builder.ToString());
             }));
         }
 
@@ -209,7 +209,7 @@ namespace MusicMinkAppLayer.Diagnostics
 
         public void UpdateEnabled()
         {
-            isEnabled = ApplicationSettings.GetSettingsValue<bool>(ApplicationSettings.SETTING_IS_LOGGING_ENABLED, true);
+            isEnabled = false;
         }
     }
 }

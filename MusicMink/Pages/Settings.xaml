@@ -71,10 +71,21 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-                    <TextBlock FontSize="{StaticResource TextStyleExtraLargePlusFontSize}" VerticalAlignment="Bottom"  >定时关闭</TextBlock>
-                    <StackPanel>
+                    <TextBlock FontSize="{StaticResource TextStyleExtraLargePlusFontSize}" VerticalAlignment="Bottom"  >睡眠模式</TextBlock>
+                    <StackPanel HorizontalAlignment="Center">
 
-                        <Button Template="{StaticResource RoundButton}" Height="45" Width="200" BorderThickness="1" Click="Button_Click">定时关闭</Button>
+                        <Button Height="45" Width="350" BorderThickness="1" Click="Button_Click">
+                            <Button.Content>
+                                <ContentControl>
+                                    <Grid>
+                                        <TextBlock Visibility="{Binding IsSleepModeOn,Mode=OneWay, Converter={StaticResource NotBoolToVisibilityConverter}}">尚未启动</TextBlock>
+                                        <TextBlock Visibility="{Binding IsSleepModeOn,Mode=OneWay,Converter={StaticResource BoolToVisibilityConverter}}">
+                                            已启动睡眠模式(<Run Text="{Binding TimingOffValue, Converter={StaticResource SecondsToTimeSpanConverter}, Mode=OneWay}" ></Run>)
+                                        </TextBlock>
+                                    </Grid>
+                                </ContentControl>
+                            </Button.Content>
+                        </Button>
                     </StackPanel>
 
                     <TextBlock FontSize="{StaticResource TextStyleExtraLargePlusFontSize}" VerticalAlignment="Bottom"  >常规</TextBlock>

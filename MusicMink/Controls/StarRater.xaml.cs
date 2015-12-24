@@ -33,7 +33,7 @@ namespace MusicMink.Controls
         public static readonly DependencyProperty BorderColorProperty =
             DependencyProperty.Register(
             "BorderColor", typeof(SolidColorBrush),
-            typeof(StarRater), new PropertyMetadata(App.Current.Resources["PhoneForegroundBrush"], OnStarColorPropertyChanged)
+            typeof(StarRater), new PropertyMetadata(new SolidColorBrush(Colors.White), OnStarColorPropertyChanged)
             );
 
         public SolidColorBrush BorderColor
@@ -45,7 +45,7 @@ namespace MusicMink.Controls
         public static readonly DependencyProperty StarColorProperty =
             DependencyProperty.Register(
             "StarColor", typeof(SolidColorBrush),
-            typeof(StarRater), new PropertyMetadata(App.Current.Resources["PhoneAccentBrush"], OnStarColorPropertyChanged)
+            typeof(StarRater), new PropertyMetadata(new SolidColorBrush(Colors.White), OnStarColorPropertyChanged)
             );
 
         private static void OnStarColorPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -107,7 +107,7 @@ namespace MusicMink.Controls
         {
             base.OnApplyTemplate();
 
-            double s = 1;
+            double s = 2/3;
             double d = this.ActualWidth;
 
             if (d > 0 && this.ScaleToWidth)

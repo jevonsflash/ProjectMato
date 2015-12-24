@@ -36,7 +36,7 @@
                 <Slider x:Name="sliderTimer" 
                         Value="{Binding TimingOffValue,Mode=TwoWay}"
                         Maximum="7200"
-                        IsEnabled="{Binding IsStopWhenTerminate,Mode=TwoWay}">
+                        IsEnabled="{Binding IsSleepModeOn ,Mode=TwoWay,Converter={StaticResource InvertBoolConverter}}">
                 </Slider>
                 <TextBlock x:Name="TBMessage"  HorizontalAlignment="Center" FontSize="{StaticResource TextStyleExtraLargeFontSize}" Opacity="{Binding IsSleepModeOn,Mode=TwoWay,Converter={StaticResource BoolToWeekOpacityConverter}}">
                     将在<Run x:Name="TBTimeValue" Text="{Binding ElementName=sliderTimer, Converter={StaticResource SecondsToTimeSpanConverter}, Mode=TwoWay,Path=Value}" ></Run>后关闭
@@ -54,8 +54,16 @@
                     x:Name="BTNStart"
                     IsChecked="{Binding IsSleepModeOn,Mode=TwoWay}"
                     Width="200"
-                    Content="启动" 
-                    Click="BTNStart_Click"/>
+                    
+                    Click="BTNStart_Click">
+                    <ToggleButton.Content>
+                        <Grid>
+                            <TextBlock Visibility="{Binding IsSleepModeOn,Mode=OneWay, Converter={StaticResource NotBoolToVisibilityConverter}}">启动</TextBlock>
+                            <TextBlock Visibility="{Binding IsSleepModeOn,Mode=OneWay,Converter={StaticResource BoolToVisibilityConverter}}">已启动睡眠模式</TextBlock>
+                        </Grid>
+                    </ToggleButton.Content>
+
+                </ToggleButton>
 
             </StackPanel>
         </Grid>

@@ -16,10 +16,11 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="MusicMink.App">
-      <m3:VisualElements DisplayName="番茄播放器" Square150x150Logo="Assets\Logo.png" Square44x44Logo="Assets\SmallLogo.png" Description="Standalone Music Player for Windows Phone" ForegroundText="light" BackgroundColor="transparent" ToastCapable="false">
-        <m3:DefaultTile Square71x71Logo="Assets\Square71x71Logo.png">
+      <m3:VisualElements DisplayName="番茄播放器" Square150x150Logo="Assets\Logo.png" Square44x44Logo="Assets\SmallLogo.png" Description="专注本地音乐体验的播放器" ForegroundText="light" BackgroundColor="transparent" ToastCapable="false">
+        <m3:DefaultTile Square71x71Logo="Assets\Square71x71Logo.png" Wide310x150Logo="Assets\WideLogo.png">
           <m3:ShowNameOnTiles>
             <m3:ShowOn Tile="square150x150Logo" />
+            <m3:ShowOn Tile="wide310x150Logo" />
           </m3:ShowNameOnTiles>
         </m3:DefaultTile>
         <m3:SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="black" />

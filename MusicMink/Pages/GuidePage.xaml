@@ -11,8 +11,8 @@
     <Grid x:Name="GDLayout">
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="#FFDF4A6D" Offset="0"/>
-                <GradientStop Color="#FFFDAA29" Offset="1"/>
+                <GradientStop Color="#FFFFB7B7" Offset="0"/>
+                <GradientStop Color="#FFC3B1FF" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
         <Hub>
@@ -23,19 +23,20 @@
                         VerticalAlignment="Center"
                         Width="350" Height="600">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="3*"></RowDefinition>
                             <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="6*"></RowDefinition>
                             <RowDefinition Height="50"></RowDefinition>
                         </Grid.RowDefinitions>
                         <Image 
-                           Source="ms-appx:///Img/thumb/thumb_matoblack.png" 
-                           Stretch="UniformToFill" Margin="0,0,0,0" VerticalAlignment="Top"/>
-                        <TextBlock 
                             Grid.Row="1" 
+                            
+                           Source="ms-appx:///Img/GuidePageImg/GuidePageImg01.png" Margin="0,0,0,0" VerticalAlignment="Top"/>
+                        <TextBlock 
+                            Grid.Row="0" 
                             FontSize="32"  
                             VerticalAlignment="Center"
-                            HorizontalAlignment="Center"
-                            >遇见最美的自己
+                            HorizontalAlignment="Left"
+                            >第一步
                         </TextBlock>
                         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
                             <Ellipse Height="20" Width="20" Fill="White" Margin="12"></Ellipse>
@@ -53,14 +54,19 @@
                         VerticalAlignment="Center"
                         Width="350" Height="600">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="3*"></RowDefinition>
                             <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="6*"></RowDefinition>
                             <RowDefinition Height="50"></RowDefinition>
                         </Grid.RowDefinitions>
                         <Image 
-                           Source="ms-appx:///Img/thumb/thumb_matopeace.jpg" 
-                           Stretch="UniformToFill" Margin="0,0,0,0" VerticalAlignment="Top"/>
-                        <TextBlock Grid.Row="1" HorizontalAlignment="Center" FontSize="32"  VerticalAlignment="Center"> 开始播放一首歌</TextBlock>
+                            Grid.Row="1"
+                            
+                           Source="ms-appx:///Img/GuidePageImg/GuidePageImg02.png" Margin="0,0,0,0" VerticalAlignment="Top"/>
+                        <TextBlock                             
+                            Grid.Row="0"  
+                            HorizontalAlignment="Left" 
+                            FontSize="32"  
+                            VerticalAlignment="Center">第二步</TextBlock>
                         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
                             <Ellipse Height="15" Width="15" Fill="LightGray" Margin="12"></Ellipse>
                             <Ellipse Height="20" Width="20" Fill="White" Margin="12"></Ellipse>
@@ -77,16 +83,27 @@
                         VerticalAlignment="Center"
                         Width="350" Height="600">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="3*"></RowDefinition>
                             <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="6*"></RowDefinition>
                             <RowDefinition Height="50"></RowDefinition>
                         </Grid.RowDefinitions>
                         <Image 
-                           Source="ms-appx:///Img/thumb/thumb_metro.png" 
-                           Stretch="UniformToFill" Margin="0,0,0,0" VerticalAlignment="Top"/>
-                        <Button HorizontalAlignment="Center" Grid.Row="1"
-                                VerticalAlignment="Center" 
-                                Margin="50"
+                            Grid.Row="1"
+                           Source="ms-appx:///Img/GuidePageImg/GuidePageImg03.png" Margin="0,0,0,0" VerticalAlignment="Top"/>
+                        <TextBlock                             
+                            Grid.Row="0"  
+                            HorizontalAlignment="Left" 
+                            FontSize="32"  
+                            VerticalAlignment="Center">第三步</TextBlock>
+
+                        <Button HorizontalAlignment="Center" 
+                                Grid.Row="1"
+                                VerticalAlignment="Bottom" 
+                                Margin="10"
+                                Height="45"
+                                BorderThickness="1"
+                                Width="250"
+                                Template="{StaticResource RoundButton}"
                                 Click="Button_Click">
                             进入番茄播放器
                         </Button>
