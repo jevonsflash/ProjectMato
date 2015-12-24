@@ -128,7 +128,7 @@ namespace MusicMink.Controls
         /// <param name="e"></param>
         void ht_FileWatchEvent(object sender, CompleteEventArgs e)
         {
-            list = LRCSer.GecimeLyricDeserializer(e.Node).result.ToList();
+            list = LRCSer.GecimeLyricDeserializer(e.Node).Result.ToList();
             if (list.Count == 0)
             {
                 ShowErr();
@@ -255,7 +255,7 @@ namespace MusicMink.Controls
                 {
                     TextBlock gd1 = FindFirstElementInVisualTree<TextBlock>(lbiPre);
                     gd1.Foreground = new SolidColorBrush(Colors.Gray);
-                    gd1.FontSize = 25;
+                    
                 }
             }
         }
@@ -273,7 +273,7 @@ namespace MusicMink.Controls
                 if (gd1 != null)
                 {
                     gd1.Foreground = new SolidColorBrush(Colors.White);
-                    gd1.FontSize = 30;
+                    
                 }
             }
 
@@ -287,7 +287,7 @@ namespace MusicMink.Controls
             ScrollViewer sv = FindFirstElementInVisualTree<ScrollViewer>(this.LBLyric);
             if (sv != null)
             {
-                int lrcOffset = index - 4;
+                int lrcOffset = index - 1;
                 if (lrcOffset > 0)
                 {
                     sv.ChangeView(null, lrcOffset, null);
@@ -312,7 +312,7 @@ namespace MusicMink.Controls
 
         private void BTNLrcSearch_Click(object sender, RoutedEventArgs e)
         {
-            NavigationManager.Current.Navigate(NavigationLocation.SearchLrcPage);
+            NavigationManager.Current.Navigate(NavigationLocation.LrcPage);
 
         }
 

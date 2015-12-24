@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-  <Identity Name="27272linxiao.74776F9C9ACB" Publisher="CN=66CEE570-ACBF-4104-8CBB-C23C997CC5A8" Version="1.1.0.0" />
+  <Identity Name="27272linxiao.74776F9C9ACB" Publisher="CN=66CEE570-ACBF-4104-8CBB-C23C997CC5A8" Version="3.0.0.0" />
   <mp:PhoneIdentity PhoneProductId="70460b54-2824-43ea-9533-9c369ce37e9a" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>番茄播放器</DisplayName>

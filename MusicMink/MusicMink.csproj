@@ -203,6 +203,9 @@
     <Compile Include="Pages\LrcListPage.xaml.cs">
       <DependentUpon>LrcListPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\LrcPage.xaml.cs">
+      <DependentUpon>LrcPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Queue.xaml.cs">
       <DependentUpon>Queue.xaml</DependentUpon>
     </Compile>
@@ -211,9 +214,6 @@
     </Compile>
     <Compile Include="Pages\LandingPage.xaml.cs">
       <DependentUpon>LandingPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\SearchLrcPage.xaml.cs">
-      <DependentUpon>SearchLrcPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\SearchPage.xaml.cs">
       <DependentUpon>SearchPage.xaml</DependentUpon>
@@ -435,6 +435,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\LrcPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Queue.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -444,10 +448,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\LandingPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\SearchLrcPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

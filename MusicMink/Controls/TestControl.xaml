@@ -32,7 +32,7 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid x:Name="LBILyricFragment">
-                            <TextBlock TextWrapping="Wrap" Text="{Binding Content}" FontSize="25" Foreground="LightGray"></TextBlock>
+                            <TextBlock TextWrapping="Wrap" Text="{Binding Content}" FontSize="25" Foreground="Gray"></TextBlock>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
@@ -44,7 +44,6 @@
             </StackPanel>
             <Grid Grid.Column="0" Grid.Row="0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100"></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
@@ -52,8 +51,7 @@
                     <RowDefinition ></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <Image x:Name="IMGAlbumArt" Grid.RowSpan="2" Grid.Column="0"></Image>
-                <Canvas Grid.Row="0" Grid.Column="1" Margin="10">
+                <Canvas Grid.Row="0"  Margin="10">
                     <TextBlock x:Name="TBSongName" Text="{Binding TargetNullValue=歌曲}" Foreground="White" Canvas.ZIndex="1" FontSize="22"></TextBlock>
                     <TextBlock  Text="{Binding ElementName=TBSongName ,Path=Text}" Foreground="#FF535353" Canvas.ZIndex="0" FontSize="22">
                         <TextBlock.RenderTransform>
@@ -62,7 +60,7 @@
                     </TextBlock>
                 </Canvas>
 
-                <Canvas Grid.Row="1" Grid.Column="1" Margin="10">
+                <Canvas Grid.Row="1" Margin="10">
                     <TextBlock x:Name="TBArtistName" Text="{Binding TargetNullValue=艺术家}"  Foreground="White" Canvas.ZIndex="1" FontSize="22"></TextBlock>
                     <TextBlock  Text="{Binding ElementName=TBArtistName ,Path=Text}"  Foreground="#FF535353" Canvas.ZIndex="0" FontSize="22">
                         <TextBlock.RenderTransform>

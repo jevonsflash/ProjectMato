@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,16 +17,39 @@ namespace MusicMinkAppLayer.Models
     }
 
 
-    public class Gecime_Lyric
+    public class Gecime_Lyric : INotifyPropertyChanged
     {
         public int count { get; set; }
         public int code { get; set; }
-        public Result2[] result { get; set; }
+
+        private Result2[] result;
+
+        public Result2[] Result
+        {
+            get { return result; }
+            set
+            {
+                result = value;
+                NotifyPropertyChanged("Result");
+            }
+        }
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void NotifyPropertyChanged(string value)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(value));
+            }
+        }
+
     }
 
-    public class Result2ForShow:Result2
+    public class Result2ForShow : Result2
     {
-       
+
         public string artist { get; set; }
     }
 

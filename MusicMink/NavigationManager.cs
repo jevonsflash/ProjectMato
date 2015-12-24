@@ -27,7 +27,7 @@ namespace MusicMink
         ManageLibrary,
         AboutPage,
 
-        SearchLrcPage,
+        LrcPage,
         LrcListPage,
         SleepModePage
     }
@@ -117,8 +117,8 @@ namespace MusicMink
                     return typeof(AboutPage);
                 case NavigationLocation.LrcListPage:
                     return typeof(LrcListPage);
-                case NavigationLocation.SearchLrcPage:
-                    return typeof(SearchLrcPage);
+                case NavigationLocation.LrcPage:
+                    return typeof(LrcPage);
                 case NavigationLocation.SleepModePage:
                     return typeof(SleepModePage);
 
