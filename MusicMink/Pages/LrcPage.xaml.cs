@@ -28,7 +28,7 @@ namespace MusicMink.Pages
     public sealed partial class LrcPage : BasePage
     {
         private Gecime_Lyric list = new Gecime_Lyric();
-
+        private List<Result2ForShow> result = new List<Result2ForShow>();
         private string songName = string.Empty;
         private string artistName = string.Empty;
 
@@ -54,6 +54,12 @@ namespace MusicMink.Pages
 
         async private void ht_FileWatchEvent(object sender, CompleteEventArgs e)
         {
+            result.Clear();
+            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            {
+                LBResult.DataContext = null;
+            });
+
             list = LRCSer.GecimeLyricDeserializer(e.Node);
             if (list.Result.Count() == 0)
             {
@@ -63,12 +69,59 @@ namespace MusicMink.Pages
                     jb.Show();
                 });
             }
-            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            else
             {
-                LBResult.DataContext = list.Result;
-            });
-
+                foreach (var item in list.Result)
+                {
+                    //执行对每个artistid的查询
+                    DoHttpWebRequestArtist(item.artist_id);
+                }
+            }
         }
+
+        public void DoHttpWebRequestArtist(int artistId)
+        {
+            HttpHelper ht = new HttpHelper();
+            string url = "http://geci.me/api/artist/" + artistId.ToString();
+            ht.CreatePostHttpResponse(url);
+            ht.FileWatchEvent += ht_FileWatchEvent3;
+        }
+
+        async void ht_FileWatchEvent3(object sender, CompleteEventArgs e)
+        {
+            //序列化作者列表
+            var artistModel = LRCSer.GecimeArtistDeserializer(e.Node);
+
+            //如果作者列表为空则返回
+            if (artistModel == null)
+            {
+                return;
+            }
+            //当前作者结果对象
+
+            var temp = list.Result.FirstOrDefault(c => c.artist_id.ToString() == e.Node2);
+            if (temp != null)
+            {
+
+                //加入到查询结果表
+                result.Add(new Result2ForShow
+                {
+                    sid = temp.sid,
+                    song = temp.song,
+                    lrc = temp.lrc,
+                    artist = artistModel.Result.name,
+                });
+                //绑定结果表
+
+
+                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                {
+                    LBResult.DataContext = null;
+                    LBResult.DataContext = result;
+                });
+            }
+        }
+
         private void BTNSearch_Click(object sender, RoutedEventArgs e)
         {
             songName = this.TBSongName.Text;
