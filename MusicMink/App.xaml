@@ -27,6 +27,7 @@
             <converters:NumericTransformConverter x:Key="ListWidthToWorkableSectionWidthConverter" Margin="10" Sections="1" />
             <converters:VisibleToCollapse x:Key="VisibleToCollapseConverter"></converters:VisibleToCollapse>
             <converters:SecondsToTimeSpanConverter x:Key="SecondsToTimeSpanConverter"></converters:SecondsToTimeSpanConverter>
+            <converters:BoolToObjectConverter x:Key="BoolToWeekOpacityConverter" ValueIfFalse="1.0" ValueIfTrue="0.3"></converters:BoolToObjectConverter>
             <x:Double x:Key="HeaderFontSize">57.5</x:Double>
 
             <Thickness x:Key="DefaultHeaderMargin">10,0,10,0</Thickness>

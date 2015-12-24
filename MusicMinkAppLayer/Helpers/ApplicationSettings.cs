@@ -10,7 +10,6 @@ namespace MusicMinkAppLayer.Helpers
     {
         #region KEYS
 
-        public const string SETTING_IS_LOGGING_ENABLED = "SETTING_IS_LOGGING_ENABLED_KEY";
         public const string SETTING_IS_NEW_SEASON = "SETTING_IS_NEW_SEASON";
 
         public const string SETTING_IS_AUTO_PULL_ART_FROM_LASTFM_ON = "SETTING_IS_AUTO_PULL_ART_FROM_LASTFM_ON_KEY";
@@ -24,6 +23,7 @@ namespace MusicMinkAppLayer.Helpers
         public const string CURRENT_TRACK_PERCENTAGE = "CURRENT_TRACK_PERCENTAGE_KEY";
 
         public const string IS_SLEEPMODE_ON = "IS_SLEEPMODE_ON";
+        public const string TIMING_OFF_VALUE = "TIMING_OFF_VALUE";
         public const string IS_STOP_WHEN_TERMINATE = "IS_STOP_WHEN_TERMINATE";
         public const string IS_AUTO_LRC = "IS_AUTO_LRC";
         public const string IS_AUTO_OFFSET = "IS_AUTO_OFFSET";

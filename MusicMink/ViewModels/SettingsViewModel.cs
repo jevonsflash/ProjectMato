@@ -18,6 +18,7 @@ namespace MusicMink.ViewModels
         {
             public const string IsNewSeason = "IsNewSeason";
             public const string IsSleepModeOn = "IsSleepModeOn";
+            public const string TimingOffValue = "TimingOffValue";
             public const string IsStopWhenTerminate = "IsStopWhenTerminate";
             public const string IsAutoLrc = "IsAutoLrc";
             public const string IsAutoOffset = "IsAutoOffset";
@@ -59,6 +60,21 @@ namespace MusicMink.ViewModels
                 SetSettingField<bool>(ApplicationSettings.IS_SLEEPMODE_ON, value, Properties.IsSleepModeOn);
             }
         }
+
+        private double timingOffValue;
+
+        public double TimingOffValue
+        {
+            get
+            {
+                return GetSettingField<double>(ApplicationSettings.TIMING_OFF_VALUE, 0.0);
+            }
+            set
+            {
+                SetSettingField<double>(ApplicationSettings.TIMING_OFF_VALUE, value, Properties.TimingOffValue);
+            }
+        }
+
 
         public bool IsStopWhenTerminate
         {

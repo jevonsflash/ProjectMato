@@ -29,13 +29,16 @@
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0" Margin="0,20">
                 <TextBlock Text="自动退出时停止音乐" Style="{StaticResource ComboBoxPlaceholderTextBlockStyle}"></TextBlock>
-                <ToggleSwitch x:Name="TSIsStopMusic" Toggled="BTNIsStopMusic_Tap" ></ToggleSwitch>
+                <ToggleSwitch x:Name="TSIsStopMusic" Toggled="BTNIsStopMusic_Tap" IsOn="{Binding IsStopWhenTerminate,Mode=TwoWay}"></ToggleSwitch>
             </StackPanel>
             <StackPanel Grid.Row="1" Margin="0,20">
                 <TextBlock Text="定时" Style="{StaticResource ComboBoxPlaceholderTextBlockStyle}"></TextBlock>
-                <Slider x:Name="sliderTimer" >
+                <Slider x:Name="sliderTimer" 
+                        Value="{Binding TimingOffValue,Mode=TwoWay}"
+                        Maximum="7200"
+                        IsEnabled="{Binding IsStopWhenTerminate,Mode=TwoWay}">
                 </Slider>
-                <TextBlock x:Name="TBMessage"  HorizontalAlignment="Center" FontSize="{StaticResource TextStyleExtraLargeFontSize}">
+                <TextBlock x:Name="TBMessage"  HorizontalAlignment="Center" FontSize="{StaticResource TextStyleExtraLargeFontSize}" Opacity="{Binding IsSleepModeOn,Mode=TwoWay,Converter={StaticResource BoolToWeekOpacityConverter}}">
                     将在<Run x:Name="TBTimeValue" Text="{Binding ElementName=sliderTimer, Converter={StaticResource SecondsToTimeSpanConverter}, Mode=TwoWay,Path=Value}" ></Run>后关闭
                 </TextBlock>
             </StackPanel>
@@ -43,12 +46,13 @@
                 <TextBlock Text="注意:请保证播放器在前台运行，可锁屏" 
                            FontStyle="Italic" 
                            FontSize="{StaticResource TextStyleLargeFontSize}" HorizontalAlignment="Center">
-                    
-                </TextBlock>               
+
+                </TextBlock>
                 <ToggleButton  
                     Margin="0,20"
                     HorizontalAlignment="Center"
                     x:Name="BTNStart"
+                    IsChecked="{Binding IsSleepModeOn,Mode=TwoWay}"
                     Width="200"
                     Content="启动" 
                     Click="BTNStart_Click"/>

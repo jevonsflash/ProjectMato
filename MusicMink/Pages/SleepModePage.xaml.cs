@@ -23,42 +23,24 @@ namespace MusicMink.Pages
     /// </summary>
     public sealed partial class SleepModePage : BasePage
     {
-
-
-        private TimeSpan ts01;
         public SleepModePage()
         {
             InitializeComponent();
-        }
-
-        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
-        {
-            this.TSIsStopMusic.IsOn = SettingsViewModel.Current.IsStopWhenTerminate;
-
-            this.BTNStart.IsChecked = ((Application.Current as App).Smd01.IsSleepModeOn);
-            this.TBMessage.Opacity = ((Application.Current as App).Smd01.IsSleepModeOn) ? 0.3 : 1.0;
-            this.sliderTimer.IsEnabled = !((Application.Current as App).Smd01.IsSleepModeOn);
-            this.ts01 = (Application.Current as App).Smd01.TimeValue;
-            this.sliderTimer.Value = this.ts01.TotalSeconds;
-            this.sliderTimer.Maximum = 7200;
+            this.DataContext = SettingsViewModel.Current;
         }
 
         private void BTNStart_Click(object sender, RoutedEventArgs e)
         {
             if ((bool)this.BTNStart.IsChecked)
             {
-                this.ts01 = TimeSpan.Parse(this.TBTimeValue.Text);
-                (Application.Current as App).Smd01.TimeValue = this.ts01;
                 (Application.Current as App).Smd01.SleepModeSet();
                 (Application.Current as App).Smd01.SleepModeOn();
-                this.TBMessage.Opacity = 0.3;
-                this.sliderTimer.IsEnabled = false;
             }
             else
             {
                 (Application.Current as App).Smd01.SleepModeOff();
-                this.TBMessage.Opacity = 1;
-                this.sliderTimer.IsEnabled = true;
+                (Application.Current as App).Smd01.SleepModeUnSet();
+
             }
         }
 
