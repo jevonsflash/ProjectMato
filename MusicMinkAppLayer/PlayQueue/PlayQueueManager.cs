@@ -89,6 +89,8 @@ namespace MusicMinkAppLayer.PlayQueue
 
                 if (percentage > 0)
                 {
+                    Logger.Current.Init(LogType.PlayAction);
+
                     Logger.Current.Log(new CallerInfo(), LogLevel.Info, "Length Total {0}", mediaPlayer.NaturalDuration.Ticks);
 
                     mediaPlayer.Position = TimeSpan.FromTicks((long)(mediaPlayer.NaturalDuration.Ticks * percentage));
@@ -96,6 +98,7 @@ namespace MusicMinkAppLayer.PlayQueue
             }
 
             int trackId = ApplicationSettings.GetSettingsValue<int>(ApplicationSettings.CURRENT_PLAYQUEUE_POSITION, 0);
+            Logger.Current.Init(LogType.PlayAction);
 
             Logger.Current.Log(new CallerInfo(), LogLevel.Info, "Trying to play row {0}", trackId);
 

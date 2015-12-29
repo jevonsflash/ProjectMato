@@ -1,4 +1,6 @@
-﻿using MusicMinkAppLayer.Helpers;
+﻿using GoogleAnalytics;
+using GoogleAnalytics.Core;
+using MusicMinkAppLayer.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -15,14 +17,19 @@ namespace MusicMinkAppLayer.Diagnostics
         Error,
         Warning,
         Info,
-        Perf
+        Perf,
+        Nav
+
     }
 
     public enum LogType
     {
-        FG,
-        BG,
-        Unknown
+        System,
+        AudioFunction,
+        Unknown,
+        PlayQueue,
+        ApplicationSettings,
+        PlayAction
     }
 
     /// <summary>
@@ -181,11 +188,25 @@ namespace MusicMinkAppLayer.Diagnostics
 
             builder.Append(DateTime.Now.ToString("MM/dd/yy hh:mm:ss.fff")).Append(" - ").Append(info.FileName).Append(":").Append(info.FunctionName);
             builder.Append("(line ").Append(info.LineNumber).Append(") - ").AppendLine(string.Format(message, args));
-
-            var async = ThreadPool.RunAsync(new WorkItemHandler((IAsyncAction) =>
+            if (level == LogLevel.Error)
             {
-                WriteLog(builder.ToString());
-            }));
+                Tracker myTracker = EasyTracker.GetTracker();
+                myTracker.SendException(builder.ToString(), false);
+            }
+            else if (level == LogLevel.Info)
+            {
+                Tracker myTracker = EasyTracker.GetTracker();
+                myTracker.SendEvent("MatoInfoEvent", message, builder.ToString(), 0);
+            }
+            else if (level == LogLevel.Nav)
+            {
+                Tracker myTracker = EasyTracker.GetTracker();
+                myTracker.SendView(message);
+            }
+            //var async = ThreadPool.RunAsync(new WorkItemHandler((IAsyncAction) =>
+            //{
+            //    WriteLog(builder.ToString());
+            //}));
         }
 
         private async void WriteLog(string logMessage)

@@ -48,6 +48,8 @@ namespace MusicMinkAppLayer.Models
             progressUpdateTimer.Interval = TimeSpan.FromSeconds(0.25);
 
             BackgroundInitialized = new AutoResetEvent(false);
+            Logger.Current.Init(LogType.AudioFunction);
+
         }
 
         public void Start()

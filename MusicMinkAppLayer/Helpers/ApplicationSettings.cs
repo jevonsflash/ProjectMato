@@ -45,6 +45,7 @@ namespace MusicMinkAppLayer.Helpers
 
         public static void PutSettingsValue(string key, object value)
         {
+            Logger.Current.Init(LogType.ApplicationSettings);
             Logger.Current.Log(new CallerInfo(), LogLevel.Info, "Setting ApplicationSettingKey {0} to {1}", key, value);
             if (!ApplicationData.Current.LocalSettings.Values.ContainsKey(key))
             {

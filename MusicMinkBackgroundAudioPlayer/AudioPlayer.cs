@@ -40,7 +40,7 @@ namespace MusicMinkBackgroundAudioPlayer
 
         public void Run(IBackgroundTaskInstance taskInstance)
         {
-            Logger.Current.Init(LogType.BG);
+            Logger.Current.Init(LogType.AudioFunction);
 
             PlayQueueManager.Current.Connect();
 
@@ -72,6 +72,8 @@ namespace MusicMinkBackgroundAudioPlayer
 
             if (ApplicationSettings.GetSettingsValue<bool>(ApplicationSettings.IS_FOREGROUND_PROCESS_ACTIVE, false))
             {
+                    Logger.Current.Init(LogType.AudioFunction);
+
                 Logger.Current.Log(new CallerInfo(), LogLevel.Info, "Sending message to the FG -- BackgroundStarted");
 
                 PlayQueueManager.Current.SendMessageToForeground(PlayQueueConstantBGMessageId.BackgroundStarted);
@@ -79,6 +81,8 @@ namespace MusicMinkBackgroundAudioPlayer
             }
             else
             {
+                Logger.Current.Init(LogType.AudioFunction);
+
                 Logger.Current.Log(new CallerInfo(), LogLevel.Info, "Didn't send message to the FG because FG not started");
 
                 foregroundTaskState = ForegroundTaskState.Stopped;
@@ -94,6 +98,8 @@ namespace MusicMinkBackgroundAudioPlayer
 
         private void HandleTaskInstanceTaskCompleted(BackgroundTaskRegistration sender, BackgroundTaskCompletedEventArgs args)
         {
+            Logger.Current.Init(LogType.AudioFunction);
+
             Logger.Current.Log(new CallerInfo(), LogLevel.Info, "AudioPlayer Background Task Completed id:{0}", sender.TaskId);
 
             backgroundTaskDefferal.Complete();
@@ -104,6 +110,8 @@ namespace MusicMinkBackgroundAudioPlayer
             PlayQueueManager.Current.Disconnect();
 
             TileUpdateManager.CreateTileUpdaterForApplication("App").Clear();
+
+            Logger.Current.Init(LogType.AudioFunction);
 
             Logger.Current.Log(new CallerInfo(), LogLevel.Info, "AudioPlayer Background Task Completed id:{0} reason:{1}", taskInstance.Task.TaskId, reason.ToString());
             
@@ -141,6 +149,7 @@ namespace MusicMinkBackgroundAudioPlayer
         private async void HandlePlayQueueTrackChanged(PlayQueueManager sender, TrackInfo args)
         {
             int newRowId = 0;
+            Logger.Current.Init(LogType.AudioFunction);
 
             Logger.Current.Log(new CallerInfo(), LogLevel.Info, "Track changed, args set? {0}", args != null);
 
@@ -165,6 +174,8 @@ namespace MusicMinkBackgroundAudioPlayer
 
             if (foregroundTaskState == ForegroundTaskState.Running)
             {
+                Logger.Current.Init(LogType.AudioFunction);
+
                 Logger.Current.Log(new CallerInfo(), LogLevel.Info, "Alerting FG of track change {0}", newRowId);
 
                 PlayQueueManager.Current.SendMessageToForeground(PlayQueueConstantBGMessageId.TrackChanged, newRowId);
@@ -230,6 +241,8 @@ namespace MusicMinkBackgroundAudioPlayer
             switch (args.Button)
             {
                 case SystemMediaTransportControlsButton.Play:
+                    Logger.Current.Init(LogType.AudioFunction);
+
                     Logger.Current.Log(new CallerInfo(), LogLevel.Info, "Play button pressed");
 
                     if (backgroundTaskState != BackgroundTaskState.Running)
@@ -245,22 +258,30 @@ namespace MusicMinkBackgroundAudioPlayer
 
                     break;
                 case SystemMediaTransportControlsButton.Pause:
+                    Logger.Current.Init(LogType.AudioFunction);
+
                     Logger.Current.Log(new CallerInfo(), LogLevel.Info, "Pause button pressed");
 
                     BackgroundMediaPlayer.Current.Pause();
                     break;
                 case SystemMediaTransportControlsButton.Next:
+                    Logger.Current.Init(LogType.AudioFunction);
+
                     Logger.Current.Log(new CallerInfo(), LogLevel.Info, "Next button pressed");
 
                     SkipToNext();
 
                     break;
                 case SystemMediaTransportControlsButton.Previous:
+                    Logger.Current.Init(LogType.AudioFunction);
+
                     Logger.Current.Log(new CallerInfo(), LogLevel.Info, "Previous button pressed");
                     SkipToPrevious();
 
                     break;
                 default:
+                    Logger.Current.Init(LogType.AudioFunction);
+
                     Logger.Current.Log(new CallerInfo(), LogLevel.Warning, "Unexpected SMTC Button Pressed: {0}", args.Button.ToString());
                     break;
             }
@@ -330,6 +351,7 @@ namespace MusicMinkBackgroundAudioPlayer
                 {
                     case PlayQueueMessageHelper.AppSuspended:
                         foregroundTaskState = ForegroundTaskState.Stopped;
+                        Logger.Current.Init(LogType.AudioFunction);
 
                         Logger.Current.Log(new CallerInfo(), LogLevel.Info, "GOT SUSPEND EVENT");
 

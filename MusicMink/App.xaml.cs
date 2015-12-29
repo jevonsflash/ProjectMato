@@ -65,7 +65,7 @@ namespace MusicMink
         {
             StatusBar sb = StatusBar.GetForCurrentView();
             sb.HideAsync();
-            Logger.Current.Init(LogType.FG);
+            Logger.Current.Init(LogType.System);
 
             Logger.Current.Log(new CallerInfo(), LogLevel.Info, "App launched");
 
@@ -261,7 +261,7 @@ namespace MusicMink
 
         void OnResuming(object sender, object e)
         {
-            Logger.Current.Init(LogType.FG);
+            Logger.Current.Init(LogType.System);
 
             LibraryViewModel.Current.PlayQueue.Resume();
 

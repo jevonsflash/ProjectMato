@@ -1,4 +1,5 @@
 ﻿using MusicMink.Common;
+using MusicMinkAppLayer.Diagnostics;
 using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -78,6 +79,7 @@ namespace MusicMink.Pages
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
+            Logger.Current.Log(new CallerInfo(), LogLevel.Nav, e.Content.ToString());
             this.navigationHelper.OnNavigatedFrom(e);
         }
 
