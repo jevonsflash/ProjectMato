@@ -303,10 +303,35 @@ namespace MusicMink.ViewModels
             NotifyPropertyChanged(Properties.LengthInfo);
         }
 
+        internal async Task SetArtToLastFM(bool clobber)
+        {
+            if (HasAlbumArt && !clobber) return;
+
+            string LastFMArt = await LastFMManager.Current.GetAlbumArt(ArtistName, Name);
+
+            if (!string.IsNullOrEmpty(LastFMArt))
+            {
+                UpdateArt(LastFMArt);
+            }
+        }
+
 
         internal string GetNewArtPath()
         {
             return "AlbumArt_" + AlbumId + ".img";
+        }
+
+        internal async void UpdateArt(string sourcePath)
+        {
+            if (!string.IsNullOrEmpty(sourcePath))
+            {
+                string albumArtPath = GetNewArtPath();
+
+                if (await DownloadManager.Current.DownloadFile(new Uri(sourcePath), albumArtPath))
+                {
+                    rootModel.AlbumArt = albumArtPath;
+                }
+            }
         }
 
 

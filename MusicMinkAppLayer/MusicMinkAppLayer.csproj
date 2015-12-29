@@ -79,6 +79,7 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Helpers\ApiKeys.cs" />
     <Compile Include="Helpers\ApplicationSettings.cs" />
     <Compile Include="Diagnostics\CallerInfo.cs" />
     <Compile Include="Diagnostics\DebugHelper.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Helpers\DownloadManager.cs" />
     <Compile Include="Helpers\FileHelper.cs" />
     <Compile Include="Helpers\HttpHelper.cs" />
+    <Compile Include="Helpers\LastFMManager.cs" />
     <Compile Include="Helpers\LRCSer.cs" />
     <Compile Include="Helpers\Utilities.cs" />
     <Compile Include="Models\AlbumModel.cs" />
