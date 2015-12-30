@@ -39,6 +39,8 @@ namespace MusicMinkAppLayer.Models
             public const string FullTime = "FullTime";
             public const string IsPlaying = "IsPlaying";
             public const string IsActive = "IsActive";
+            public const string IsLoop = "IsLoop";
+            public const string VolumeValue = "VolumeValue";
         }
 
         internal PlayQueueModel()
@@ -57,7 +59,7 @@ namespace MusicMinkAppLayer.Models
             Logger.Current.Log(new CallerInfo(), LogLevel.Info, "Calling Popuplate");
 
             Populate();
-           
+
             Init();
         }
 
@@ -280,6 +282,36 @@ namespace MusicMinkAppLayer.Models
                 }
             }
         }
+
+        private bool _isLoop;
+
+        public bool IsLoop
+        {
+            get
+            {
+                return _isLoop;
+            }
+            protected set
+            {
+                _isLoop = value;
+                NotifyPropertyChanged(Properties.IsLoop);
+            }
+        }
+
+
+        private double _volumeValue;
+
+        public double VolumeValue
+        {
+            get { return _volumeValue; }
+            set
+            {
+                _volumeValue = value;
+                NotifyPropertyChanged(Properties.VolumeValue);
+
+            }
+        }
+
 
         public int PrevTrack
         {
@@ -692,7 +724,7 @@ namespace MusicMinkAppLayer.Models
             else
             {
                 newPlayQueueEntry = new PlayQueueEntryTable(songId, 0, currentTail.RowId);
-               
+
                 DatabaseManager.Current.AddPlayQueueEntry(newPlayQueueEntry);
 
                 currentTail.NextId = newPlayQueueEntry.RowId;
@@ -757,7 +789,7 @@ namespace MusicMinkAppLayer.Models
             else
             {
                 IsActive = false;
-               
+
                 IsBackgroundStarted = false;
             }
 
@@ -927,6 +959,19 @@ namespace MusicMinkAppLayer.Models
                 ApplicationSettings.PutSettingsValue(ApplicationSettings.CURRENT_TRACK_PERCENTAGE, percentage);
             }
         }
+
+        public void PlayModeSwitch()
+        {
+            SentMessageToBackgroundOrInit(PlayQueueConstantFGMessageId.PlayMode);
+            IsLoop = BackgroundMediaPlayer.Current.IsLoopingEnabled;
+
+        }
+        public void SetVolume(double volumeValue)
+        {
+            SendMessageToBackground(PlayQueueConstantFGMessageId.Volume, volumeValue);
+            VolumeValue = BackgroundMediaPlayer.Current.Volume;
+        }
+
 
         #endregion
 

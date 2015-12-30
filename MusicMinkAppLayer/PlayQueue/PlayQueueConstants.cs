@@ -13,6 +13,8 @@ namespace MusicMinkAppLayer.PlayQueue
         PrevTrack,
         PossibleChromeChange,
         ScrubToPercentage,
+        PlayMode,
+        Volume
     }
 
     public enum PlayQueueConstantBGMessageId
@@ -48,6 +50,9 @@ namespace MusicMinkAppLayer.PlayQueue
 
         public const string ScrubToPercentage = "scrubtopercentage";
 
+        public const string PlayMode = "playmode";
+        public const string Volume = "volume";
+
         internal static string FGMessageIdToMessageString(PlayQueueConstantFGMessageId messageId)
         {
             switch (messageId)
@@ -70,6 +75,10 @@ namespace MusicMinkAppLayer.PlayQueue
                     return SkipTrack;
                 case PlayQueueConstantFGMessageId.StartPlayback:
                     return StartPlayback;
+                case PlayQueueConstantFGMessageId.PlayMode:
+                    return PlayMode;
+                case PlayQueueConstantFGMessageId.Volume:
+                    return Volume;
                 default:
                     DebugHelper.Alert(new CallerInfo(), "Unexpected PlayQueueConstantFGMessageId {0} encountered", messageId.ToString());
                     return Unknown;

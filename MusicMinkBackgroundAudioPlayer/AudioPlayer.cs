@@ -72,7 +72,7 @@ namespace MusicMinkBackgroundAudioPlayer
 
             if (ApplicationSettings.GetSettingsValue<bool>(ApplicationSettings.IS_FOREGROUND_PROCESS_ACTIVE, false))
             {
-                    Logger.Current.Init(LogType.AudioFunction);
+                Logger.Current.Init(LogType.AudioFunction);
 
                 Logger.Current.Log(new CallerInfo(), LogLevel.Info, "Sending message to the FG -- BackgroundStarted");
 
@@ -91,7 +91,7 @@ namespace MusicMinkBackgroundAudioPlayer
 
         void Task_Progress(BackgroundTaskRegistration sender, BackgroundTaskProgressEventArgs args)
         {
-            
+
         }
 
         #region Background Task Stuff
@@ -114,7 +114,7 @@ namespace MusicMinkBackgroundAudioPlayer
             Logger.Current.Init(LogType.AudioFunction);
 
             Logger.Current.Log(new CallerInfo(), LogLevel.Info, "AudioPlayer Background Task Completed id:{0} reason:{1}", taskInstance.Task.TaskId, reason.ToString());
-            
+
             ApplicationSettings.PutSettingsValue(ApplicationSettings.IS_BACKGROUND_PROCESS_ACTIVE, false);
 
             if (ApplicationSettings.GetSettingsValue<bool>(ApplicationSettings.IS_FOREGROUND_PROCESS_ACTIVE, false))
@@ -321,8 +321,8 @@ namespace MusicMinkBackgroundAudioPlayer
             }
             else
             {
-                PlayQueueManager.Current.SendMessageToForeground(PlayQueueConstantBGMessageId.SeekComplete); 
-                
+                PlayQueueManager.Current.SendMessageToForeground(PlayQueueConstantBGMessageId.SeekComplete);
+
                 DebugHelper.Alert(new CallerInfo(), "Seeking attempt with null BMP");
             }
         }
@@ -414,6 +414,12 @@ namespace MusicMinkBackgroundAudioPlayer
                         break;
                     case PlayQueueMessageHelper.ScrubToPercentage:
                         Seek(DebugHelper.CastAndAssert<double>(e.Data[key]));
+                        break;
+                    case PlayQueueMessageHelper.PlayMode:
+                        BackgroundMediaPlayer.Current.IsLoopingEnabled = !BackgroundMediaPlayer.Current.IsLoopingEnabled;
+                        break;
+                    case PlayQueueMessageHelper.SoundSet:
+                        BackgroundMediaPlayer.Current.Volume = DebugHelper.CastAndAssert<double>(e.Data[key]);
                         break;
                 }
             }

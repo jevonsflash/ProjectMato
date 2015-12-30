@@ -31,6 +31,8 @@ namespace MusicMink.ViewModels
             public const string ProgressTime = "ProgressTime";
             public const string TracksLeft = "TracksLeft";
             public const string IsEmpty = "IsEmpty";
+            public const string IsLoop = "IsLoop";
+            public const string VolumeValue = "VolumeValue";
         }
 
         private Dictionary<int, PlayQueueEntryViewModel> LookupDictionary = new Dictionary<int, PlayQueueEntryViewModel>();
@@ -126,6 +128,12 @@ namespace MusicMink.ViewModels
                     NotifyPropertyChanged(Properties.NextTrack);
                     NotifyPropertyChanged(Properties.PrevTrack);
                     ClearPlayed.RaiseExecuteChanged();
+                    break;
+                case PlayQueueModel.Properties.IsLoop:
+                    NotifyPropertyChanged(Properties.IsLoop);
+                    break;
+                case PlayQueueModel.Properties.VolumeValue:
+                    NotifyPropertyChanged(Properties.VolumeValue);
                     break;
             }
         }
@@ -364,6 +372,22 @@ namespace MusicMink.ViewModels
             }
         }
 
+        public bool IsLoop
+        {
+            get
+            {
+                return rootModel.IsLoop;
+            }
+        }
+
+        public double VolumeValue
+        {
+            get
+            {
+                return rootModel.VolumeValue;
+            }
+        }
+
         #endregion
 
         #region Commands
@@ -502,6 +526,28 @@ namespace MusicMink.ViewModels
             return PlaybackQueue.Count > 0;
         }
 
+        private RelayCommand _playModeSwitch;
+        public RelayCommand PlayModeSwitch
+        {
+            get
+            {
+                if (_playModeSwitch == null) _playModeSwitch = new RelayCommand(CanExecutePlayModeSwitch, ExecutePlayModeSwitch);
+                return _playModeSwitch;
+            }
+        }
+
+        private void ExecutePlayModeSwitch(object parameter)
+        {
+            rootModel.PlayModeSwitch();
+        }
+
+        private bool CanExecutePlayModeSwitch(object parameter)
+        {
+            return PlaybackQueue.Count > 0;
+        }
+
+
+        
         #endregion
 
         #region Methods
@@ -627,6 +673,12 @@ namespace MusicMink.ViewModels
         internal void ScrubToPercentage(double percentage)
         {
             rootModel.ScrubToPercentage(percentage);
+        }
+
+
+        internal void SetVolume(double volumValue)
+        {
+            rootModel.SetVolume(volumValue);
         }
 
         #endregion
