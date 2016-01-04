@@ -46,15 +46,21 @@
 
         <Grid x:Name="GDPage" Visibility="Visible">
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
+                <RowDefinition Height="1*" />
                 <RowDefinition Height="45" />
-                <RowDefinition Height="auto" />
+                <RowDefinition Height="1*" />
+                <!--专辑封面 3-->
                 <RowDefinition Height="220" />
+                <!--星级评价 4-->
                 <RowDefinition Height="50" />
+                <!--歌曲信息 5-->
                 <RowDefinition Height="150" />
+                <!--播放状态信息 6-->
                 <RowDefinition Height="40" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
+                <RowDefinition Height="1*" />
+                <!--进度条 8-->
+                <RowDefinition Height="10" />
+                <!--控制按钮9-->
                 <RowDefinition Height="138" />
             </Grid.RowDefinitions>
 
@@ -89,7 +95,7 @@
                 DoubleTapped="PrevTrackImageDoubleTapped"
                 ManipulationMode="TranslateX,TranslateRailsX,System"
                 ManipulationCompleted="Rectangle_ManipulationCompleted"
-                 Visibility="{Binding ElementName=LrcControl,Path=Visibility,Converter={StaticResource VisibleToCollapseConverter}}"
+                Visibility="{Binding ElementName=LrcControl,Path=Visibility,Converter={StaticResource VisibleToCollapseConverter}}"
        
                 />
             <Image 
@@ -472,7 +478,7 @@
             VerticalAlignment="Top"
             Margin="0,70,0,0"
             IsBtnShow="True"
-            Message="你还没有添加任何歌曲哦~"
+            Message="您的播放列表为空哦~"
             >
         </controls:ErrorboxControl>
         <!--歌词按钮-->

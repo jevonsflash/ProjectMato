@@ -77,7 +77,7 @@ namespace MusicMink.Controls
 
         private void BTNFun_Click(object sender, RoutedEventArgs e)
         {
-            NavigationManager.Current.Navigate(NavigationLocation.ManageLibrary);
+            NavigationManager.Current.Navigate(NavigationLocation.Library);
         }
     }
 }

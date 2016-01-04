@@ -410,7 +410,7 @@ namespace MusicMinkBackgroundAudioPlayer
                         break;
 
                     case PlayQueueMessageHelper.LoggingEnabledChanged:
-                        Logger.Current.UpdateEnabled();
+                        
                         break;
                     case PlayQueueMessageHelper.ScrubToPercentage:
                         Seek(DebugHelper.CastAndAssert<double>(e.Data[key]));
@@ -418,7 +418,7 @@ namespace MusicMinkBackgroundAudioPlayer
                     case PlayQueueMessageHelper.PlayMode:
                         BackgroundMediaPlayer.Current.IsLoopingEnabled = !BackgroundMediaPlayer.Current.IsLoopingEnabled;
                         break;
-                    case PlayQueueMessageHelper.SoundSet:
+                    case PlayQueueMessageHelper.Volume:
                         BackgroundMediaPlayer.Current.Volume = DebugHelper.CastAndAssert<double>(e.Data[key]);
                         break;
                 }

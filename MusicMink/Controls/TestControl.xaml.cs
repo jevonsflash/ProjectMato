@@ -143,15 +143,20 @@ namespace MusicMink.Controls
             }
         }
 
-        private void ShowErr()
+        private async void ShowErr()
         {
-            this.ErrNoLrc.Visibility = Visibility.Visible;
+            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+             {
+                 this.ErrNoLrc.Visibility = Visibility.Visible;
+             });
         }
-        private void HideErr()
+        private async void HideErr()
         {
-            this.ErrNoLrc.Visibility = Visibility.Collapsed;
+            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            {
+                this.ErrNoLrc.Visibility = Visibility.Collapsed;
+            });
         }
-
 
         /// <summary>
         /// 处理返回值2
@@ -255,7 +260,7 @@ namespace MusicMink.Controls
                 {
                     TextBlock gd1 = FindFirstElementInVisualTree<TextBlock>(lbiPre);
                     gd1.Foreground = new SolidColorBrush(Colors.Gray);
-                    
+
                 }
             }
         }
@@ -273,7 +278,7 @@ namespace MusicMink.Controls
                 if (gd1 != null)
                 {
                     gd1.Foreground = new SolidColorBrush(Colors.White);
-                    
+
                 }
             }
 

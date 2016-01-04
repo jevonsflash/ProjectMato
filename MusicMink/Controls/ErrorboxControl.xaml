@@ -39,7 +39,7 @@
                        >
         </TextBlock>
         <Button x:Name="BTNFun"
-                Content="现在添加" 
+                Content="查看 “库”" 
                 Grid.Row="2"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Bottom"

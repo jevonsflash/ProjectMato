@@ -62,6 +62,12 @@ namespace MusicMinkAppLayer.Diagnostics
 
         private bool isEnabled;
 
+        public bool IsEnabled
+        {
+            get { return isEnabled; }
+            set { isEnabled = value; }
+        }
+
         private bool isInit = false;
 
         private static Logger _current;
@@ -89,7 +95,7 @@ namespace MusicMinkAppLayer.Diagnostics
 
         private Logger()
         {
-            UpdateEnabled();
+            
         }
 
         private async void FlushLogs(ThreadPoolTimer timer)
@@ -186,23 +192,31 @@ namespace MusicMinkAppLayer.Diagnostics
 
             StringBuilder builder = new StringBuilder();
 
-            builder.Append(DateTime.Now.ToString("MM/dd/yy hh:mm:ss.fff")).Append(" - ").Append(info.FileName).Append(":").Append(info.FunctionName);
+            builder.Append(DateTime.Now.ToString("MM/dd")).Append(" - ").Append(info.FileName).Append(":").Append(info.FunctionName);
             builder.Append("(line ").Append(info.LineNumber).Append(") - ").AppendLine(string.Format(message, args));
-            if (level == LogLevel.Error)
+            try
             {
-                Tracker myTracker = EasyTracker.GetTracker();
-                myTracker.SendException(builder.ToString(), false);
+
+                if (level == LogLevel.Error)
+                {
+                    Tracker myTracker = EasyTracker.GetTracker();
+                    myTracker.SendException(builder.ToString(), false);
+                }
+                else if (level == LogLevel.Info)
+                {
+                    Tracker myTracker = EasyTracker.GetTracker();
+                    myTracker.SendEvent("MatoInfoEvent", message, builder.ToString(), 0);
+                }
+                else if (level == LogLevel.Nav)
+                {
+                    Tracker myTracker = EasyTracker.GetTracker();
+                    myTracker.SendView(message);
+                }
             }
-            else if (level == LogLevel.Info)
+            catch (Exception exx)
             {
-                Tracker myTracker = EasyTracker.GetTracker();
-                myTracker.SendEvent("MatoInfoEvent", message, builder.ToString(), 0);
             }
-            else if (level == LogLevel.Nav)
-            {
-                Tracker myTracker = EasyTracker.GetTracker();
-                myTracker.SendView(message);
-            }
+
             //var async = ThreadPool.RunAsync(new WorkItemHandler((IAsyncAction) =>
             //{
             //    WriteLog(builder.ToString());
@@ -226,11 +240,6 @@ namespace MusicMinkAppLayer.Diagnostics
             {
                 await Flush();
             }
-        }
-
-        public void UpdateEnabled()
-        {
-            isEnabled = false;
         }
     }
 }

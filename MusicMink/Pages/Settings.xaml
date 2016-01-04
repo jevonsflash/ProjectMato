@@ -111,8 +111,15 @@
                                       IsOn="{Binding IsAutoOffset, Mode=TwoWay}" >
                         </ToggleSwitch>
                     </StackPanel>
-
-                </StackPanel>
+                     <StackPanel>
+                        <TextBlock  x:Uid="SettingsIsGoMainPage" Text="协助改善产品" 
+                                    Style="{StaticResource ComboBoxPlaceholderTextBlockStyle}"/>
+                        <ToggleSwitch x:Name="TSIsAutoGA"
+                                    IsOn="{Binding IsAutoGA, Mode=TwoWay}" >
+                        </ToggleSwitch>
+                        <TextBlock FontSize="{StaticResource TextStyleLargeFontSize}" TextWrapping="Wrap">此选项控制是否耗费极小数据流量向开发人员发送应用诊断和使用情况数据，以帮助改善产品。</TextBlock>
+                    </StackPanel>
+               </StackPanel>
             </ScrollViewer>
         </Grid>
     </Grid>

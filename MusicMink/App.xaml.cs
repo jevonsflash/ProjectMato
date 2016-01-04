@@ -122,6 +122,7 @@ namespace MusicMink
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
+                Logger.Current.IsEnabled = SettingsViewModel.Current.IsAutoGA;
 
                 Type target = typeof(LandingPage);
                 if (SettingsViewModel.Current.IsNewSeason != (string)App.Current.Resources["Version"])

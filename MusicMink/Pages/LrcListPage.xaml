@@ -31,10 +31,10 @@
                         Grid.Row="0" 
                         Height="72" 
                         >
-                <TextBlock FontSize="30" VerticalAlignment="Center">
-                   已缓存 <Run x:Name="TBLrcCount" Text="{Binding LrcCount,Mode=OneWay}"></Run> 个歌词文件
+                <TextBlock FontSize="{StaticResource TextStyleExtraLargeFontSize}" VerticalAlignment="Center">
+                   已缓存 <Run x:Name="TBLrcCount" Text="{Binding LrcList.Count,Mode=OneWay}"></Run> 个歌词文件
                 </TextBlock>
-                <Button x:Name="BTNCleanUnavailableLrc" Content="智能清理" BorderThickness="1" Width="85" Height="40" Click="BTNCleanUnavailableLrc_Click"  Template="{StaticResource RoundButton}"/>
+                <Button Margin="40,0,0,0" x:Name="BTNCleanUnavailableLrc" Content="智能清理" BorderThickness="1" Width="85" Height="40" Click="BTNCleanUnavailableLrc_Click"  Template="{StaticResource RoundButton}"/>
             </StackPanel>
             <ListView 
 				Grid.Row="1"

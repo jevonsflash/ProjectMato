@@ -46,7 +46,7 @@ namespace MusicMink.Pages
         {
             var item = ((sender as Button).Parent as Grid).DataContext;
             lrcListPageViewModel.DeleteLrcFile(item);
-
+            this.TBLrcCount.Text = lrcListPageViewModel.LrcList.Count.ToString();
         }
     }
 

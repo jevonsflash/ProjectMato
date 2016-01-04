@@ -69,10 +69,17 @@
                                 </Paragraph>
                                 <Paragraph FontStretch="Undefined" TextIndent="20">
                                     Metro Studio
+                                </Paragraph>
+                                <Paragraph FontStretch="Undefined" TextIndent="20">
+                                    感谢曾给予帮助的人
                                     <LineBreak/>
                                 </Paragraph>
                                 <Paragraph FontStretch="Undefined" FontSize="15" TextIndent="20">
                                     歌词内容来源于歌词迷(geci.me)，部分图标元素来源于互联网。
+                                    <LineBreak></LineBreak>
+                                </Paragraph>
+                                <Paragraph FontStretch="Undefined" FontSize="15" TextIndent="20">
+                                    隐私声明: 本应用收集应用使用信息用于改善产品，而不涉及用户隐私。
                                     <LineBreak></LineBreak>
                                 </Paragraph>
                             </RichTextBlock.Blocks>

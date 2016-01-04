@@ -22,6 +22,7 @@ namespace MusicMink.ViewModels
             public const string IsStopWhenTerminate = "IsStopWhenTerminate";
             public const string IsAutoLrc = "IsAutoLrc";
             public const string IsAutoOffset = "IsAutoOffset";
+            public const string IsAutoGA = "IsAutoGA";
         }
 
         private static SettingsViewModel _current;
@@ -42,9 +43,6 @@ namespace MusicMink.ViewModels
         {
         }
 
-        #region Commands
-
-        #endregion
 
         #region Properties
 
@@ -108,6 +106,18 @@ namespace MusicMink.ViewModels
             set
             {
                 SetSettingField<bool>(ApplicationSettings.IS_AUTO_OFFSET, value, Properties.IsAutoOffset);
+            }
+        }
+
+        public bool IsAutoGA
+        {
+            get
+            {
+                return GetSettingField<bool>(ApplicationSettings.IS_AUTO_GA, true);
+            }
+            set
+            {
+                SetSettingField<bool>(ApplicationSettings.IS_AUTO_GA, value, Properties.IsAutoGA);
             }
         }
 

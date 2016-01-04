@@ -49,5 +49,6 @@ namespace MusicMink.Pages
         {
             NavigationManager.Current.Navigate(NavigationLocation.SleepModePage);
         }
+
     }
 }

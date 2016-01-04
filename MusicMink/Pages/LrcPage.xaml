@@ -66,21 +66,22 @@
                                 <StackPanel Orientation="Horizontal">
 
                                     <Image Width="48" Source="/Icon/LRCDocument.png"></Image>
-                                    <TextBlock   TextWrapping="NoWrap"
-                                                 Text="{Binding Path=song}" 
-                                                 FontSize="22"  
-                                                 VerticalAlignment="Center" ></TextBlock>
-                                </StackPanel>
-                                <TextBlock   TextWrapping="NoWrap"
-                                                 Text="{Binding Path=artist}" 
-                                                 FontSize="22" 
-                                                 Foreground="LightGray"
-                                             HorizontalAlignment="Center"    
-                                             VerticalAlignment="Center" >
-                                    
-                                    
-                                </TextBlock>
 
+                                    <StackPanel>
+                                        <TextBlock   
+                                            TextWrapping="NoWrap"
+                                            Text="{Binding Path=song}" 
+                                            FontSize="22"  
+                                            VerticalAlignment="Center" ></TextBlock>
+                                        <TextBlock   
+                                            TextWrapping="NoWrap"
+                                            Text="{Binding Path=artist}" 
+                                            FontSize="18" 
+                                            Foreground="LightGray"
+                                            VerticalAlignment="Center" >
+                                        </TextBlock>
+                                    </StackPanel>
+                                </StackPanel>
                                 <AppBarButton HorizontalAlignment="Right" 
                                           IsCompact="True"  Margin="0,0,10,0" 
                                           Click="Button_Click"  VerticalAlignment="Center" 

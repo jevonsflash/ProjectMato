@@ -27,6 +27,7 @@ namespace MusicMinkAppLayer.Helpers
         public const string IS_STOP_WHEN_TERMINATE = "IS_STOP_WHEN_TERMINATE";
         public const string IS_AUTO_LRC = "IS_AUTO_LRC";
         public const string IS_AUTO_OFFSET = "IS_AUTO_OFFSET";
+        public const string IS_AUTO_GA = "IS_AUTO_GA";
         public const string BACKGROUND_KEY = "BACKGROUND_KEY";
 
         #endregion
