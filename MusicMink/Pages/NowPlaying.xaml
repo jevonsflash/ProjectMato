@@ -46,29 +46,24 @@
 
         <Grid x:Name="GDPage" Visibility="Visible">
             <Grid.RowDefinitions>
-                <RowDefinition Height="1*" />
+                <RowDefinition Height="0" />
                 <RowDefinition Height="45" />
-                <RowDefinition Height="1*" />
+                <RowDefinition Height="0" />
                 <!--专辑封面 3-->
-                <RowDefinition Height="220" />
+                <RowDefinition Height="350" />
                 <!--星级评价 4-->
-                <RowDefinition Height="50" />
+                <RowDefinition Height="0" />
                 <!--歌曲信息 5-->
-                <RowDefinition Height="150" />
+                <RowDefinition Height="0" />
                 <!--播放状态信息 6-->
-                <RowDefinition Height="40" />
-                <RowDefinition Height="1*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
                 <!--进度条 8-->
-                <RowDefinition Height="10" />
+                <RowDefinition Height="50" />
                 <!--控制按钮9-->
                 <RowDefinition Height="138" />
             </Grid.RowDefinitions>
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="4*" />
-                <ColumnDefinition Width="1*" />
-            </Grid.ColumnDefinitions>
             <!--当前歌曲专辑封面-->
             <FlipView
                 x:Name="FVAlbumArtFliper"
@@ -80,110 +75,133 @@
                 
                 >
                 <FlipViewItem>
-                    <Image 
-                    x:Name="PrevTrackImage"
-                    HorizontalAlignment="Center"
-                    Source="{Binding PrevTrack.Album.AlbumArt}"
-                    Stretch="UniformToFill"
-                    Width="220"
-                    Height="220"/>
-                </FlipViewItem> 
-                <FlipViewItem>
-                    <Image
-                    x:Name="CurrentTrackImage"
-                    HorizontalAlignment="Center"
-                    Source="{Binding CurrentTrack.Album.AlbumArt}"            
-                    Height="220"
-                    Width="220"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="8*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Border
+                       Grid.Column="1"
+                        x:Name="PrevTrackImage"
+                        BorderBrush="White"
+                        VerticalAlignment="Bottom"
+                        BorderThickness="5"
+                        CornerRadius="150"
+                        Height="{Binding ElementName=PrevTrackImage, Path=ActualWidth}"
+                        
+                        >
+                            <Border.Background>
+                                <ImageBrush Stretch="Fill" ImageSource="{Binding PrevTrack.Album.AlbumArt}"/>
+                            </Border.Background>
+
+
+
+                        </Border>
+                    </Grid>
+
                 </FlipViewItem>
                 <FlipViewItem>
-                    <Image 
-                    x:Name="NextTrackImage"
-                    HorizontalAlignment="Center"
-                    Source="{Binding NextTrack.Album.AlbumArt}"
-                    Stretch="UniformToFill"
-                    Width="220"
-                    Height="220"
-                    />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="8*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel
+                            Margin="0,10"
+                            Grid.Column="1"
+                            VerticalAlignment="Bottom"
+                            Height="Auto"
+                            MinHeight="75"
+                            Canvas.ZIndex="2">
+                            <TextBlock x:Name="TBSong"
+                                   Margin="50,0"
+                                   MaxLines="2"
+                                   
+                                   TextWrapping="Wrap"
+                                   Text="{Binding CurrentTrack.Name,TargetNullValue=歌曲}" 
+                                   FontSize="22"
+                                   Foreground="White" 
+                                   TextAlignment="Center"
+                                   >
 
+                            </TextBlock>
+                            <TextBlock x:Name="TBAlbum" 
+                                    MaxLines="2"
+                                   Margin="100,0"
+                                   TextWrapping="Wrap"
+                                   Text="{Binding CurrentTrack.Album.Name,TargetNullValue=专辑}"  
+                                   FontSize="18"
+                                   Foreground="White"
+                                   TextAlignment="Center">
+                            </TextBlock>
+                        </StackPanel>
+                        <Ellipse
+                       Grid.Column="1"
+                        VerticalAlignment="Bottom"
+                        Height="{Binding ElementName=CurrentTrackImage, Path=ActualWidth}"
+                            Canvas.ZIndex="1"
+                            >
+                            <Ellipse.Fill>
+                                <SolidColorBrush Color="Black" Opacity="0.8"></SolidColorBrush>
+                            </Ellipse.Fill>
+                            <Ellipse.Clip>
+                                <RectangleGeometry Rect="0,220,1000,1000" >
+
+                                </RectangleGeometry>
+                            </Ellipse.Clip>
+                        </Ellipse>
+                        <Border
+                       Grid.Column="1"
+                        x:Name="CurrentTrackImage"
+                        VerticalAlignment="Bottom"
+                        CornerRadius="150"
+                            BorderThickness="2"
+                            BorderBrush="White"
+                        Height="{Binding ElementName=CurrentTrackImage, Path=ActualWidth}"
+                        >
+                            <Border.Background>
+                                <ImageBrush Stretch="Fill" ImageSource="{Binding CurrentTrack.Album.AlbumArt}"/>
+                            </Border.Background>
+                        </Border>
+                    </Grid>
+                </FlipViewItem>
+                <FlipViewItem>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="8*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Border
+                       Grid.Column="1"
+                        x:Name="NextTrackImage"
+                        BorderBrush="White"
+                        VerticalAlignment="Bottom"
+                        BorderThickness="5"
+                        CornerRadius="150"
+                        Height="{Binding ElementName=NextTrackImage, Path=ActualWidth}"
+                        >
+                            <Border.Background>
+                                <ImageBrush Stretch="Fill" ImageSource="{Binding NextTrack.Album.AlbumArt}"/>
+                            </Border.Background>
+                        </Border>
+                    </Grid>
                 </FlipViewItem>
             </FlipView>
             <!--星级评价-->
             <controls:StarRater
                 ScaleToWidth="True"
                 Rating="{Binding CurrentTrack.Rating, Mode=TwoWay}"
-                Grid.Row="4"
+                Grid.Row="1"
                 Grid.Column="1"
                 Margin="0,2" Width="200"
                 Visibility="{Binding ElementName=LrcControl,Path=Visibility,Converter={StaticResource VisibleToCollapseConverter}}"
             />
             <!--歌曲信息-->
-            <Grid
-                x:Name="GRDSongInfo"
-                Grid.Row="5"
-                Grid.Column="1"
-                Visibility="{Binding ElementName=LrcControl,Path=Visibility,Converter={StaticResource VisibleToCollapseConverter}}"
-                >
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"></RowDefinition>
-                    <RowDefinition Height="1*"></RowDefinition>
-                    <RowDefinition Height="1*"></RowDefinition>
-                </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0" Orientation="Horizontal" >
-                    <Image Source="/Icon/Song.png" Height="49" Width="49"></Image>
-                    <Canvas Margin="0,8">
-                        <TextBlock x:Name="TBSong"  
-                                   Text="{Binding CurrentTrack.Name,TargetNullValue=歌曲}" 
-                                   FontSize="26"  Foreground="White"
-                                   Canvas.ZIndex="1">
-
-                        </TextBlock>
-                        <TextBlock  Text="{Binding ElementName=TBSong ,Path=Text}" 
-                                    FontSize="{Binding ElementName=TBSong ,Path=FontSize}" 
-                                    Foreground="#FF535353" Canvas.ZIndex="0">
-                            <TextBlock.RenderTransform>
-                                <TranslateTransform X="2" Y="1"></TranslateTransform>
-                            </TextBlock.RenderTransform>
-                        </TextBlock>
-                    </Canvas>
-                </StackPanel>
-                <StackPanel Grid.Row="1" Orientation="Horizontal" >
-                    <Image Source="/Icon/Album.png" Height="49" Width="49"></Image>
-                    <Canvas Margin="0,8">
-                        <TextBlock x:Name="TBAlbum" 
-                                   Text="{Binding CurrentTrack.Album.Name,TargetNullValue=专辑}"  
-                                   FontSize="26"
-                                   Foreground="White" Canvas.ZIndex="1">
-                        </TextBlock>
-                        <TextBlock  
-                            Text="{Binding ElementName=TBAlbum ,Path=Text}"
-                            FontSize="{Binding ElementName=TBSong ,Path=FontSize}" 
-                            Foreground="#FF535353" Canvas.ZIndex="0">
-                            <TextBlock.RenderTransform>
-                                <TranslateTransform X="2" Y="1"></TranslateTransform>
-                            </TextBlock.RenderTransform>
-                        </TextBlock>
-                    </Canvas>
-                </StackPanel>
-                <StackPanel Grid.Row="2" Orientation="Horizontal">
-                    <Image Source="/Icon/Artist.png" Height="49" Width="49"></Image>
-                    <Canvas Margin="0,8">
-                        <TextBlock x:Name="TBArtist" FontSize="26"
-                                   Text="{Binding CurrentTrack.Artist.Name,TargetNullValue=演唱者}" 
-                                   Foreground="White" Canvas.ZIndex="1">
-
-                        </TextBlock>
-                        <TextBlock  
-                            Text="{Binding ElementName=TBArtist ,Path=Text}" 
-                            FontSize="{Binding ElementName=TBArtist, Path=FontSize}"
-                            Foreground="#FF535353" Canvas.ZIndex="0">
-                            <TextBlock.RenderTransform>
-                                <TranslateTransform X="2" Y="1"></TranslateTransform>
-                            </TextBlock.RenderTransform>
-                        </TextBlock>
-                    </Canvas>
-                </StackPanel>
-            </Grid>
             <!--播放状态信息-->
 
             <HyperlinkButton
@@ -219,7 +237,7 @@
                   Grid.RowSpan="3"
                   Grid.ColumnSpan="3"
                   VerticalAlignment="Bottom"
-                  Visibility="Collapsed">
+                  Visibility="Visible">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="auto" />
@@ -241,23 +259,30 @@
                     TextAlignment="Center"
                     />
                 </controls:ShiftedGrid>
-
-                <Polygon
-                Margin="0,0,0,-5"
-                Grid.Row="2"
-                Points="{Binding Width, ElementName=PlayerControlProgressBarCompleted, Converter={StaticResource ProgressTriangle}}"
-                Fill="{StaticResource PhoneAccentBrush}"
-                Stroke="{StaticResource PhoneAccentBrush}"
-                >
-                    <Polygon.RenderTransform>
+                <Ellipse
+                    Margin="0,0,0,-20"
+                    Grid.Row="2"
+                    HorizontalAlignment="Left"
+                    Fill="{StaticResource PlayerControlForegroundColor1}"
+                    
+                    Stroke="White"
+                    StrokeThickness="3"
+                    Width="30"
+                    Height="30"
+                    >
+                    <Ellipse.RenderTransform>
                         <TranslateTransform X="{Binding Width, ElementName=PlayerControlProgressBarCompleted}" />
-                    </Polygon.RenderTransform>
-                </Polygon>
+                    </Ellipse.RenderTransform>
+
+                </Ellipse>
+
             </Grid>
 
             <Grid x:Name="GDMusicTray"
-            Grid.Row="8" Grid.ColumnSpan="3"
-            Background="Transparent" Margin="0,0,0,0" 
+                  Margin="15,0,15,0" 
+                  Grid.Row="8" 
+                  Grid.ColumnSpan="3"
+                  Background="Transparent" 
             >
 
                 <Grid.RowDefinitions>
@@ -277,10 +302,12 @@
                 Grid.ColumnSpan="3"
                 />
                 <Rectangle
+                    
                 x:Name="PlayerControlProgressBarFull"
                 Fill="White"
                 Opacity="0.2"
-                Grid.ColumnSpan="3"
+                Grid.ColumnSpan="3" 
+                    RadiusX="5" RadiusY="5"
                 />
 
                 <Rectangle
@@ -289,19 +316,17 @@
                 HorizontalAlignment="Left"
                 Visibility="{Binding IsActive, Converter={StaticResource BoolToVisibilityConverter}}"
                 Grid.ColumnSpan="3"
+                Fill="White"
+                RadiusX="5" RadiusY="5"
                 >
-                    <Rectangle.Fill>
-                        <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
-                            <GradientStop Color="#7FFFFFFF" Offset="0"/>
-                            <GradientStop Color="#CCFFFFFF" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Rectangle.Fill>
+
 
                 </Rectangle>
 
 
 
                 <Rectangle
+                    
                 Fill="Transparent"
                 Grid.ColumnSpan="3"
                 Margin="0,-10,0,-10"
@@ -466,7 +491,7 @@
 
         </controls:TestControl>
         <!--错误提示框-->
-        <controls:ErrorboxControl 
+        <!--<controls:ErrorboxControl 
             Visibility="{Binding IsActive, Converter={StaticResource NotBoolToVisibilityConverter}}"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
@@ -474,7 +499,7 @@
             IsBtnShow="True"
             Message="您的播放列表为空哦~"
             >
-        </controls:ErrorboxControl>
+        </controls:ErrorboxControl>-->
         <!--歌词按钮-->
         <AppBarButton 
             HorizontalAlignment="Right" 
