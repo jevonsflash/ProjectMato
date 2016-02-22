@@ -31,8 +31,9 @@
         </Style>
     </Page.Resources>
 
-    <Grid x:Name="LayoutRoot" Background="{StaticResource MainBackGroundBrush}">       
+    <Grid x:Name="LayoutRoot" Background="{StaticResource MainBackGroundBrush}">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -45,10 +46,8 @@
         <Grid Grid.Row="1" Margin="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="10"/>
@@ -57,6 +56,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
+            <!--信息部分-->
             <Grid x:Name="FolderSyncContent"
                 Grid.ColumnSpan="5"
                 Visibility="{Binding CurrentAction, Converter={StaticResource ActionTypeFolderSyncToVisibilityConverer}}"
@@ -204,6 +204,16 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
+                <controls:SymbolTile
+                    x:Uid="TapToCancel"                    
+                    IsProgress="True"
+                    Height="120"
+                    Width="120"
+                    InnerMargin="10"
+                    Margin="10,0,10,0"
+                    Command="{Binding CancelScanLastmForArt}"
+                    />
+
                 <TextBlock x:Uid="UpdateArtMessage"
                     Grid.Column="1"
                     FontSize="{StaticResource TextStyleLargeFontSize}"
@@ -224,80 +234,50 @@
                             FontWeight="Bold"
                             />
                         <Run Text="{Binding ArtSyncAlbumsLeft}" />
-                    </TextBlock>                 
-                </StackPanel>
-            </Grid>
-
-            <Grid x:Name="ImportStatsAction"
-                Grid.ColumnSpan="5"                
-                Visibility="{Binding CurrentAction, Converter={StaticResource ActionTypeImportStatsToVisibilityConverer}}"
-                >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
-                <controls:SymbolTile
-                    IsProgress="True"
-                    Height="120"
-                    Width="120"
-                    InnerMargin="10"
-                    Margin="10,0,10,0"
-                    />
-
-                <TextBlock x:Uid="ImportStatsMessage"
-                    Grid.Column="1"
-                    FontSize="{StaticResource TextStyleLargeFontSize}"
-                    FontStyle="Italic"
-                    Foreground="{StaticResource PhoneForegroundBrush}"
-                    />
-
-                <StackPanel
-                    Grid.Column="1"
-                    Orientation="Vertical"
-                    VerticalAlignment="Bottom"
-                    >
-                    <TextBlock
-                        FontSize="{StaticResource TextStyleLargeFontSize}"
-                        Foreground="{StaticResource PhoneForegroundBrush}"
-                        >   
-                        <Run x:Uid="ImportStatsSongsFoundCount"
-                            FontWeight="Bold"                    
-                            />
-                        <Run Text="{Binding StatImportSongsFound}" />
-                    </TextBlock>
-
-                    <TextBlock
-                        FontSize="{StaticResource TextStyleLargeFontSize}"
-                        Foreground="{StaticResource PhoneForegroundBrush}"
-                        >
-                        <Run x:Uid="ImportStatsSongsSkippedCount"
-                            FontWeight="Bold"
-                            />
-                        <Run Text="{Binding StatImportSongsSkipped}" />
                     </TextBlock>
                 </StackPanel>
             </Grid>
-
+        </Grid>
+        <Grid Grid.Row="2" Margin="0"
+              
+              >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="150"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <!--按钮部分-->
             <Grid x:Name="FullSyncTile"
-                Grid.Row="2"                
+                HorizontalAlignment="Center"
+                Grid.Row="0"      
+
                 MinHeight="{Binding ActualWidth, ElementName=FullSyncTile}"
-                >                
+                >
                 <controls:SymbolTile
+                  Height="120"
+                Width="120"
                     Symbol="Refresh"
                     InnerMargin="15"
-                    Caption="扫描所有音乐"
+                    Caption="全部扫描"
                     Command="{Binding ScanLocalLibrary}"
                     CommandParameter="True"
                     />
             </Grid>
 
             <Grid x:Name="SyncFolderTile"
-                Grid.Row="2"                
-                Grid.Column="2"
+                HorizontalAlignment="Center"
+
+                Grid.Row="0"                
+                Grid.Column="1"
                 MinHeight="{Binding ActualWidth, ElementName=SyncFolderTile}"
                 >
                 <controls:SymbolTile
+                 Height="120"
+                Width="120"
+                    
                     Symbol="Folder"
                     InnerMargin="15"
                     Caption="扫描文件夹"
@@ -306,21 +286,38 @@
             </Grid>
 
             <Grid x:Name="DeleteTracksTile"
-                Grid.Row="2"                
-                Grid.Column="4"
+               HorizontalAlignment="Center"
+
+                Grid.Row="1"                
+                Grid.Column="0"
                 MinHeight="{Binding ActualWidth, ElementName=DeleteTracksTile}"
                 >
                 <controls:SymbolTile
+                  Height="120"
+                Width="120"
                     Symbol="Delete"
                     InnerMargin="15"
-                    Caption="删除无效文件"
+                    Caption="删除无效曲目"
                     Command="{Binding CleanLibrary}"
                     />
             </Grid>
 
+            <Grid x:Name="UpdateAlbumArtTile"
+                HorizontalAlignment="Center"
 
-
-
+                Grid.Row="1"
+                Grid.Column="1"
+                MinHeight="{Binding ActualWidth, ElementName=UpdateAlbumArtTile}"
+                >
+                <controls:SymbolTile
+                     Height="120"
+                    Width="120"
+                    Symbol="Pictures"
+                    InnerMargin="15"
+                    Caption="更新专辑封面"
+                    Command="{Binding ScanLastFMForArt}"
+                    />
+            </Grid>
         </Grid>
     </Grid>
 </local:BasePage>

@@ -1,12 +1,15 @@
 ﻿using MusicMinkAppLayer.Diagnostics;
+using MusicMinkAppLayer.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 using Windows.Security.Cryptography;
 using Windows.Security.Cryptography.Core;
 using Windows.Storage.Streams;
@@ -49,7 +52,7 @@ namespace MusicMinkAppLayer.Helpers
 
         private LastFMManager() { }
 
-        private async Task<JObject> getInfo(string method, Dictionary<string, string> parameters, bool isSigned = false)
+        private async Task<lfm> getInfo(string method, Dictionary<string, string> parameters, bool isSigned = false)
         {
             if (!Initalized)
             {
@@ -70,29 +73,36 @@ namespace MusicMinkAppLayer.Helpers
                 parameters.Add("api_sig", api_sig);
             }
 
-            parameters.Add("format", "JSON");
+            //parameters.Add("format", "json");
 
             HttpContent content = new FormUrlEncodedContent(parameters);
 
             HttpResponseMessage response = await LocalClient.PostAsync("", content);
 
             string responseAsString = await response.Content.ReadAsStringAsync();
+            lfm info = new lfm();
+            using (StringReader stringreader = new StringReader(responseAsString))
+            {
+                XmlSerializer xmlSearializer = new XmlSerializer(typeof(lfm));
+                info = (lfm)xmlSearializer.Deserialize(stringreader);
 
-            if (responseAsString == string.Empty) return new JObject();
-
-            return (JObject) JsonConvert.DeserializeObject(responseAsString);
+            }
+            return info;
         }
 
         public async Task<String> GetAlbumArt(string artist, string album)
         {
-            JObject result = await getInfo("album.getinfo",
+
+            lfm result = await getInfo("album.getinfo",
                 new Dictionary<string, string>() { { "artist", artist }, { "album", album } });
 
-            if (result["album"] != null)
+            if (result.Album != null)
             {
-                if (result["album"]["image"] != null)
+                var imageTextList = result.Album.Image;
+                if (imageTextList != null)
                 {
-                    return result["album"]["image"].Last["#text"].ToString();
+
+                    return imageTextList[imageTextList.Length - 1].ToString();
                 }
             }
 
@@ -121,12 +131,12 @@ namespace MusicMinkAppLayer.Helpers
             b.Append(API_SECRET);
 
 
-                var Md5 = HashAlgorithmProvider.OpenAlgorithm(HashAlgorithmNames.Md5);
-                var buffer = CryptographicBuffer.ConvertStringToBinary(b.ToString(), BinaryStringEncoding.Utf8);
-                IBuffer buffHash = Md5.HashData(buffer);
+            var Md5 = HashAlgorithmProvider.OpenAlgorithm(HashAlgorithmNames.Md5);
+            var buffer = CryptographicBuffer.ConvertStringToBinary(b.ToString(), BinaryStringEncoding.Utf8);
+            IBuffer buffHash = Md5.HashData(buffer);
 
 
-                return CryptographicBuffer.EncodeToHexString(buffHash);
+            return CryptographicBuffer.EncodeToHexString(buffHash);
         }
     }
 }

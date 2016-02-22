@@ -70,50 +70,44 @@
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
             <!--当前歌曲专辑封面-->
-            <Image
-                Grid.Row="3"
-                Grid.Column="1"
-                HorizontalAlignment="Center"
-                Source="{Binding CurrentTrack.Album.AlbumArt}"            
-                Height="220"
-                Width="220"
-                ManipulationMode="TranslateX,TranslateRailsX,System"
-                ManipulationCompleted="Rectangle_ManipulationCompleted"
-                Visibility="{Binding ElementName=LrcControl,Path=Visibility,Converter={StaticResource VisibleToCollapseConverter}}"
+            <FlipView
+                x:Name="FVAlbumArtFliper"
+                Grid.Row="3" 
+                Grid.ColumnSpan="3"
+                Visibility="{Binding ElementName=LrcControl,Path=Visibility,Converter={StaticResource VisibleToCollapseConverter}}" 
+                SelectionChanged="FVAlbumArtFliper_SelectionChanged"
+                SelectedIndex="1"
+                
+                >
+                <FlipViewItem>
+                    <Image 
+                    x:Name="PrevTrackImage"
+                    HorizontalAlignment="Center"
+                    Source="{Binding PrevTrack.Album.AlbumArt}"
+                    Stretch="UniformToFill"
+                    Width="220"
+                    Height="220"/>
+                </FlipViewItem> 
+                <FlipViewItem>
+                    <Image
+                    x:Name="CurrentTrackImage"
+                    HorizontalAlignment="Center"
+                    Source="{Binding CurrentTrack.Album.AlbumArt}"            
+                    Height="220"
+                    Width="220"/>
+                </FlipViewItem>
+                <FlipViewItem>
+                    <Image 
+                    x:Name="NextTrackImage"
+                    HorizontalAlignment="Center"
+                    Source="{Binding NextTrack.Album.AlbumArt}"
+                    Stretch="UniformToFill"
+                    Width="220"
+                    Height="220"
+                    />
 
-            />
-            <Image 
-                x:Name="PrevTrackImage"
-                Grid.Row="3"
-                Grid.Column="0"
-                HorizontalAlignment="Right"
-                Source="{Binding PrevTrack.Album.AlbumArt}"
-                Stretch="UniformToFill"
-                Margin="0,10"
-                Width="180"
-                Height="180"
-                DoubleTapped="PrevTrackImageDoubleTapped"
-                ManipulationMode="TranslateX,TranslateRailsX,System"
-                ManipulationCompleted="Rectangle_ManipulationCompleted"
-                Visibility="{Binding ElementName=LrcControl,Path=Visibility,Converter={StaticResource VisibleToCollapseConverter}}"
-       
-                />
-            <Image 
-                x:Name="NextTrackImage"
-                Grid.Row="3"
-                Grid.Column="2"
-                HorizontalAlignment="Left"
-                Source="{Binding NextTrack.Album.AlbumArt}"
-                Stretch="UniformToFill"
-                Margin="0,10,0,10"
-                Width="180"
-                Height="180"
-                DoubleTapped="NextTrackImageDoubleTapped"
-                ManipulationMode="TranslateX,TranslateRailsX,System"
-                ManipulationCompleted="Rectangle_ManipulationCompleted"
-                Visibility="{Binding ElementName=LrcControl,Path=Visibility,Converter={StaticResource VisibleToCollapseConverter}}"
-
-                />
+                </FlipViewItem>
+            </FlipView>
             <!--星级评价-->
             <controls:StarRater
                 ScaleToWidth="True"

@@ -9,6 +9,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Shapes;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Media.Animation;
+using System.Diagnostics;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -28,37 +29,6 @@ namespace MusicMink.Pages
             VisualStateManager.GoToState(this, "MenuClose", true);
             this.GDMenu.DataContext = LibraryViewModel.Current;
             //this.UCLrc.DataContext = LibraryViewModel.Current.PlayQueue.CurrentTrack.Name;
-        }
-
-        private void PrevTrackImageDoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
-        {
-            if (LibraryViewModel.Current.PlayQueue.PrevPlayer.CanExecute(null))
-            {
-                LibraryViewModel.Current.PlayQueue.PrevPlayer.Execute(null);
-            }
-        }
-
-        private void NextTrackImageDoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
-        {
-            if (LibraryViewModel.Current.PlayQueue.SkipPlayer.CanExecute(null))
-            {
-                LibraryViewModel.Current.PlayQueue.SkipPlayer.Execute(null);
-            }
-        }
-
-        private void Rectangle_ManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
-        {
-            if (Math.Abs(e.Cumulative.Translation.Y) < 10)
-            {
-                if (e.Cumulative.Translation.X > 30 && LibraryViewModel.Current.PlayQueue.PrevPlayer.CanExecute(null))
-                {
-                    LibraryViewModel.Current.PlayQueue.PrevPlayer.Execute(null);
-                }
-                else if (e.Cumulative.Translation.X < -30 && LibraryViewModel.Current.PlayQueue.SkipPlayer.CanExecute(null))
-                {
-                    LibraryViewModel.Current.PlayQueue.SkipPlayer.Execute(null);
-                }
-            }
         }
 
         private void TextBlock_Tapped(object sender, TappedRoutedEventArgs e)
@@ -210,6 +180,36 @@ namespace MusicMink.Pages
             {
                 VisualStateManager.GoToState(this, "MenuClose", true);
                 this.GDMask.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void FVAlbumArtFliper_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.GDPage != null)
+            {
+
+
+                if ((sender as FlipView).SelectedIndex == 0)
+                {
+
+
+                    if (LibraryViewModel.Current.PlayQueue.PrevPlayer.CanExecute(null))
+                    {
+                        LibraryViewModel.Current.PlayQueue.PrevPlayer.Execute(null);
+                    }
+                   (sender as FlipView).SelectedIndex = 1;
+
+                }
+                else if ((sender as FlipView).SelectedIndex == 2)
+                {
+
+                    if (LibraryViewModel.Current.PlayQueue.SkipPlayer.CanExecute(null))
+                    {
+                        LibraryViewModel.Current.PlayQueue.SkipPlayer.Execute(null);
+                    }
+                    (sender as FlipView).SelectedIndex = 1;
+
+                }
             }
         }
     }

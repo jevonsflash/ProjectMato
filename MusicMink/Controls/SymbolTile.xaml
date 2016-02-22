@@ -37,7 +37,7 @@
             </Style>
 
         <ControlTemplate x:Key="SymbolTileButtonStyle" TargetType="Button">
-            <Grid x:Name="Grid" Background="{StaticResource PhoneAccentBrush}">
+            <Grid x:Name="Grid" Background="Transparent">
                 <VisualStateManager.VisualStateGroups>
                     <VisualStateGroup x:Name="CommonStates">
                         <VisualStateGroup.Transitions>
