@@ -20,7 +20,8 @@ namespace MusicMink.Pages
     /// </summary>
     public sealed partial class NowPlaying : BasePage
     {
-
+        DispatcherTimer dt = new DispatcherTimer();
+        bool flag = true;
         public NowPlaying()
         {
 
@@ -28,7 +29,25 @@ namespace MusicMink.Pages
             this.DataContext = LibraryViewModel.Current.PlayQueue;
             VisualStateManager.GoToState(this, "MenuClose", true);
             this.GDMenu.DataContext = LibraryViewModel.Current;
+            dt.Interval = TimeSpan.FromSeconds(3);
+            dt.Tick += Dt_Tick;
+            dt.Start();
             //this.UCLrc.DataContext = LibraryViewModel.Current.PlayQueue.CurrentTrack.Name;
+        }
+
+        private void Dt_Tick(object sender, object e)
+        {
+            if (flag)
+            {
+                this.SbGoListPage1.Begin();
+
+            }
+            else
+            {
+                this.SbGoListPage2.Begin();
+
+            }
+            flag = !flag;
         }
 
         private void TextBlock_Tapped(object sender, TappedRoutedEventArgs e)
