@@ -22,7 +22,16 @@ namespace MusicMink.Pages
         private void Settings_Loaded(object sender, RoutedEventArgs e)
         {
             BackgroundModel sel = SettingsViewModel.Current.BackgroundList.Find(c => c.IsSel == true);
-            this.LVFeature.SelectedIndex = sel.BackgroundId - 1;
+            try
+            {
+                this.LVFeature.SelectedIndex = sel.BackgroundId - 1;
+
+            }
+            catch (Exception ex)
+            {
+
+                this.LVFeature.SelectedIndex = 0;
+            }
         }
 
         private void LVFeature_SelectionChanged(object sender, SelectionChangedEventArgs e)

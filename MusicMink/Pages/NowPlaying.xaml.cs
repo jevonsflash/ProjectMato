@@ -10,6 +10,9 @@ using Windows.UI.Xaml.Shapes;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Media.Animation;
 using System.Diagnostics;
+using MusicMinkAppLayer.Helpers;
+using Windows.UI.Xaml.Media.Imaging;
+using Windows.UI.Xaml.Media;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -22,6 +25,7 @@ namespace MusicMink.Pages
     {
         DispatcherTimer dt = new DispatcherTimer();
         bool flag = true;
+        bool AlbumArtRequestLock = false;
         public NowPlaying()
         {
 
@@ -29,7 +33,7 @@ namespace MusicMink.Pages
             this.DataContext = LibraryViewModel.Current.PlayQueue;
             VisualStateManager.GoToState(this, "MenuClose", true);
             this.GDMenu.DataContext = LibraryViewModel.Current;
-            dt.Interval = TimeSpan.FromSeconds(3);
+            dt.Interval = TimeSpan.FromSeconds(5);
             dt.Tick += Dt_Tick;
             dt.Start();
             //this.UCLrc.DataContext = LibraryViewModel.Current.PlayQueue.CurrentTrack.Name;
@@ -231,5 +235,22 @@ namespace MusicMink.Pages
                 }
             }
         }
+
+        private async void ImageBrush_ImageOpened(object sender, RoutedEventArgs e)
+        {
+            AlbumViewModel currentAlbum = LibraryViewModel.Current.PlayQueue.CurrentTrack.Album;
+
+            if (!currentAlbum.HasAlbumArt)
+            {
+                string LastFMArt = await LastFMManager.Current.GetAlbumArt(currentAlbum.ArtistName, currentAlbum.Name);
+                if (!string.IsNullOrEmpty(LastFMArt))
+                {
+                    currentAlbum.UpdateArt(LastFMArt);
+                }
+
+            }
+
+        }
+
     }
 }

@@ -280,7 +280,7 @@
     <value>艺术家</value>
   </data>
   <data name="DialogEditAlbumGetLastFMButton.Content" xml:space="preserve">
-    <value>Get from Last.FM</value>
+    <value>下载封面</value>
   </data>
   <data name="DialogEditAlbumLaunchFilePickerButton.Content" xml:space="preserve">
     <value>通过资源管理器</value>
@@ -442,7 +442,7 @@
     <value>Update All Album Art</value>
   </data>
   <data name="UpdateLastFMArtHelpMessage.Text" xml:space="preserve">
-    <value>Art pulled from last.fm. Will only be downloaded if no art currently exists.</value>
+    <value>只会下载目前尚无的专辑封面</value>
   </data>
   <data name="SettingsAutoPullArtFromLastFMHelpMessage.Text" xml:space="preserve">
     <value>If this is on, will automatically attempt to download album art from last.fm whenever creating a new album.</value>
@@ -757,7 +757,7 @@
     <value>停止扫描</value>
   </data>
   <data name="UpdateArtMessage.Text" xml:space="preserve">
-    <value>Updating Art...</value>
+    <value>正在下载封面...</value>
   </data>
   <data name="NowPlayingPageHeader.Text" xml:space="preserve">
     <value>正在播放</value>

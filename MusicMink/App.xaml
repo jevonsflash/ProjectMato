@@ -12,7 +12,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Theme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            <x:String x:Key="Version">3.1.0</x:String>
+            <x:String x:Key="Version">3.2.0</x:String>
             <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
             <converters:NullToVisibilityConverter x:Key="NotNullToVisibilityConverter" Invert="True" />
 

@@ -6,19 +6,27 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="500"
-    d:DesignWidth="400">
+    >
 
     <Grid x:Name="LayoutRoot" Background="Transparent" Height="500">
-        <Rectangle Fill="Black" Opacity="0.5"></Rectangle>
+        <Rectangle >
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop  Offset="0" Color="#CC000000">
+                    </GradientStop>
+                    <GradientStop Offset="1"/>
+                    <GradientStop Color="#7F000000" Offset="0.815"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
         <Grid x:Name="ContentPanel"  Margin="12,0,12,0" >
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="300"></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="4*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="100"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="4*"></RowDefinition>
             </Grid.RowDefinitions>
             <local:ErrorboxControl 
             Grid.Column="0" Grid.Row="1" 

@@ -59,7 +59,7 @@
                 <RowDefinition Height="0" />
                 <RowDefinition Height="40" />
                 <!--进度条 8-->
-                <RowDefinition Height="50" />
+                <RowDefinition Height="10" />
                 <!--控制按钮9-->
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
@@ -89,11 +89,11 @@
                             Canvas.ZIndex="3">
                             <TextBlock 
                                    Margin="50,0"
-                                   MaxLines="2"
+                                   MaxLines="1"
                                    
                                    TextWrapping="Wrap"
                                    Text="{Binding PrevTrack.Name}" 
-                                   FontSize="22"
+                                   FontSize="28"
                                    Foreground="White" 
                                    TextAlignment="Center"
                                    >
@@ -136,7 +136,7 @@
                         Canvas.ZIndex="1"
                             >
                             <Border.Background>
-                                <ImageBrush Stretch="Fill" ImageSource="{Binding PrevTrack.Album.AlbumArt}"/>
+                                <ImageBrush Stretch="Fill" ImageSource="{Binding PrevTrack.Album.AlbumArt}" />
                             </Border.Background>
                         </Border>
 
@@ -222,6 +222,7 @@
                             <Border.Background>
                                 <ImageBrush Stretch="Fill" 
                                             ImageSource="{Binding CurrentTrack.Album.AlbumArt}"
+                                            ImageOpened="ImageBrush_ImageOpened"
                                             
                                             />
                             </Border.Background>
@@ -261,11 +262,10 @@
                             Canvas.ZIndex="3">
                             <TextBlock 
                                    Margin="50,0"
-                                   MaxLines="2"
-                                   
+                                   MaxLines="1"
                                    TextWrapping="Wrap"
                                    Text="{Binding NextTrack.Name}" 
-                                   FontSize="22"
+                                   FontSize="28"
                                    Foreground="White" 
                                    TextAlignment="Center"
                                    >
@@ -388,20 +388,21 @@
                             HorizontalAlignment="Center"
                             Opacity="0"
                             x:Name="TBGoListPage2">
-                            点此前往列队
+                            查看列队
                         
                         </TextBlock>
                     </Grid>
                 </ContentControl>
             </HyperlinkButton>
             <TextBlock 
-                Grid.Row="6"
-                Grid.Column="0"
-                Grid.ColumnSpan="3"
+                Grid.Row="7"
+                
                 HorizontalAlignment="Right"
                 FontSize="22" 
                 VerticalAlignment="Bottom"
-                Text="{Binding ProgressTime}" />
+                Text="{Binding ProgressTime}" 
+                
+                />
 
             <!--进度条-->
             <Grid x:Name="ProgressBarScrubView"
@@ -409,7 +410,7 @@
                   Grid.RowSpan="3"
                   Grid.ColumnSpan="3"
                   VerticalAlignment="Bottom"
-                  Visibility="Collapsed">
+                  Visibility="Visible">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="auto" />
@@ -432,16 +433,16 @@
                     />
                 </controls:ShiftedGrid>
                 <Ellipse
-                    Margin="0,0,0,-20"
+                    Margin="0,0,0,-17.5"
                     Grid.Row="2"
                     HorizontalAlignment="Left"
                     Fill="White"
-                    StrokeThickness="3"
+                    StrokeThickness="20"
                     Width="30"
                     Height="30"
                     >
                     <Ellipse.Stroke>
-                        <SolidColorBrush Color="White" Opacity="0.8">
+                        <SolidColorBrush Color="White" Opacity="0.5">
                             
                         </SolidColorBrush>
                     </Ellipse.Stroke>
@@ -461,7 +462,7 @@
             >
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="10" />
+                    <RowDefinition Height="5" />
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
@@ -492,6 +493,7 @@
                 Visibility="{Binding IsActive, Converter={StaticResource BoolToVisibilityConverter}}"
                 Grid.ColumnSpan="3"
                 Fill="White"
+                Opacity="0.8"
                 RadiusX="5" RadiusY="5"
                 >
 

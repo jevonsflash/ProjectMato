@@ -128,6 +128,7 @@ namespace MusicMink
                 if (SettingsViewModel.Current.IsNewSeason != (string)App.Current.Resources["Version"])
                 {
                     SettingsViewModel.Current.IsNewSeason = (string)App.Current.Resources["Version"];
+                    BackgroundsModel.Current.ClearAll();
                     target = typeof(GuidePage);
                 }
 

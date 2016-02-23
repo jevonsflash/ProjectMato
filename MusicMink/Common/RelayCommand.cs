@@ -28,9 +28,18 @@ namespace MusicMink.Common
 
         public void RaiseExecuteChanged()
         {
-            if (CanExecuteChanged != null)
+            try
             {
-                CanExecuteChanged(this, EventArgs.Empty);
+                if (CanExecuteChanged != null)
+                {
+                    CanExecuteChanged(this, EventArgs.Empty);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+
             }
         }
 

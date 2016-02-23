@@ -347,6 +347,12 @@ namespace MusicMinkAppLayer.Tables
         {
             sqlConnection.DeleteAll<PlayQueueEntryTable>();
         }
+        internal void ClearBackground()
+        {
+            sqlConnection.DeleteAll<BackgroundTable>();
+        }
+
+
 
         internal void Update(BaseTable entry)
         {
