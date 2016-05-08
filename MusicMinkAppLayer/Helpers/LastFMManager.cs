@@ -83,9 +83,15 @@ namespace MusicMinkAppLayer.Helpers
             lfm info = new lfm();
             using (StringReader stringreader = new StringReader(responseAsString))
             {
-                XmlSerializer xmlSearializer = new XmlSerializer(typeof(lfm));
-                info = (lfm)xmlSearializer.Deserialize(stringreader);
-
+                try
+                {
+                    XmlSerializer xmlSearializer = new XmlSerializer(typeof(lfm));
+                    info = (lfm)xmlSearializer.Deserialize(stringreader);
+                }
+                catch (Exception e)
+                {
+                    Logger.Current.Log(new CallerInfo(), LogLevel.Info, "Error in XML documen");
+                }
             }
             return info;
         }

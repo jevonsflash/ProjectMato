@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema targetNamespace="http://googleanalyticssdk.codeplex.com/ns/easytracker" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema targetNamespace="http://googleanalyticssdk.codeplex.com/ns/easytracker" elementFormDefault="qualified" xmlns:xxmls="http://www.w3.org/2001/XMLSchema">
   <xs:element name="analytics">
     <xs:complexType>
       <xs:all>

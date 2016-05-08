@@ -11,77 +11,91 @@
     <Grid x:Name="GDLayout">
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="#FFFFB7B7" Offset="0"/>
-                <GradientStop Color="#FFC3B1FF" Offset="1"/>
+                <GradientStop Color="#FF5F4C80" Offset="0"/>
+                <GradientStop Color="#FF471249" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <Hub>
-            <HubSection >
-                <DataTemplate>
+
+        <Pivot>
+            <PivotItem >
                     <Grid
-                        HorizontalAlignment="Left" 
+                        HorizontalAlignment="Center" 
                         VerticalAlignment="Center"
-                        Width="350" Height="600">
+                        >
                         <Grid.RowDefinitions>
                             <RowDefinition Height="1*"></RowDefinition>
-                            <RowDefinition Height="6*"></RowDefinition>
-                            <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition Height="6*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="50"></RowDefinition>
                         </Grid.RowDefinitions>
                         <Image 
                             Grid.Row="1" 
                             
-                           Source="ms-appx:///Img/GuidePageImg/GuidePageImg01.png" Margin="0,0,0,0" VerticalAlignment="Top"/>
-                        <TextBlock 
+                           Source="ms-appx:///Img/GuidePageImg/GuidePageImg04.png" Margin="0,0,0,0" VerticalAlignment="Top"/>
+                    <TextBlock 
                             Grid.Row="0" 
                             FontSize="32"  
                             VerticalAlignment="Center"
                             HorizontalAlignment="Left"
-                            >第一步
-                        </TextBlock>
-                        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                            >获取专辑图片
+                    </TextBlock>
+                    <TextBlock 
+                            Grid.Row="2" 
+                            FontSize="22"  
+                        TextWrapping="Wrap"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Left"
+                            >现在，你可以在 首页 或者 专辑编辑 找到你想要的专辑封面，或者爽快地让他们自己获取(管理库)
+                    </TextBlock>
+                    <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center">
                             <Ellipse Height="20" Width="20" Fill="White" Margin="12"></Ellipse>
                             <Ellipse Height="15" Width="15" Fill="LightGray" Margin="12"></Ellipse>
                             <Ellipse Height="15" Width="15" Fill="LightGray" Margin="12"></Ellipse>
                         </StackPanel>
 
                     </Grid>
-                </DataTemplate>
-            </HubSection>
-            <HubSection >
-                <DataTemplate>
+            </PivotItem>
+            <PivotItem >
                     <Grid
-                        HorizontalAlignment="Left" 
+                        HorizontalAlignment="Center" 
                         VerticalAlignment="Center"
-                        Width="350" Height="600">
+                        >
                         <Grid.RowDefinitions>
                             <RowDefinition Height="1*"></RowDefinition>
+                            
                             <RowDefinition Height="6*"></RowDefinition>
-                            <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+
+                        <RowDefinition Height="50"></RowDefinition>
                         </Grid.RowDefinitions>
                         <Image 
                             Grid.Row="1"
                             
-                           Source="ms-appx:///Img/GuidePageImg/GuidePageImg02.png" Margin="0,0,0,0" VerticalAlignment="Top"/>
-                        <TextBlock                             
+                           Source="ms-appx:///Img/GuidePageImg/GuidePageImg06.png" Margin="0,0,0,0" VerticalAlignment="Top"/>
+                    <TextBlock                             
                             Grid.Row="0"  
                             HorizontalAlignment="Left" 
                             FontSize="32"  
-                            VerticalAlignment="Center">第二步</TextBlock>
-                        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                            VerticalAlignment="Center">找不到？</TextBlock>
+                    <TextBlock                             
+                            Grid.Row="2"  
+                            HorizontalAlignment="Left" 
+                        TextWrapping="Wrap"
+                            FontSize="22"  
+                            VerticalAlignment="Center">找不到？试试搜索功能：3.0及以上版本提供歌曲、专辑、艺术家以及歌词的手动搜索</TextBlock>
+                    <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center">
                             <Ellipse Height="15" Width="15" Fill="LightGray" Margin="12"></Ellipse>
                             <Ellipse Height="20" Width="20" Fill="White" Margin="12"></Ellipse>
                             <Ellipse Height="15" Width="15" Fill="LightGray" Margin="12"></Ellipse>
                         </StackPanel>
 
                     </Grid>
-                </DataTemplate>
-            </HubSection>
-            <HubSection >
-                <DataTemplate>
+            </PivotItem>
+            <PivotItem >
                     <Grid
-                        HorizontalAlignment="Left" 
+                        HorizontalAlignment="Center" 
                         VerticalAlignment="Center"
-                        Width="350" Height="600">
+                        >
                         <Grid.RowDefinitions>
                             <RowDefinition Height="1*"></RowDefinition>
                             <RowDefinition Height="6*"></RowDefinition>
@@ -89,14 +103,20 @@
                         </Grid.RowDefinitions>
                         <Image 
                             Grid.Row="1"
-                           Source="ms-appx:///Img/GuidePageImg/GuidePageImg03.png" Margin="0,0,0,0" VerticalAlignment="Top"/>
-                        <TextBlock                             
+                           Source="ms-appx:///Img/GuidePageImg/GuidePageImg05.png" Margin="0,0,0,0" VerticalAlignment="Top"/>
+                    <TextBlock                             
                             Grid.Row="0"  
                             HorizontalAlignment="Left" 
                             FontSize="32"  
-                            VerticalAlignment="Center">第三步</TextBlock>
-
-                        <Button HorizontalAlignment="Center" 
+                            VerticalAlignment="Center">一路相伴</TextBlock>
+                    <TextBlock                             
+                            Grid.Row="1"  
+                            HorizontalAlignment="Left"
+    TextWrapping="Wrap"
+    Margin="0,0,0,100"
+                            FontSize="22"  
+                            VerticalAlignment="Bottom">从WP8.0到即将到来的UWP，从1.0到3.2，感谢有你，一路相伴</TextBlock>
+<Button HorizontalAlignment="Center" 
                                 Grid.Row="1"
                                 VerticalAlignment="Bottom" 
                                 Margin="10"
@@ -113,10 +133,9 @@
                             <Ellipse Height="20" Width="20" Fill="White" Margin="12"></Ellipse>
                         </StackPanel>
                     </Grid>
-                </DataTemplate>
-            </HubSection>
+            </PivotItem>
 
-        </Hub>
+        </Pivot>
     </Grid>
 
 </Page>

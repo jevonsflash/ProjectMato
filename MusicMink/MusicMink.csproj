@@ -300,6 +300,9 @@
     <Content Include="Img\GuidePageImg\GuidePageImg01.png" />
     <Content Include="Img\GuidePageImg\GuidePageImg02.png" />
     <Content Include="Img\GuidePageImg\GuidePageImg03.png" />
+    <Content Include="Img\GuidePageImg\GuidePageImg04.png" />
+    <Content Include="Img\GuidePageImg\GuidePageImg05.png" />
+    <Content Include="Img\GuidePageImg\GuidePageImg06.png" />
     <Content Include="Img\Guitar.jpg" />
     <Content Include="Img\Mato.png" />
     <Content Include="Img\Grass.png" />
@@ -490,8 +493,8 @@
     <SDKReference Include="Microsoft.VCLibs, version=12.0">
       <Name>Microsoft Visual C++ 2013 Runtime Package for Windows Phone</Name>
     </SDKReference>
-    <SDKReference Include="SQLite.WP81, Version=3.11.0">
-      <Name>SQLite for Windows Phone 8.1 %28SQLite.WP81, Version=3.11.0%29</Name>
+    <SDKReference Include="SQLite.WP81, Version=3.12.2">
+      <Name>SQLite for Windows Phone 8.1 %28SQLite.WP81, Version=3.12.2%29</Name>
     </SDKReference>
   </ItemGroup>
   <ItemGroup>

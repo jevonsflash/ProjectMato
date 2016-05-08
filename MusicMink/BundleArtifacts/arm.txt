@@ -1,0 +1,5 @@
+MainPackage=D:\Project\C#\test\ProjectMato\MusicMink\bin\ARM\Release\MusicMink_3.2.0.0_ARM.appx
+SymbolPackage=D:\Project\C#\test\ProjectMato\MusicMink\AppPackages\MusicMink_3.2.0.0_Test\MusicMink_3.2.0.0_ARM.appxsym
+ResourcePack=D:\Project\C#\test\ProjectMato\MusicMink\bin\ARM\Release\MusicMink_3.2.0.0_language-zh-hans.appx
+ResourcePack=D:\Project\C#\test\ProjectMato\MusicMink\bin\ARM\Release\MusicMink_3.2.0.0_scale-100.appx
+ResourcePack=D:\Project\C#\test\ProjectMato\MusicMink\bin\ARM\Release\MusicMink_3.2.0.0_scale-140.appx

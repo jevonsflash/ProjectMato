@@ -24,7 +24,7 @@ namespace MusicMink.Pages
             BackgroundModel sel = SettingsViewModel.Current.BackgroundList.Find(c => c.IsSel == true);
             try
             {
-                this.LVFeature.SelectedIndex = sel.BackgroundId - 1;
+                this.LVFeature.SelectedItem = sel;
 
             }
             catch (Exception ex)
